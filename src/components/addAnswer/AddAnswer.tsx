@@ -1,24 +1,39 @@
-import React, {type FormEvent, useState} from 'react';
+import React, {type FormEvent, useEffect, useState} from 'react';
 
 type Props = {
 	questionNumber: number;
-	onClick: (answer: string) => void;
+	updateFunc: (answer: Answer, index: number) => void;
+	newAnswerFunc: (e: FormEvent) => void;
+	removeAnswerFunc: (e: FormEvent) => void;
+};
+
+type Answer = {
+	answerBody: string;
+	answerId: number;
 };
 
 export const AddAnswer = (props: Props) => {
-	const [answer, setAnswer] = useState<string>('');
+	const [answer, setAnswer] = useState<Answer>({
+		answerBody: '',
+		answerId: props.questionNumber,
+	});
 
-	const sendAnswer = (e: FormEvent) => {
-		e.preventDefault();
-		props.onClick(answer);
+	useEffect(() => {
+		props.updateFunc(answer, props.questionNumber);
+	}, [answer]);
+
+	const handleUpdateAnswer = (answerBody: string) => {
+		setAnswer({answerBody, answerId: props.questionNumber});
 	};
 
 	return (
 		<>
-			{props.questionNumber} <input defaultValue='Answer goes here I guess...' onChange={e => {
-				setAnswer(e.target.value);
+			<input defaultValue='Answer goes here I guess...' onChange={e => {
+				handleUpdateAnswer(e.target.value);
 			}}/>
-			<button onClick={sendAnswer}>Add</button>
+			<button onClick={props.removeAnswerFunc}>-</button>
+			<button onClick={props.newAnswerFunc}>+</button>
+
 		</>
 
 	);

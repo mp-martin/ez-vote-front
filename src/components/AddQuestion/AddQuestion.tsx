@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {type FormEvent, useEffect, useState} from 'react';
 import './AddQuestion.css';
 import {AddAnswer} from '../addAnswer/AddAnswer';
 
 type Answer = {
+	answerId?: number;
 	answerBody: string;
 };
 
@@ -16,18 +17,14 @@ type QuestionEntity = {
 	answers: Answer[];
 };
 
-type PollHeaderEntity = {
-	pollTitle: string;
-	// eslint-disable-next-line @typescript-eslint/ban-types
-	pollOwner: string | null;
+type Props = {
+	questionEntityNumber: number;
+	removeQuestionFunc: (e: FormEvent) => void;
+	newQuestionFunc: (e: FormEvent) => void;
+	updateFunc: (question: QuestionEntity, index: number) => void;
 };
 
-type PollEntity = {
-	pollHeader: PollHeaderEntity;
-	pollBody: QuestionEntity[];
-};
-
-export const AddQuestion = () => {
+export const AddQuestion = (props: Props) => {
 	const [questionEntity, setQuestionEntity] = useState<QuestionEntity>({
 		questionHeader: {
 			questionBody: '',
@@ -36,6 +33,22 @@ export const AddQuestion = () => {
 		},
 		answers: [],
 	});
+
+	const [answerFields, setAnswerFields] = useState<string[]>(['Answer field number 1']);
+
+	const [answers, setAnswers] = useState<Answer[]>([]);
+
+	useEffect(() => {
+		props.updateFunc(questionEntity, props.questionEntityNumber);
+	}, [questionEntity]);
+
+	useEffect(() => {
+		setQuestionEntity(questionEntity => ({
+			...questionEntity,
+			answers,
+		}
+		));
+	}, [answers]);
 
 	const updateQuestionHeader = (key: string, value: string) => {
 		setQuestionEntity(questionEntity => ({
@@ -47,15 +60,21 @@ export const AddQuestion = () => {
 		}));
 	};
 
-	const updateAnswers = (answer: string) => {
-		setQuestionEntity(questionEntity => {
-			questionEntity.answers.push({
-				answerBody: answer,
-			});
-			return {
-				...questionEntity,
-			};
-		});
+	const updateAnswers = (answer: Answer, index: number) => {
+		const updatedAnswers = [...answers];
+		updatedAnswers[index] = answer;
+		setAnswers(updatedAnswers);
+	};
+
+	const newAnswer = (e: FormEvent) => {
+		e.preventDefault();
+		setAnswerFields([...answerFields, `Answer field number ${answerFields.length + 1}`]);
+	};
+
+	const removeAnswer = (e: FormEvent) => {
+		e.preventDefault();
+		setAnswerFields(s => s.filter((elm, idx) => idx !== s.length - 1));
+		setAnswers(s => s.filter((elm, idx) => idx !== s.length - 1));
 	};
 
 	return (<div className='addQuestion__questionWrapper'>
@@ -74,11 +93,12 @@ export const AddQuestion = () => {
 			<p>Question type:</p>
 			<label>
 				<select
+					defaultValue='close'
 					onChange={e => {
 						updateQuestionHeader('questionType', e.target.value);
 					}}>
 					<option value='open'>Open (multiple choice)</option>
-					<option value='close' selected>Close (single choice)</option>
+					<option value='closed'>Closed (single choice)</option>
 				</select>
 			</label>
 		</div>
@@ -86,9 +106,15 @@ export const AddQuestion = () => {
 		<div className='addQuestion__list-element'>
 			{/* //button */}
 			<p>Answers:</p>
-			<label><AddAnswer onClick={updateAnswers} questionNumber={1}/></label>
-			<label><AddAnswer onClick={updateAnswers} questionNumber={2}/></label>
-			<label><AddAnswer onClick={updateAnswers} questionNumber={3}/></label>
+			{answerFields.map((field, i) => <label key={i}><AddAnswer
+				key={i}
+				questionNumber={i}
+				updateFunc={updateAnswers}
+				newAnswerFunc={newAnswer}
+				removeAnswerFunc={removeAnswer}
+			/></label>)}
 		</div>
+		<button onClick={props.removeQuestionFunc}>-</button>
+		<button onClick={props.newQuestionFunc}>+</button>
 	</div>);
 };
