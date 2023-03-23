@@ -1,34 +1,20 @@
 import React, {type FormEvent, useEffect, useState} from 'react';
 import './AddQuestion.css';
+import {type AnswerPoolRequest, type AnswerEntityRequest} from 'types';
 import {AddAnswer} from '../addAnswer/AddAnswer';
-
-type Answer = {
-	answerId?: number;
-	answerBody: string;
-};
-
-type QuestionHeader = {
-	questionBody: string;
-	questionType: string;
-};
-
-type QuestionEntity = {
-	questionHeader: QuestionHeader;
-	answers: Answer[];
-};
 
 type Props = {
 	questionEntityNumber: number;
 	removeQuestionFunc: (e: FormEvent) => void;
 	newQuestionFunc: (e: FormEvent) => void;
-	updateFunc: (question: QuestionEntity, index: number) => void;
+	updateFunc: (question: AnswerPoolRequest, index: number) => void;
 };
 
 export const AddQuestion = (props: Props) => {
-	const [questionEntity, setQuestionEntity] = useState<QuestionEntity>({
+	const [questionEntity, setQuestionEntity] = useState<AnswerPoolRequest>({
 		questionHeader: {
 			questionBody: '',
-			questionType: 'close',
+			questionType: 'closed',
 
 		},
 		answers: [],
@@ -36,7 +22,7 @@ export const AddQuestion = (props: Props) => {
 
 	const [answerFields, setAnswerFields] = useState<string[]>(['Answer field number 1']);
 
-	const [answers, setAnswers] = useState<Answer[]>([]);
+	const [answers, setAnswers] = useState<AnswerEntityRequest[]>([]);
 
 	useEffect(() => {
 		props.updateFunc(questionEntity, props.questionEntityNumber);
@@ -60,7 +46,7 @@ export const AddQuestion = (props: Props) => {
 		}));
 	};
 
-	const updateAnswers = (answer: Answer, index: number) => {
+	const updateAnswers = (answer: AnswerEntityRequest, index: number) => {
 		const updatedAnswers = [...answers];
 		updatedAnswers[index] = answer;
 		setAnswers(updatedAnswers);
@@ -93,7 +79,7 @@ export const AddQuestion = (props: Props) => {
 			<p>Question type:</p>
 			<label>
 				<select
-					defaultValue='close'
+					defaultValue='closed'
 					onChange={e => {
 						updateQuestionHeader('questionType', e.target.value);
 					}}>
@@ -114,7 +100,7 @@ export const AddQuestion = (props: Props) => {
 				removeAnswerFunc={removeAnswer}
 			/></label>)}
 		</div>
-		<button onClick={props.removeQuestionFunc}>-</button>
-		<button onClick={props.newQuestionFunc}>+</button>
+		<button onClick={props.removeQuestionFunc}>Remove question</button>
+		<button onClick={props.newQuestionFunc}>Add question</button>
 	</div>);
 };

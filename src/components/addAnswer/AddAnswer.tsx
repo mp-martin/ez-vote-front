@@ -1,21 +1,16 @@
 import React, {type FormEvent, useEffect, useState} from 'react';
+import {type AnswerEntityRequest} from 'types';
 
 type Props = {
 	questionNumber: number;
-	updateFunc: (answer: Answer, index: number) => void;
+	updateFunc: (answer: AnswerEntityRequest, index: number) => void;
 	newAnswerFunc: (e: FormEvent) => void;
 	removeAnswerFunc: (e: FormEvent) => void;
 };
 
-type Answer = {
-	answerBody: string;
-	answerId: number;
-};
-
 export const AddAnswer = (props: Props) => {
-	const [answer, setAnswer] = useState<Answer>({
+	const [answer, setAnswer] = useState<AnswerEntityRequest>({
 		answerBody: '',
-		answerId: props.questionNumber,
 	});
 
 	useEffect(() => {
@@ -23,7 +18,7 @@ export const AddAnswer = (props: Props) => {
 	}, [answer]);
 
 	const handleUpdateAnswer = (answerBody: string) => {
-		setAnswer({answerBody, answerId: props.questionNumber});
+		setAnswer({answerBody /* answerId: props.questionNumber */});
 	};
 
 	return (
