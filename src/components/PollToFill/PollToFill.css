@@ -1,0 +1,17 @@
+.PollToFill__pollHeader {
+
+}
+
+.PollToFill__questionAndAnswerBlock {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+}
+
+.PollToFill__singleAnswer {
+
+}
+
+.PollToFill__questionAndAnswerBlocksWrapper {
+    margin-top:0.5em
+}
