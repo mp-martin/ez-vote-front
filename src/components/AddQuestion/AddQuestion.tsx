@@ -1,7 +1,7 @@
 import React, {type FormEvent, useEffect, useState} from 'react';
 import './AddQuestion.css';
 import {type AnswerPoolRequest, type AnswerEntityRequest} from 'types';
-import {AddAnswer} from '../addAnswer/AddAnswer';
+import {AddAnswer} from '../AddAnswer/AddAnswer';
 
 type Props = {
 	questionEntityNumber: number;
