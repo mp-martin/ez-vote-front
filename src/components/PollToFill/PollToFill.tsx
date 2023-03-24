@@ -1,6 +1,8 @@
-import React, {type FormEvent, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './PollToFill.css';
-import {AnswerPool, type CompletePoll} from 'types';
+import {type CompletePoll} from 'types';
+import {OpenAnswerList} from './OpenAnswerList';
+import {ClosedAnswerList} from './ClosedAnswerList';
 
 export const PollToFill = () => {
 	const [pollData, setPollData] = useState<CompletePoll>({
@@ -11,7 +13,7 @@ export const PollToFill = () => {
 		pollBody: [],
 	});
 
-	// Const [closedAnswer];
+	const [allAnswers, setAllAnswers] = useState<string[][]>([]);
 
 	useEffect(() => {
 		(async () => {
@@ -21,8 +23,10 @@ export const PollToFill = () => {
 		})();
 	}, []);
 
-	const handleClosedQuestion = (e: FormEvent) => {
-
+	const updateAllAnswers = (newAnswerPack: string[], index: number) => {
+		const updatedAllAnswers = [...allAnswers];
+		updatedAllAnswers[index] = newAnswerPack;
+		setAllAnswers(updatedAllAnswers);
 	};
 
 	return (
@@ -33,24 +37,27 @@ export const PollToFill = () => {
 			</div>
 
 			<form>{pollData.pollBody.map((answerCluster, index) =>
-				<div key={index} className='PollToFill__questionAndAnswerBlocksWrapper'>
-					<div className='PollToFill__questionAndAnswerBlock' key={index}>
+				<div key={answerCluster.questionHeader.questionId} className='PollToFill__questionAndAnswerBlocksWrapper'>
+					<div className='PollToFill__questionAndAnswerBlock'>
 						<div className='' key={index}><p>{answerCluster.questionHeader.questionBody}</p></div>
+						{answerCluster.questionHeader.questionType === 'closed'
+							? <ClosedAnswerList
+								questionNumber={index}
+								questionId={answerCluster.questionHeader.questionId}
+								answers={answerCluster.answers}
+								handleUpdateAnswers={updateAllAnswers}
+							/>
+							: <OpenAnswerList
+								questionNumber={index}
+								questionId={answerCluster.questionHeader.questionId}
+								answers={answerCluster.answers}
+								handleUpdateAnswers={updateAllAnswers}
+							/>
 
-						{answerCluster.answers.map((answer, index) =>
-							<label className='PollToFill__singleAnswer' key={answer.answerId}>
-								<input
-									type={answerCluster.questionHeader.questionType === 'closed' ? 'radio' : 'checkbox'}
-									name={answerCluster.questionHeader.questionId}
-									onChange={handleClosedQuestion}
-								/>
-								&nbsp;{answer.answerBody}
-							</label>)}
+						}
 					</div>
 				</div>,
 			)}</form>
-
 		</>
-
 	);
 };
