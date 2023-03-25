@@ -1,7 +1,7 @@
 import React, {type FormEvent, useEffect, useState} from 'react';
 import './AddPoll.css';
 import {
-	type SuccessMsg,
+	type SuccessMsgNewPoll,
 	type AnswerPoolRequest,
 	type CompletePollRequest}
 	from 'types';
@@ -73,7 +73,7 @@ export const AddPoll = () => {
 				}),
 			});
 
-			const data = await res.json() as SuccessMsg;
+			const data = await res.json() as SuccessMsgNewPoll;
 			setId(data.newPollId);
 		} finally {
 			setLoading(false);
@@ -85,8 +85,8 @@ export const AddPoll = () => {
 	}
 
 	if (id) {
-		return <p>Your poll <strong>{pollData.pollHeader.pollTitle}</strong> has been successfully uploaded with
-            id <strong>${id}</strong></p>;
+		return <><p>Your poll <strong>{pollData.pollHeader.pollTitle}</strong> has been successfully uploaded!
+		</p>; <p>To see the results, go to this link: <a href='#'>https://ezvote/poll/${id}</a></p>;</>;
 	}
 
 	return (

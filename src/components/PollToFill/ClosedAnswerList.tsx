@@ -26,7 +26,7 @@ export const ClosedAnswerList = (props: Props) => {
 		{props.answers.map(answer =>
 			<label className='PollToFill__singleAnswer' key={answer.answerId}>
 				<input
-					value={answer.answerBody}
+					value={answer.answerId}
 					type='radio'
 					name={props.questionId}
 					onChange={e => {
