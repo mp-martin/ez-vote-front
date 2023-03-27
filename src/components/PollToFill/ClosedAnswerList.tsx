@@ -1,4 +1,4 @@
-import {React, useState} from 'react';
+import React, {useState} from 'react';
 import {type AnswerEntity} from 'types';
 import './PollToFill.css';
 
