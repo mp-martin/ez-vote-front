@@ -79,15 +79,15 @@ export const PollToFill = () => {
 
 	return (
 		<>
-			<div className='PollToFill__pollHeader'>
+			<div className='PollResults__pollHeader'>
 				<h1>{pollData.pollHeader.pollTitle}</h1>
 				<p>An EZ vote poll</p>
 			</div>
 
 			<form onSubmit={vote}>
 				{pollData.pollBody.map((answerCluster, index) =>
-					<div key={answerCluster.questionHeader.questionId} className='PollToFill__questionAndAnswerBlocksWrapper'>
-						<div className='PollToFill__questionAndAnswerBlock'>
+					<div key={answerCluster.questionHeader.questionId} className='PollResults__questionAndAnswerBlocksWrapper'>
+						<div className='PollResults__questionAndAnswerBlock'>
 							<div className='' key={index}><p>{answerCluster.questionHeader.questionBody}</p></div>
 							{answerCluster.questionHeader.questionType === 'closed'
 								? <ClosedAnswerList

@@ -20,7 +20,6 @@ export const OpenAnswerList = (props: Props) => {
 		);
 		setCheckedState(updatedCheckedState);
 		const trueIndexes = updatedCheckedState.map((item, index) => item ? index : null).filter(number => number !== null);
-		console.log(trueIndexes);
 		const answersBasedOnIndexes = trueIndexes.map(number => props.answers[number!].answerId) as string[];
 
 		setAnswers(answersBasedOnIndexes);
@@ -32,7 +31,7 @@ export const OpenAnswerList = (props: Props) => {
 
 	return (<>
 		{props.answers.map((answer, index) =>
-			<label className='PollToFill__singleAnswer' key={answer.answerId}>
+			<label className='PollResults__singleAnswer' key={answer.answerId}>
 				<input
 					value={answer.answerBody}
 					type='checkbox'
