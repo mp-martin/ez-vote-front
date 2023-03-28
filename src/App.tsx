@@ -4,9 +4,9 @@ import {PollToFill} from './components/PollToFill/PollToFill';
 import {PollResults} from './components/PollResults/PollResults';
 
 const App = () => (<>
-	{/* <AddPoll /> */}
+	<AddPoll/>
 	{/* <PollToFill/> */}
-	<PollResults/>
+	{/* <PollResults/> */}
 </>
 );
 

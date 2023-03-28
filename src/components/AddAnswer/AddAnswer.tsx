@@ -13,6 +13,14 @@ export const AddAnswer = (props: Props) => {
 		answerBody: '',
 	});
 
+	const [wasClickedAdd, setWasClickedAdd] = useState(false);
+	const [wasClickedRemove, setWasClickedRemove] = useState(false);
+
+	const removeAnswer = (e: FormEvent) => {
+		props.removeAnswerFunc(e);
+		setWasClickedRemove(true);
+	};
+
 	useEffect(() => {
 		props.updateFunc(answer, props.questionNumber);
 	}, [answer]);
@@ -26,7 +34,7 @@ export const AddAnswer = (props: Props) => {
 			<input defaultValue='Answer goes here I guess...' onChange={e => {
 				handleUpdateAnswer(e.target.value);
 			}}/>
-			<button onClick={props.removeAnswerFunc}>-</button>
+			<button onClick={removeAnswer} disabled={wasClickedRemove}>-</button>
 			<button onClick={props.newAnswerFunc}>+</button>
 
 		</>

@@ -93,23 +93,23 @@ export const AddPoll = () => {
 		<div className='addPoll__container'>
 			<h1>{'It\'s time to create a Poll!'}</h1>
 			<form onSubmit={savePoll}>
-				<label><h1>Set your title:</h1>
+				<div><h2>Set your title:</h2>
 					<input
 						type='text'
 						defaultValue='Title of the poll goes here'
 						onChange={e => {
 							updatePollHeader('pollTitle', e.target.value);
 						}}
-					/></label>
-				<h1>Set your questions:</h1>
-				{questionFields.map((field, i) =>
-					<AddQuestion
-						key={i}
-						questionEntityNumber={i}
-						updateFunc={updateQuestionEntities}
-						removeQuestionFunc={removeQuestion}
-						newQuestionFunc={newQuestion}
-					/>)}
+					/></div>
+				<div><h2>Set your questions:</h2>
+					{questionFields.map((field, i) =>
+						<AddQuestion
+							key={i}
+							questionEntityNumber={i}
+							updateFunc={updateQuestionEntities}
+							removeQuestionFunc={removeQuestion}
+							newQuestionFunc={newQuestion}
+						/>)}</div>
 				<button>Send this shit to backend</button>
 			</form>
 
