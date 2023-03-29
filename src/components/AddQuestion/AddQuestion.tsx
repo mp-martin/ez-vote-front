@@ -8,6 +8,7 @@ type Props = {
 	removeQuestionFunc: (e: FormEvent) => void;
 	newQuestionFunc: (e: FormEvent) => void;
 	updateFunc: (question: AnswerPoolRequest, index: number) => void;
+	questionFields: string[];
 };
 
 export const AddQuestion = (props: Props) => {
@@ -21,7 +22,8 @@ export const AddQuestion = (props: Props) => {
 	});
 
 	const [answerFields, setAnswerFields] = useState<string[]>(['Answer field number 1']);
-
+	const [inactiveAddQuestion, setInactiveAddQuestion] = useState(false);
+	const [inactiveRemoveQuestion, setInactiveRemoveQuestion] = useState(false);
 	const [answers, setAnswers] = useState<AnswerEntityRequest[]>([]);
 
 	useEffect(() => {
@@ -35,6 +37,26 @@ export const AddQuestion = (props: Props) => {
 		}
 		));
 	}, [answers]);
+
+	useEffect(() => {
+		const currQuestionIdx = props.questionEntityNumber;
+		const lastQuestionIdx = props.questionFields.length - 1;
+
+		if (currQuestionIdx === 0 && lastQuestionIdx === 0) {
+			setInactiveRemoveQuestion(true);
+			setInactiveAddQuestion(false);
+		}
+
+		if (currQuestionIdx < lastQuestionIdx) {
+			setInactiveRemoveQuestion(true);
+			setInactiveAddQuestion(true);
+		}
+
+		if (currQuestionIdx === lastQuestionIdx && lastQuestionIdx > 0) {
+			setInactiveRemoveQuestion(false);
+			setInactiveAddQuestion(false);
+		}
+	}, [props.questionFields]);
 
 	const updateQuestionHeader = (key: string, value: string) => {
 		setQuestionEntity(questionEntity => ({
@@ -74,6 +96,7 @@ export const AddQuestion = (props: Props) => {
 					onChange={e => {
 						updateQuestionHeader('questionBody', e.target.value);
 					}}
+					minLength={1}
 				/>
 			</label>
 			<p>Question type:</p>
@@ -101,7 +124,7 @@ export const AddQuestion = (props: Props) => {
 				answers={answers}
 			/></label>)}
 		</div>
-		<button onClick={props.removeQuestionFunc}>Remove question</button>
-		<button onClick={props.newQuestionFunc}>Add question</button>
+		<button onClick={props.removeQuestionFunc} disabled={inactiveRemoveQuestion}>Remove question</button>
+		<button onClick={props.newQuestionFunc} disabled={inactiveAddQuestion}>Add question</button>
 	</div>);
 };

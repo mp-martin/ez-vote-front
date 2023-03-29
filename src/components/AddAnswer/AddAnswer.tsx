@@ -30,7 +30,7 @@ export const AddAnswer = (props: Props) => {
 		const lastAnsIdx = props.answerFields.length - 1;
 		const {answers} = props;
 
-		inputRef.current.value = answers[currAnsIdx] ? answers[currAnsIdx].answerBody : `Answer ${currAnsIdx + 1}`;
+		inputRef.current.value = answers[currAnsIdx] ? answers[currAnsIdx].answerBody : 'Answer goes here';
 
 		if (currAnsIdx === 0 && lastAnsIdx === 0) {
 			setInactiveRemoveAnswer(true);
@@ -46,14 +46,6 @@ export const AddAnswer = (props: Props) => {
 			setInactiveRemoveAnswer(false);
 			setInactiveAddAnswer(false);
 		}
-
-		// // Alternative, shortened version (came up with this with the help of ChatGPT and Webstorm)
-		// setInactiveRemoveAnswer((currAnsIdx === 0 && lastAnsIdx === 0) || currAnsIdx < lastAnsIdx
-		// 	? true
-		// 	: (!(currAnsIdx === lastAnsIdx && lastAnsIdx > 0)));
-		// setInactiveAddAnswer(currAnsIdx < lastAnsIdx
-		// 	? true
-		// 	: (!((currAnsIdx === 0 && lastAnsIdx === 0) || (currAnsIdx === lastAnsIdx && lastAnsIdx > 0))));
 	}, [props.answerFields]);
 
 	const handleUpdateAnswer = (answerBody: string) => {
@@ -64,7 +56,7 @@ export const AddAnswer = (props: Props) => {
 		<>
 			<input defaultValue={`Answer ${props.answerNumber + 1}...`} ref={inputRef} onChange={e => {
 				handleUpdateAnswer(e.target.value);
-			}}/>
+			}} minLength={1}/>
 			<button onClick={e => {
 				props.removeAnswerFunc(e, props.answerNumber);
 			}} disabled={inactiveRemoveAnswer}>-

@@ -3,14 +3,16 @@ import './AddPoll.css';
 import {
 	type SuccessMsgNewPoll,
 	type AnswerPoolRequest,
-	type CompletePollRequest}
+	type CompletePollRequest,
+}
 	from 'types';
 import {AddQuestion} from '../AddQuestion/AddQuestion';
+import {Message} from '../common/Message/Message';
 
 export const AddPoll = () => {
 	const [pollData, setPollData] = useState<CompletePollRequest>({
 		pollHeader: {
-			pollTitle: 'New Poll',
+			pollTitle: '',
 			pollOwner: null,
 		},
 		pollBody: [],
@@ -30,6 +32,7 @@ export const AddPoll = () => {
 	const [questions, setQuestions] = useState<AnswerPoolRequest[]>([]);
 	const [loading, setLoading] = useState(false);
 	const [id, setId] = useState('');
+	const [showMessage, setShowMessage] = useState(false);
 
 	useEffect(() => {
 		setPollData(pollData => ({
@@ -58,6 +61,15 @@ export const AddPoll = () => {
 
 	const savePoll = async (e: FormEvent) => {
 		e.preventDefault();
+
+		if (
+			!pollData.pollHeader.pollTitle
+            || pollData.pollBody.find(o => o.questionHeader.questionBody === '')
+            || pollData.pollBody.find(o => o.answers.find(a => a.answerBody === ''))
+		) {
+			setShowMessage(true);
+			return;
+		}
 
 		setLoading(true);
 
@@ -90,28 +102,35 @@ export const AddPoll = () => {
 	}
 
 	return (
-		<div className='addPoll__container'>
-			<h1>{'It\'s time to create a Poll!'}</h1>
-			<form onSubmit={savePoll}>
-				<div><h2>Set your title:</h2>
-					<input
-						type='text'
-						defaultValue='Title of the poll goes here'
-						onChange={e => {
-							updatePollHeader('pollTitle', e.target.value);
-						}}
-					/></div>
-				<div><h2>Set your questions:</h2>
-					{questionFields.map((field, i) =>
-						<AddQuestion
-							key={i}
-							questionEntityNumber={i}
-							updateFunc={updateQuestionEntities}
-							removeQuestionFunc={removeQuestion}
-							newQuestionFunc={newQuestion}
-						/>)}</div>
-				<button>Send this shit to backend</button>
-			</form>
-
-		</div>);
+		<>
+			<div className='addPoll__container'>
+				<h1>{'It\'s time to create a Poll!'}</h1>
+				<form onSubmit={savePoll}>
+					<div><h2>Set your title:</h2>
+						<input
+							type='text'
+							defaultValue='Title of the poll goes here'
+							onChange={e => {
+								updatePollHeader('pollTitle', e.target.value);
+							}}
+							minLength={1}
+						/></div>
+					<div><h2>Set your questions:</h2>
+						{questionFields.map((field, i) =>
+							<AddQuestion
+								key={i}
+								questionEntityNumber={i}
+								updateFunc={updateQuestionEntities}
+								removeQuestionFunc={removeQuestion}
+								newQuestionFunc={newQuestion}
+								questionFields={questionFields}
+							/>)}</div>
+					<button>Send this shit to backend</button>
+				</form>
+			</div>
+			{showMessage && <Message content={'Please fill out the necessary fields'} onClose={() => {
+				setShowMessage(false);
+			}}/>}
+		</>
+	);
 };
