@@ -65,6 +65,7 @@ export const AddPoll = () => {
 		if (
 			!pollData.pollHeader.pollTitle
             || pollData.pollBody.find(o => o.questionHeader.questionBody === '')
+			// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
             || pollData.pollBody.find(o => o.answers.find(a => a.answerBody === ''))
 		) {
 			setShowMessage(true);
