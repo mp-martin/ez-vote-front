@@ -57,10 +57,10 @@ export const AddQuestion = (props: Props) => {
 		setAnswerFields([...answerFields, `Answer field number ${answerFields.length + 1}`]);
 	};
 
-	const removeAnswer = (e: FormEvent) => {
+	const removeAnswer = (e: FormEvent, position: number) => {
 		e.preventDefault();
-		setAnswerFields(s => s.filter((elm, idx) => idx !== s.length - 1));
-		setAnswers(s => s.filter((elm, idx) => idx !== s.length - 1));
+		setAnswerFields(s => s.filter((elm, idx) => idx !== position));
+		setAnswers(s => s.filter((elm, idx) => idx !== position));
 	};
 
 	return (<div className='addQuestion__questionWrapper'>
@@ -93,11 +93,12 @@ export const AddQuestion = (props: Props) => {
 			{/* //button */}
 			<p>Answers:</p>
 			{answerFields.map((field, i) => <label key={i}><AddAnswer
-				key={i}
-				questionNumber={i}
+				answerNumber={i}
+				answerFields={answerFields}
 				updateFunc={updateAnswers}
 				newAnswerFunc={newAnswer}
 				removeAnswerFunc={removeAnswer}
+				answers={answers}
 			/></label>)}
 		</div>
 		<button onClick={props.removeQuestionFunc}>Remove question</button>
