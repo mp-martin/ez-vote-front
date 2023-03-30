@@ -4,12 +4,15 @@ import {PollToFill} from './components/PollToFill/PollToFill';
 import {PollResults} from './components/PollResults/PollResults';
 import {Header} from './components/Layout/Header/Header';
 import {Footer} from './components/Layout/Footer/Footer';
+import {Main} from './components/Layout/Main/Main';
+import './App.css';
 
-const App = () => (<>
-	<AddPoll/>
-	{/* <PollToFill/> */}
-	{/* <PollResults/> */}
-</>
+const App = () => (
+	<div className='App'>
+		<Header/>
+		<Main/>
+		<Footer/>
+	</div>
 );
 
 export default App;

@@ -1,0 +1,16 @@
+.Header {
+    background-color: var(--color-ezgreen);
+    width: 100%;
+    align-items: center;
+    margin-bottom: 7rem;
+}
+
+.Header_wrapper {
+    display: flex;
+    width: 800px;
+    padding:1.6em;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+
+}

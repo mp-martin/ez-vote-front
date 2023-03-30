@@ -1,0 +1,15 @@
+.Button {
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 0.15em 1.1em;
+    border: none;
+    font-weight: normal;
+    color: #ffffff;
+    margin: 1em 0.2em;
+}
+
+.Button:active {
+    position:relative;
+    top:1px;
+}
