@@ -4,17 +4,17 @@
     position: relative;
 }
 
-.Footer_wrapper {
+.Footer__wrapper {
     padding: 1.5rem;
     text-align: center;
 }
 
-.Footer_copyright {
+.Footer__copyright {
     font-size: 1.7rem;
     color:white;
 }
 
-.Footer_github {
+.Footer__github {
     position: absolute;
     bottom: 1.4rem;
     right: 3rem;
@@ -23,7 +23,7 @@
     background-color: hsla(0, 0%, 0%, 0.3);
 }
 
-.Footer_github a {
+.Footer__github a {
 
     font-size: 1.2em;
     font-weight: 500;

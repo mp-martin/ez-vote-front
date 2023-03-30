@@ -1,7 +1,98 @@
 .App {
     width: 100%;
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cool-dude-1 {
+    position: absolute;
+    width: 52rem;
+    right: -21rem;
+    top: 32rem;
+    transform: rotate(-20deg);
+    animation-name: slide-in-right, wobble-ver-right;
+    animation-duration: 4s, 0.8s;
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), linear;
+    animation-delay: 0s, 4s;
+}
+
+@keyframes slide-in-right {
+    0% {
+        transform: translateX(1000px) rotate(-20deg);
+    }
+    100% {
+        transform: translateX(0) rotate(-20deg);
+    }
+}
+
+@keyframes wobble-ver-right {
+    0%,
+    100% {
+
+        transform: translateY(0) rotate(-20deg);
+        transform-origin: 50% 50%;
+    }
+    15% {
+           transform: translateY(-30px) rotate(-14deg);
+    }
+    30% {
+         transform: translateY(15px) rotate(-26deg);
+    }
+    45% {
+         transform: translateY(-15px) rotate(-16.7deg);
+    }
+    60% {
+          transform: translateY(9px) rotate(-22.4deg);
+    }
+    75% {
+        transform: translateY(-6px) rotate(-18.8deg);
+    }
+}
+
+.cool-dude-2 {
+    position: absolute;
+    width: 52rem;
+    left: -22rem;
+    bottom: 10rem;
+    transform: rotate(0deg);
+    animation-name: slide-in-left, wobble-ver-left;
+    animation-duration: 4s, 0.8s;
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), linear;
+    animation-delay: 0s, 6s;
+}
+
+@keyframes slide-in-left {
+    0% {
+        transform: translateX(-2500px) rotate(0deg);
+    }
+    100% {
+        transform: translateX(0) rotate(0deg);
+    }
+}
+
+@keyframes wobble-ver-left {
+    0%,
+    100% {
+        transform: translateY(0) rotate(0);
+        transform-origin: 50% 50%;
+    }
+    15% {
+        transform: translateY(-30px) rotate(-6deg);
+    }
+    30% {
+        transform: translateY(15px) rotate(6deg);
+    }
+    45% {
+        transform: translateY(-15px) rotate(-3.6deg);
+    }
+    60% {
+        transform: translateY(9px) rotate(2.4deg);
+    }
+    75% {
+        transform: translateY(-6px) rotate(-1.2deg);
+    }
 }

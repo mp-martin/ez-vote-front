@@ -1,22 +1,27 @@
 .Main {
     width: 100%;
     margin-bottom: 5rem;
-}
-
-.Main_wrapper {
-    margin: 0 auto;
-    width: 750px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
-.Main_hero {
+.Main__wrapper {
+    margin: 0 auto;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10rem;
+}
+
+.Main__hero {
+    width: 750px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
 }
 
 .BigLogo {
@@ -24,22 +29,34 @@
     margin-bottom: 1.7em;
 }
 
-.Main_content {
+.Main__content {
+    width: 100%;
+    content: "";
     font-size: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10rem;
+}
+.Main__paragraph {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: var(--color-text);
+    background-image: url("../../../assets/floating_bg.png");
+    background-repeat: repeat-x;
+    background-size: contain;
+    background-position-x: 40rem;
+    animation: animatedBackground 25s linear infinite;
+    padding: 4em 0em;
 }
 
-.Main_paragraph {
-    width: 520px;
-    text-align: center;
-    color: var(--color-text)
+.Main__paragraph__no-bg {
+    background: white;
+    padding: 2em;
 }
 
-.Main_paragraph__title {
+.Main__paragraph_title {
     text-align: center;
     color: var(--color-title);
     font-size: 1em;
@@ -48,13 +65,30 @@
     margin-bottom: 0.6em;
 }
 
-.Main_paragraph__text {
+.Main__paragraph_text {
     font-color: var(--color-text)
 }
 
-.Main_paragraph__text a {
+.Main__paragraph_text a {
     font-size: 1em;
     font-weight: 400;
     color: var(--color-inlinelink);
     text-decoration: underline;
 }
+
+.Main__paragraph_wrapper {
+    width: 500px;
+    text-align: center;
+}
+
+
+
+@keyframes animatedBackground {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 70.9% 0;
+    }
+}
+
