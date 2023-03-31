@@ -65,7 +65,7 @@ export const AddPoll = () => {
 		if (
 			!pollData.pollHeader.pollTitle
             || pollData.pollBody.find(o => o.questionHeader.questionBody === '')
-			// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+            // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
             || pollData.pollBody.find(o => o.answers.find(a => a.answerBody === ''))
 		) {
 			setShowMessage(true);
@@ -99,7 +99,17 @@ export const AddPoll = () => {
 
 	if (id) {
 		return <><p>Your poll <strong>{pollData.pollHeader.pollTitle}</strong> has been successfully uploaded!
-		</p>; <p>To see the results, go to this link: <a href='#'>https://ezvote/poll/${id}</a></p>;</>;
+		</p>
+
+		<p>Share this link with others to start voting: <a
+			href={`http://localhost:3000/poll/${id}`}>{`http://localhost:3000/poll/${id}`}</a>
+		</p>
+
+		<p>To see the results, go to this link: <a
+			href={`http://localhost:3000/poll/${id}/results`}>{`http://localhost:3000/poll/${id}/results`}</a>
+		</p>
+
+		</>;
 	}
 
 	return (
