@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {type AnswerEntity} from 'types';
 import './PollToFill.css';
 
@@ -17,6 +17,10 @@ export const ClosedAnswerList = (props: Props) => {
 		newAnswer[0] = theAnswer;
 		setAnswer(newAnswer);
 	};
+
+	useEffect(() => {
+		props.handleUpdateAnswers(answer, props.questionNumber);
+	}, [answer]);
 
 	return (<>
 		{props.answers.map(answer =>
