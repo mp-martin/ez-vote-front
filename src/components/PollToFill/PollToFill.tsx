@@ -92,7 +92,7 @@ export const PollToFill = () => {
 	if (id) {
 		return <>
 			<p>Your answers to <strong>{pollData.pollHeader.pollTitle}</strong> have been sent!</p>
-			<p>To see the results, go to this link: <a href='#'>https://localhost:3000/poll/${id}/results</a></p>
+			<p>To see the results, go to this link: <a href={`http://localhost:3000/poll/${id}/results`}>https://localhost:3000/poll/{id}/results</a></p>
 		</>;
 	}
 

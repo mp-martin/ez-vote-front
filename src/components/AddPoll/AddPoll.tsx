@@ -102,11 +102,11 @@ export const AddPoll = () => {
 		</p>
 
 		<p>Share this link with others to start voting: <a
-			href={`http://localhost:3000/poll/${id}`}>{`http://localhost:3000/poll/${id}`}</a>
+			href={`http://localhost:3000/poll/${id}`}>http://localhost:3000/poll/{id}</a>
 		</p>
 
 		<p>To see the results, go to this link: <a
-			href={`http://localhost:3000/poll/${id}/results`}>{`http://localhost:3000/poll/${id}/results`}</a>
+			href={`http://localhost:3000/poll/${id}/results`}>http://localhost:3000/poll/{id}/results</a>
 		</p>
 
 		</>;

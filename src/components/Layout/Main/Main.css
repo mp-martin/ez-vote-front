@@ -46,7 +46,7 @@
     background-image: url("../../../assets/floating_bg.png");
     background-repeat: repeat-x;
     background-size: contain;
-    background-position-x: 40rem;
+    background-position-x: 0rem;
     animation: animatedBackground 25s linear infinite;
     padding: 4em 0em;
 }
@@ -85,10 +85,10 @@
 
 @keyframes animatedBackground {
     from {
-        background-position: 0 0;
+        background-position-x: 0rem;
     }
     to {
-        background-position: 70.9% 0;
+        background-position-x: 80rem;
     }
 }
 

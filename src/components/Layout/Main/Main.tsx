@@ -30,11 +30,12 @@ export const Main = () =>
 				<div className='Main__paragraph'>
 					<div className='Main__paragraph_wrapper'>
 						<h2 className='Main__paragraph_title'>How does this work?<br/>
-                            It’s pretty simple.</h2>
+                            It’s pretty simple</h2>
 						<p className='Main__paragraph_text'>Create a poll.<br/>
                             Share the poll link.<br/>
-                            Keep or share the result link.<br/>
-                            Let the voting begin!</p></div>
+                            Let the voting begin!<br/>
+							Check out results.<br/>
+						</p></div>
 				</div>
 
 				<div className='Main__paragraph__no-bg'>
