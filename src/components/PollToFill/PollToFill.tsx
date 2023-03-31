@@ -3,6 +3,11 @@ import './PollToFill.css';
 import {type CompletePoll, type SuccessMsgVote} from 'types';
 import {OpenAnswerList} from './OpenAnswerList';
 import {ClosedAnswerList} from './ClosedAnswerList';
+import {useParams} from 'react-router-dom';
+
+type PollParams = {
+	id: string;
+};
 
 export const PollToFill = () => {
 	const [pollData, setPollData] = useState<CompletePoll>({
@@ -17,10 +22,15 @@ export const PollToFill = () => {
 	const [loading, setLoading] = useState(false);
 	const [alreadyVoted, setAlreadyVoted] = useState(false);
 	const [id, setId] = useState('');
+	const {id: pollId} = useParams<PollParams>();
+
+	if (!pollId) {
+		throw new Error('Bad poll id');
+	}
 
 	useEffect(() => {
 		(async () => {
-			const res = await fetch('http://localhost:3001/poll/2fb0f6c3-f276-4b41-b10d-96bdf9000ed1');
+			const res = await fetch(`http://localhost:3001/poll/${pollId}`);
 			const pollData = await res.json() as CompletePoll;
 			setPollData(pollData);
 		})();

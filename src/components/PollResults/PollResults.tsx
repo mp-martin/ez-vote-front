@@ -2,7 +2,11 @@ import React, {useEffect, useState} from 'react';
 import './PollResults.css';
 import {type CompletePoll} from 'types';
 import {AnswerResultsList} from './AnswerResultsList';
+import {useParams} from 'react-router-dom';
 
+type PollParams = {
+	id: string;
+};
 export const PollResults = () => {
 	const [pollData, setPollData] = useState<CompletePoll>({
 		pollHeader: {
@@ -13,11 +17,16 @@ export const PollResults = () => {
 	});
 
 	const [loading, setLoading] = useState(false);
+	const {id} = useParams<PollParams>();
+
+	if (!id) {
+		throw new Error('Bad poll id');
+	}
 
 	useEffect(() => {
 		setLoading(true);
 		(async () => {
-			const res = await fetch('http://localhost:3001/poll/b8b73b76-b1c5-4ff5-a8f0-04894235b4c6');
+			const res = await fetch(`http://localhost:3001/poll/${id}`);
 			const pollData = await res.json() as CompletePoll;
 			setPollData(pollData);
 		})();

@@ -1,5 +1,6 @@
 import React, {type FormEvent} from 'react';
 import './Button.css';
+import {Link} from 'react-router-dom';
 
 type Props = {
 	text: string;
@@ -9,6 +10,7 @@ type Props = {
 	width?: number;
 	color: string;
 	onClick?: (e: FormEvent) => void;
+	to?: string;
 
 };
 
@@ -16,17 +18,31 @@ export const Button = (props: Props) => {
 	const ezgreen = 'var(--color-ezgreen)';
 	const ezpink = 'var(--color-ezpink)';
 	return (
-		<button
+		props.to ? <Link
+			to={props.to}
 			className='Button'
 			style={{
 				borderRadius: `${props.roundness}rem`,
 				backgroundColor: props.color === 'ezgreen' ? ezgreen : ezpink,
 				fontSize: `${props.size}rem`,
+				textAlign: 'center',
 				width: props.width && `${props.width}%`,
 			}}>
 
 			{props.text}
 
-		</button>
+		</Link>
+			: <button
+				className='Button'
+				style={{
+					borderRadius: `${props.roundness}rem`,
+					backgroundColor: props.color === 'ezgreen' ? ezgreen : ezpink,
+					fontSize: `${props.size}rem`,
+					width: props.width && `${props.width}%`,
+				}}>
+
+				{props.text}
+
+			</button>
 	);
 };
