@@ -1,10 +1,11 @@
-import React, {type FormEvent, useEffect, useState} from 'react';
+import React, {type FormEvent, useContext, useEffect, useState} from 'react';
 import './PollToFill.css';
 import {type CompletePoll, type SuccessMsgVote} from 'types';
 import {OpenAnswerList} from './OpenAnswerList';
 import {ClosedAnswerList} from './ClosedAnswerList';
 import {useParams} from 'react-router-dom';
 import {Message} from '../common/Message/Message';
+import {MessageContext} from '../../assets/contexts/message.context';
 
 type PollParams = {
 	id: string;
@@ -24,7 +25,7 @@ export const PollToFill = () => {
 	const [alreadyVoted, setAlreadyVoted] = useState(false);
 	const [id, setId] = useState('');
 	const {id: pollId} = useParams<PollParams>();
-	const [showMessage, setShowMessage] = useState(false);
+	const {showMessage, setShowMessage} = useContext(MessageContext);
 
 	if (!pollId) {
 		throw new Error('Bad poll id');
@@ -92,7 +93,8 @@ export const PollToFill = () => {
 	if (id) {
 		return <>
 			<p>Your answers to <strong>{pollData.pollHeader.pollTitle}</strong> have been sent!</p>
-			<p>To see the results, go to this link: <a href={`http://localhost:3000/poll/${id}/results`}>https://localhost:3000/poll/{id}/results</a></p>
+			<p>To see the results, go to this link: <a
+				href={`http://localhost:3000/poll/${id}/results`}>https://localhost:3000/poll/{id}/results</a></p>
 		</>;
 	}
 
@@ -129,9 +131,6 @@ export const PollToFill = () => {
 				)}
 				<button>Vote</button>
 			</form>
-			{showMessage && <Message content={'Please fill out the necessary fields'} onClose={() => {
-				setShowMessage(false);
-			}}/>}
 		</>
 	);
 };

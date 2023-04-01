@@ -1,4 +1,4 @@
-import React, {type FormEvent, useEffect, useState} from 'react';
+import React, {type FormEvent, useContext, useEffect, useState} from 'react';
 import './AddPoll.css';
 import {
 	type SuccessMsgNewPoll,
@@ -7,7 +7,7 @@ import {
 }
 	from 'types';
 import {AddQuestion} from '../AddQuestion/AddQuestion';
-import {Message} from '../common/Message/Message';
+import {MessageContext} from '../../assets/contexts/message.context';
 
 export const AddPoll = () => {
 	const [pollData, setPollData] = useState<CompletePollRequest>({
@@ -32,7 +32,7 @@ export const AddPoll = () => {
 	const [questions, setQuestions] = useState<AnswerPoolRequest[]>([]);
 	const [loading, setLoading] = useState(false);
 	const [id, setId] = useState('');
-	const [showMessage, setShowMessage] = useState(false);
+	const {showMessage, setShowMessage} = useContext(MessageContext);
 
 	useEffect(() => {
 		setPollData(pollData => ({
@@ -139,9 +139,6 @@ export const AddPoll = () => {
 					<button>Send this shit to backend</button>
 				</form>
 			</div>
-			{showMessage && <Message content={'Please fill out the necessary fields'} onClose={() => {
-				setShowMessage(false);
-			}}/>}
 		</>
 	);
 };
