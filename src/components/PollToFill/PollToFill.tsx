@@ -4,7 +4,6 @@ import {type CompletePoll, type SuccessMsgVote} from 'types';
 import {OpenAnswerList} from './OpenAnswerList';
 import {ClosedAnswerList} from './ClosedAnswerList';
 import {useParams} from 'react-router-dom';
-import {Message} from '../common/Message/Message';
 import {MessageContext} from '../../assets/contexts/message.context';
 
 type PollParams = {
@@ -99,8 +98,8 @@ export const PollToFill = () => {
 	}
 
 	return (
-		<>
-			<div className='PollResults__pollHeader'>
+		<div className='PollToFill__wrapper'>
+			<div className='PollToFill__pollHeader'>
 				<h1>{pollData.pollHeader.pollTitle}</h1>
 				<p>An EZ vote poll</p>
 			</div>
@@ -108,8 +107,8 @@ export const PollToFill = () => {
 			<form onSubmit={vote}>
 				{pollData.pollBody.map((answerCluster, index) =>
 					<div key={answerCluster.questionHeader.questionId}
-						className='PollResults__questionAndAnswerBlocksWrapper'>
-						<div className='PollResults__questionAndAnswerBlock'>
+						className='PollToFill__questionAndAnswerBlocksWrapper'>
+						<div className='PollToFill__questionAndAnswerBlock'>
 							<div className='' key={index}><p>{answerCluster.questionHeader.questionBody}</p></div>
 							{answerCluster.questionHeader.questionType === 'closed'
 								? <ClosedAnswerList
@@ -131,6 +130,6 @@ export const PollToFill = () => {
 				)}
 				<button>Vote</button>
 			</form>
-		</>
+		</div>
 	);
 };

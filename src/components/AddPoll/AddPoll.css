@@ -3,11 +3,36 @@
     background-color: #ffffff;
     overflow: hidden;
     flex-direction: column;
-    margin-top: 1rem;
+    margin-top: 5rem;
+    margin-bottom: 10rem;
+    width: 750px;
+    justify-content: center;
+}
+
+.addPoll__container input {
+    background-color: #EDEDED;
+    border: 0;
+    border-bottom: 3px solid var(--color-ezgreen);
+    padding: 0.5em;
+    font-size: 2em;
+    font-weight: 500;
+    color: #ACACAC;
+    margin-bottom: 1em;
+    width: 80%
+}
+
+.addPoll__container input:focus-visible {
+    outline: none;
+    background-color: #ffffff;
+    color: var(--color-text);
+
 }
 
 .addPoll__container > h1 {
-    margin-bottom: 0.3em;
+    margin-bottom: 1em;
+    font-size: 4em;
+    color: var(--color-title);
+    text-align: center;
 }
 
 form {
@@ -15,6 +40,7 @@ form {
     margin: 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1em;
-    width: 70vh;
+    width: 100%;
 }

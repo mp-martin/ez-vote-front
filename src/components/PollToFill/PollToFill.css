@@ -1,17 +1,21 @@
-.PollResults__pollHeader {
+.PollToFill__pollHeader {
 
 }
 
-.PollResults__questionAndAnswerBlock {
+.PollToFill__questionAndAnswerBlock {
     display: flex;
     flex-direction: column;
     padding: 0.5em;
 }
 
-.PollResults__singleAnswer {
+.PollToFill__singleAnswer {
 
 }
 
-.PollResults__questionAndAnswerBlocksWrapper {
+.PollToFill__questionAndAnswerBlocksWrapper {
     margin-top:0.5em
+}
+
+.PollToFill__wrapper {
+    margin-bottom: 2em;
 }

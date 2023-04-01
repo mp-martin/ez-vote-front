@@ -4,20 +4,84 @@
 }
 
 .addQuestion__questionWrapper {
-    background-color: #ececec;
     border-radius: 10px;
-    padding: 1rem;
+    width: 100%;
 }
+
+.addQuestion__questionWrapper input {
+    font-size: 1.6em;
+    padding: 0.3em;
+    width: 100%;
+}
+
+.addQuestion__topbar {
+    display: flex;
+    gap: 10em;
+    justify-content: space-around;
+    margin-bottom: 0.5em;
+    align-items: center;
+}
+
+.addQuestion__topbar_q-number {
+    background-color: var(--color-ezgreen);
+    color: white;
+    font-size: 1.6em;
+    padding: 0.3em 1.5em;
+    border-radius: 99em;
+}
+
+.addQuestion__questionBox {
+    border: 5px solid var(--color-ezgreen);
+    padding: 3em;
+    border-radius: 3em;
+}
+
+.addQuestion__topbar_q-type {
+    color: var(--color-text);
+    font-size: 1em;
+    padding: 0.3em;
+    border: 2px solid #838383;
+    border-radius: 99em;
+    font-weight: 500;
+    position: relative;
+    padding-left: 1.5em;
+}
+
+.addQuestion__topbar_q-type option {
+    padding: 0.2em;
+}
+
+.addQuestion__topbar_q-type select {
+    appearance: none;
+    border: none;
+    padding-right: 1.5em;
+}
+
+.addQuestion__topbar_q-type select:focus-visible {
+    outline: none;
+}
+
+.addQuestion__topbar_q-type_arrow {
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    pointer-events: none;
+}
+
 
 .addQuestion__list-element {
     display: flex;
     flex-direction: column;
 }
 
+
 label {
-    margin: 0.5rem;
+
 }
 
+.addQuestion__questionInput {
+
+}
 
 input {
     width: 100%;

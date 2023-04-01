@@ -2,7 +2,6 @@
     background-color: var(--color-ezgreen);
     width: 100%;
     position: relative;
-    z-index: -10;
 }
 
 .Footer__wrapper {

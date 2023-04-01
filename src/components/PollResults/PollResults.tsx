@@ -41,14 +41,14 @@ export const PollResults = () => {
 	return (
 		<>
 			<div className='PollResults__resultsWrapper'>
-				<div className='PollResults__pollHeader'>
+				<div className='PollToFill__pollHeader'>
 					<h1>{pollData.pollHeader.pollTitle}</h1>
 					<p>An EZ vote poll results</p>
 				</div>
 				{pollData.pollBody.map((answerCluster, index) =>
 					<div key={answerCluster.questionHeader.questionId}
-						className='PollResults__questionAndAnswerBlocksWrapper'>
-						<div className='PollResults__questionAndAnswerBlock'>
+						className='PollToFill__questionAndAnswerBlocksWrapper'>
+						<div className='PollToFill__questionAndAnswerBlock'>
 							<div className='PollResults__questionTitle' key={index}>
 								<p>{answerCluster.questionHeader.questionBody}</p></div>
 							<AnswerResultsList

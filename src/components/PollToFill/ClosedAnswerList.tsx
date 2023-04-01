@@ -24,7 +24,7 @@ export const ClosedAnswerList = (props: Props) => {
 
 	return (<>
 		{props.answers.map(answer =>
-			<label className='PollResults__singleAnswer' key={answer.answerId}>
+			<label className='PollToFill__singleAnswer' key={answer.answerId}>
 				<input
 					value={answer.answerId}
 					type='radio'

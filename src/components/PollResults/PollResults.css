@@ -1,4 +1,4 @@
-.PollResults__pollHeader {
+.PollToFill__pollHeader {
     margin-bottom: 1em;
 }
 
@@ -31,7 +31,7 @@
 }
 
 
-.PollResults__questionAndAnswerBlock {
+.PollToFill__questionAndAnswerBlock {
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -45,7 +45,7 @@
     align-items: center;
 }
 
-.PollResults__questionAndAnswerBlocksWrapper {
+.PollToFill__questionAndAnswerBlocksWrapper {
     margin-top: 0.5em
 }
 

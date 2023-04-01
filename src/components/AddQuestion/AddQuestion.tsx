@@ -2,6 +2,7 @@ import React, {type FormEvent, useEffect, useState} from 'react';
 import './AddQuestion.css';
 import {type AnswerPoolRequest, type AnswerEntityRequest} from 'types';
 import {AddAnswer} from '../AddAnswer/AddAnswer';
+import {TiArrowSortedDown} from "react-icons/ti"
 
 type Props = {
 	questionEntityNumber: number;
@@ -86,21 +87,8 @@ export const AddQuestion = (props: Props) => {
 	};
 
 	return (<div className='addQuestion__questionWrapper'>
-
-		<div className='addQuestion__list-element'>
-			<p>Question:</p>
-			<label>
-				<input
-					type='text'
-					defaultValue='Type your question here'
-					onChange={e => {
-						updateQuestionHeader('questionBody', e.target.value);
-					}}
-					minLength={1}
-				/>
-			</label>
-			<p>Question type:</p>
-			<label>
+		<div className='addQuestion__topbar'><p className="addQuestion__topbar_q-number">Question {props.questionEntityNumber + 1}</p>
+			<div className="addQuestion__topbar_q-type"><label>
 				<select
 					defaultValue='closed'
 					onChange={e => {
@@ -108,21 +96,36 @@ export const AddQuestion = (props: Props) => {
 					}}>
 					<option value='open'>Open (multiple choice)</option>
 					<option value='closed'>Closed (single choice)</option>
-				</select>
-			</label>
-		</div>
+				</select><TiArrowSortedDown size={'1.3em'} className="addQuestion__topbar_q-type_arrow"/>
+			</label></div></div>
+		<div className="addQuestion__questionBox">
+			<div className='addQuestion__questionInput'>
 
-		<div className='addQuestion__list-element'>
-			{/* //button */}
-			<p>Answers:</p>
-			{answerFields.map((field, i) => <label key={i}><AddAnswer
-				answerNumber={i}
-				answerFields={answerFields}
-				updateFunc={updateAnswers}
-				newAnswerFunc={newAnswer}
-				removeAnswerFunc={removeAnswer}
-				answers={answers}
-			/></label>)}
+				<label>
+					<input
+						type='text'
+						defaultValue='Type your question here'
+						onChange={e => {
+							updateQuestionHeader('questionBody', e.target.value);
+						}}
+						minLength={1}
+					/>
+				</label>
+
+			</div>
+
+
+				{/* //button */}
+				<p>Answers:</p>
+				{answerFields.map((field, i) => <label key={i}><AddAnswer
+					answerNumber={i}
+					answerFields={answerFields}
+					updateFunc={updateAnswers}
+					newAnswerFunc={newAnswer}
+					removeAnswerFunc={removeAnswer}
+					answers={answers}
+				/></label>)}
+
 		</div>
 		<button onClick={props.removeQuestionFunc} disabled={inactiveRemoveQuestion}>Remove question</button>
 		<button onClick={props.newQuestionFunc} disabled={inactiveAddQuestion}>Add question</button>
