@@ -109,7 +109,9 @@ export const PollToFill = () => {
 					<div key={answerCluster.questionHeader.questionId}
 						className='PollToFill__questionAndAnswerBlocksWrapper'>
 						<div className='PollToFill__questionAndAnswerBlock'>
-							<div className='' key={index}><p>{answerCluster.questionHeader.questionBody}</p></div>
+							<div className='PollToFill__question-header'><p className='PollToFill__question-number'>Question {index + 1}</p>
+								<h2 className='PollToFill__question-title'
+									key={index}>{answerCluster.questionHeader.questionBody}</h2></div>
 							{answerCluster.questionHeader.questionType === 'closed'
 								? <ClosedAnswerList
 									questionNumber={index}

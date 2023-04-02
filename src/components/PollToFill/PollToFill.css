@@ -1,21 +1,73 @@
-.PollToFill__pollHeader {
+.PollToFill__wrapper {
+    display: flex;
+    background-color: #ffffff;
+    overflow: hidden;
+    flex-direction: column;
+    margin-top: 5rem;
+    margin-bottom: 5.5rem;
+    width: 700px;
+    justify-content: center;
+    color: var(--color-text);
+}
 
+.PollToFill__wrapper form {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+
+.PollToFill__pollHeader h1 {
+    font-size: 4em;
+    color: var(--color-title);
+    text-align: center;
+    line-height: 1.3em;
+}
+
+.PollToFill__pollHeader p {
+    font-size: 2em;
+    font-weight: 500;
+    margin-bottom: 0.2em;
+    color: #a8a8a8;
+    text-align: center;
 }
 
 .PollToFill__questionAndAnswerBlock {
     display: flex;
     flex-direction: column;
-    padding: 0.5em;
+    font-size: 1.5em;
+    font-weight: 500;
+    border: 5px solid var(--color-ezgreen);
+    padding: 2em 3em;
+    border-radius: 3em;
 }
 
-.PollToFill__singleAnswer {
-
-}
 
 .PollToFill__questionAndAnswerBlocksWrapper {
-    margin-top:0.5em
+    margin-top: 0.5em;
+    margin-bottom: 3em;
+    width: 100%;
 }
 
-.PollToFill__wrapper {
-    margin-bottom: 2em;
+.PollToFill__question-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.PollToFill__question-number {
+    background-color: var(--color-ezgreen);
+    color: white;
+    font-size: 0.8em;
+    padding: 0.2em 1.5em;
+    margin-left: -0.3em;
+    margin-bottom: 0.3em;
+    border-radius: 99em;
+    width: max-content;
+}
+
+.PollToFill__question-title {
+    color: var(--color-title)
 }

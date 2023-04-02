@@ -52,7 +52,7 @@ export const AddAnswer = (props: Props) => {
 	}, [props.answerFields]);
 
 	const handleUpdateAnswer = (answerBody: string) => {
-		setAnswer({answerBody /* answerId: props.questionNumber */});
+		setAnswer({answerBody});
 	};
 
 	return (
@@ -65,10 +65,10 @@ export const AddAnswer = (props: Props) => {
 			<button className='addAnswer__rem-button' onClick={e => {
 				props.removeAnswerFunc(e, props.answerNumber);
 			}} disabled={inactiveRemoveAnswer}>
-				<AiFillMinusCircle color={inactiveRemoveAnswer ? 'EDEDED' : 'var(--color-ezpink)'} size={'2.8em'}/>
+				<AiFillMinusCircle color={inactiveRemoveAnswer ? '#EDEDED' : 'var(--color-ezpink)'} size={'2.8em'}/>
 			</button>
 			<button className='addAnswer__add-button' onClick={props.newAnswerFunc} disabled={inactiveAddAnswer}>
-				<BsFillPlusCircleFill color={inactiveAddAnswer ? 'EDEDED' : 'var(--color-ezgreen)'} size={'2.5em'}/>
+				<BsFillPlusCircleFill color={inactiveAddAnswer ? '#EDEDED' : 'var(--color-ezgreen)'} size={'2.5em'}/>
 			</button>
 		</div>
 
