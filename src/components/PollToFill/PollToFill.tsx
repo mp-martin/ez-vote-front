@@ -4,7 +4,7 @@ import {type CompletePoll, type SuccessMsgVote} from 'types';
 import {OpenAnswerList} from './OpenAnswerList';
 import {ClosedAnswerList} from './ClosedAnswerList';
 import {useParams} from 'react-router-dom';
-import {MessageContext} from '../../assets/contexts/message.context';
+import {MessageContext} from '../../contexts/message.context';
 
 type PollParams = {
 	id: string;

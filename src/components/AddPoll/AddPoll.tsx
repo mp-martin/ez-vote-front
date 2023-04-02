@@ -7,8 +7,9 @@ import {
 }
 	from 'types';
 import {AddQuestion} from '../AddQuestion/AddQuestion';
-import {MessageContext} from '../../assets/contexts/message.context';
+import {MessageContext} from '../../contexts/message.context';
 import {Button} from '../common/Button/Button';
+import {useCopyToClipboard} from '../../hooks/use.copy.to.clipboard';
 
 export const AddPoll = () => {
 	const [pollData, setPollData] = useState<CompletePollRequest>({
@@ -32,8 +33,9 @@ export const AddPoll = () => {
 	const [questionFields, setQuestionFields] = useState<string[]>(['Question field number 1']);
 	const [questions, setQuestions] = useState<AnswerPoolRequest[]>([]);
 	const [loading, setLoading] = useState(false);
-	const [id, setId] = useState('');
+	const [id, setId] = useState('some_id_of_the_poll');
 	const {showMessage, setShowMessage} = useContext(MessageContext);
+	const [value, copy] = useCopyToClipboard();
 
 	useEffect(() => {
 		setPollData(pollData => ({
@@ -102,14 +104,17 @@ export const AddPoll = () => {
 		return <><p>Your poll <strong>{pollData.pollHeader.pollTitle}</strong> has been successfully uploaded!
 		</p>
 
-		<p>Share this link with others to start voting: <a
-			href={`http://localhost:3000/poll/${id}`}>http://localhost:3000/poll/{id}</a>
+		<p>Share this link with others to start voting:</p>
+		<p>
+			<a href={`http://localhost:3000/poll/${id}`}>http://localhost:3000/poll/{id}</a>
+			<button onClick={async () => copy(`http://localhost:3000/poll/${id}`)}>Copy</button>
 		</p>
 
-		<p>To see the results, go to this link: <a
-			href={`http://localhost:3000/poll/${id}/results`}>http://localhost:3000/poll/{id}/results</a>
+		<p>To see the results, go to this link:</p>
+		<p>
+			<a href={`http://localhost:3000/poll/${id}/results`}>http://localhost:3000/poll/{id}/results</a>
+			<button onClick={async () => copy(`http://localhost:3000/poll/${id}/results`)}>Copy</button>
 		</p>
-
 		</>;
 	}
 
@@ -137,10 +142,10 @@ export const AddPoll = () => {
 							questionFields={questionFields}
 						/>)}
 					<Button
-						text={'Upload the poll'}
+						text={'Start the votes!'}
 						roundness={99}
 						disabled={false}
-						size={3}
+						size={2}
 						color={'var(--color-title)'}
 						width={100}
 					/>

@@ -8,7 +8,7 @@ import {Main} from './components/Layout/Main/Main';
 import './App.css';
 import {Route, Routes} from 'react-router-dom';
 import {Message} from './components/common/Message/Message';
-import {MessageContext} from './assets/contexts/message.context';
+import {MessageContext} from './contexts/message.context';
 
 const App = () => {
 	const [showMessage, setShowMessage] = useState(false);

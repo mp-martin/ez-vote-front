@@ -116,6 +116,11 @@ input {
     top: 1px;
 }
 
+.addQuestion__add-q_button:disabled {
+    background-color: #EDEDED;
+    color: #ACACAC;
+}
+
 
 .addQuestion__rem-q_button {
     background-color: var(--color-ezpink);
