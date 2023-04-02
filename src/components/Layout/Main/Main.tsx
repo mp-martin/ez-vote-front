@@ -3,7 +3,6 @@ import './Main.css';
 import heroLogo from '../../../assets/logo_big.svg';
 import {Button} from '../../common/Button/Button';
 import coolDude from '../../../assets/cartoon.svg';
-import {Link} from 'react-router-dom';
 
 export const Main = () =>
 // C
@@ -19,7 +18,7 @@ export const Main = () =>
 					roundness={99}
 					disabled={false}
 					size={2}
-					color={'ezgreen'}
+					color={'var(--color-ezgreen)'}
 					width={100}
 					to={'/addPoll'}
 				/>
@@ -48,7 +47,7 @@ export const Main = () =>
 						roundness={99}
 						disabled={false}
 						size={2}
-						color={'ezpink'}
+						color={'var(--color-ezpink)'}
 					/></div>
 				</div>
 

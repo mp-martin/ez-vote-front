@@ -2,7 +2,7 @@ import React, {type FormEvent, useEffect, useState} from 'react';
 import './AddQuestion.css';
 import {type AnswerPoolRequest, type AnswerEntityRequest} from 'types';
 import {AddAnswer} from '../AddAnswer/AddAnswer';
-import {TiArrowSortedDown} from "react-icons/ti"
+import {TiArrowSortedDown} from 'react-icons/ti';
 
 type Props = {
 	questionEntityNumber: number;
@@ -87,18 +87,20 @@ export const AddQuestion = (props: Props) => {
 	};
 
 	return (<div className='addQuestion__questionWrapper'>
-		<div className='addQuestion__topbar'><p className="addQuestion__topbar_q-number">Question {props.questionEntityNumber + 1}</p>
-			<div className="addQuestion__topbar_q-type"><label>
-				<select
-					defaultValue='closed'
-					onChange={e => {
-						updateQuestionHeader('questionType', e.target.value);
-					}}>
-					<option value='open'>Open (multiple choice)</option>
-					<option value='closed'>Closed (single choice)</option>
-				</select><TiArrowSortedDown size={'1.3em'} className="addQuestion__topbar_q-type_arrow"/>
-			</label></div></div>
-		<div className="addQuestion__questionBox">
+		<div className='addQuestion__topbar'><p
+			className='addQuestion__topbar_q-number'>Question {props.questionEntityNumber + 1}</p>
+		<div className='addQuestion__topbar_q-type'><label>
+			<select
+				defaultValue='closed'
+				onChange={e => {
+					updateQuestionHeader('questionType', e.target.value);
+				}}>
+				<option value='open'>Open (multiple choice)</option>
+				<option value='closed'>Closed (single choice)</option>
+			</select><TiArrowSortedDown size={'1.3em'} className='addQuestion__topbar_q-type_arrow'/>
+		</label></div>
+		</div>
+		<div className='addQuestion__questionBox'>
 			<div className='addQuestion__questionInput'>
 
 				<label>
@@ -114,20 +116,24 @@ export const AddQuestion = (props: Props) => {
 
 			</div>
 
-
-				{/* //button */}
-				<p>Answers:</p>
-				{answerFields.map((field, i) => <label key={i}><AddAnswer
-					answerNumber={i}
-					answerFields={answerFields}
-					updateFunc={updateAnswers}
-					newAnswerFunc={newAnswer}
-					removeAnswerFunc={removeAnswer}
-					answers={answers}
-				/></label>)}
+			<p>Answers</p>
+			{answerFields.map((field, i) => <label key={i}><AddAnswer
+				answerNumber={i}
+				answerFields={answerFields}
+				updateFunc={updateAnswers}
+				newAnswerFunc={newAnswer}
+				removeAnswerFunc={removeAnswer}
+				answers={answers}
+			/></label>)}
 
 		</div>
-		<button onClick={props.removeQuestionFunc} disabled={inactiveRemoveQuestion}>Remove question</button>
-		<button onClick={props.newQuestionFunc} disabled={inactiveAddQuestion}>Add question</button>
+		<div className='addQuestion__bottom-bar'>
+			<button className='addQuestion__rem-q_button' onClick={props.removeQuestionFunc}
+				disabled={inactiveRemoveQuestion}>Remove
+			</button>
+			<button className='addQuestion__add-q_button' onClick={props.newQuestionFunc}
+				disabled={inactiveAddQuestion}>Add
+			</button>
+		</div>
 	</div>);
 };

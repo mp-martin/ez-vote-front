@@ -6,6 +6,8 @@
 .addQuestion__questionWrapper {
     border-radius: 10px;
     width: 100%;
+    margin-top: 2em;
+    margin-bottom: 3em;
 }
 
 .addQuestion__questionWrapper input {
@@ -19,14 +21,14 @@
     gap: 10em;
     justify-content: space-around;
     margin-bottom: 0.5em;
-    align-items: center;
+    align-items: flex-end;
 }
 
 .addQuestion__topbar_q-number {
     background-color: var(--color-ezgreen);
     color: white;
     font-size: 1.6em;
-    padding: 0.3em 1.5em;
+    padding: 0.2em 1.5em;
     border-radius: 99em;
 }
 
@@ -36,15 +38,27 @@
     border-radius: 3em;
 }
 
+.addQuestion__questionBox p {
+    font-size: 2em;
+    font-weight: 500;
+    margin-bottom: 0.2em;
+    color: var(--color-text);
+}
+
 .addQuestion__topbar_q-type {
     color: var(--color-text);
     font-size: 1em;
-    padding: 0.3em;
-    border: 2px solid #838383;
+    border: 2px solid #d7d7d7;
     border-radius: 99em;
     font-weight: 500;
     position: relative;
-    padding-left: 1.5em;
+    padding-left: 1.3em;
+    padding-right: 0.4em;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .addQuestion__topbar_q-type option {
@@ -54,6 +68,7 @@
 .addQuestion__topbar_q-type select {
     appearance: none;
     border: none;
+    background: none;
     padding-right: 1.5em;
 }
 
@@ -64,7 +79,7 @@
 .addQuestion__topbar_q-type_arrow {
     position: absolute;
     top: 7px;
-    right: 10px;
+    right: 11px;
     pointer-events: none;
 }
 
@@ -80,9 +95,51 @@ label {
 }
 
 .addQuestion__questionInput {
-
+margin-bottom: 2em;
 }
 
 input {
     width: 100%;
+}
+
+.addQuestion__add-q_button {
+    background-color: var(--color-ezgreen);
+    color: white;
+    font-size: 1.6em;
+    padding: 0.2em 1.5em;
+    border-radius: 99em;
+    border: 0;
+}
+
+.addQuestion__add-q_button:active {
+    position: relative;
+    top: 1px;
+}
+
+
+.addQuestion__rem-q_button {
+    background-color: var(--color-ezpink);
+    color: white;
+    font-size: 1.6em;
+    padding: 0.2em 1.5em;
+    border-radius: 99em;
+    border: 0;
+}
+
+.addQuestion__rem-q_button:active {
+    position: relative;
+    top: 1px;
+}
+
+.addQuestion__rem-q_button:disabled {
+    background-color: #EDEDED;
+    color: #ACACAC;
+}
+
+.addQuestion__bottom-bar {
+    margin-top: 0.5em;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5em;
+    padding-right: 2em;
 }

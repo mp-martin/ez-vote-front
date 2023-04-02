@@ -2,6 +2,9 @@ import React, {type FormEvent, useEffect, useRef, useState} from 'react';
 import {type AnswerEntityRequest} from 'types';
 import {Simulate} from 'react-dom/test-utils';
 import input = Simulate.input;
+import './AddAnswer.css';
+import {BsFillPlusCircleFill} from 'react-icons/bs';
+import {AiFillMinusCircle} from 'react-icons/ai';
 
 type Props = {
 	answerNumber: number;
@@ -53,17 +56,21 @@ export const AddAnswer = (props: Props) => {
 	};
 
 	return (
-		<>
-			<input defaultValue={`Answer ${props.answerNumber + 1}...`} ref={inputRef} onChange={e => {
-				handleUpdateAnswer(e.target.value);
-			}} minLength={1}/>
-			<button onClick={e => {
+		<div className='addAnswer__answer-row'>
+			<input
+				className='addAnswer__answer-field'
+				defaultValue={`Answer ${props.answerNumber + 1}...`} ref={inputRef} onChange={e => {
+					handleUpdateAnswer(e.target.value);
+				}} minLength={1}/>
+			<button className='addAnswer__rem-button' onClick={e => {
 				props.removeAnswerFunc(e, props.answerNumber);
-			}} disabled={inactiveRemoveAnswer}>-
+			}} disabled={inactiveRemoveAnswer}>
+				<AiFillMinusCircle color={inactiveRemoveAnswer ? 'EDEDED' : 'var(--color-ezpink)'} size={'2.8em'}/>
 			</button>
-			<button onClick={props.newAnswerFunc} disabled={inactiveAddAnswer}>+
+			<button className='addAnswer__add-button' onClick={props.newAnswerFunc} disabled={inactiveAddAnswer}>
+				<BsFillPlusCircleFill color={inactiveAddAnswer ? 'EDEDED' : 'var(--color-ezgreen)'} size={'2.5em'}/>
 			</button>
-		</>
+		</div>
 
 	);
 };
