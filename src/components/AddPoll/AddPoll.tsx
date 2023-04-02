@@ -9,7 +9,7 @@ import {
 import {AddQuestion} from '../AddQuestion/AddQuestion';
 import {MessageContext} from '../../contexts/message.context';
 import {Button} from '../common/Button/Button';
-import {useCopyToClipboard} from '../../hooks/use.copy.to.clipboard';
+import {Success} from './Success';
 
 export const AddPoll = () => {
 	const [pollData, setPollData] = useState<CompletePollRequest>({
@@ -33,9 +33,8 @@ export const AddPoll = () => {
 	const [questionFields, setQuestionFields] = useState<string[]>(['Question field number 1']);
 	const [questions, setQuestions] = useState<AnswerPoolRequest[]>([]);
 	const [loading, setLoading] = useState(false);
-	const [id, setId] = useState('some_id_of_the_poll');
+	const [id, setId] = useState('');
 	const {showMessage, setShowMessage} = useContext(MessageContext);
-	const [value, copy] = useCopyToClipboard();
 
 	useEffect(() => {
 		setPollData(pollData => ({
@@ -101,21 +100,7 @@ export const AddPoll = () => {
 	}
 
 	if (id) {
-		return <><p>Your poll <strong>{pollData.pollHeader.pollTitle}</strong> has been successfully uploaded!
-		</p>
-
-		<p>Share this link with others to start voting:</p>
-		<p>
-			<a href={`http://localhost:3000/poll/${id}`}>http://localhost:3000/poll/{id}</a>
-			<button onClick={async () => copy(`http://localhost:3000/poll/${id}`)}>Copy</button>
-		</p>
-
-		<p>To see the results, go to this link:</p>
-		<p>
-			<a href={`http://localhost:3000/poll/${id}/results`}>http://localhost:3000/poll/{id}/results</a>
-			<button onClick={async () => copy(`http://localhost:3000/poll/${id}/results`)}>Copy</button>
-		</p>
-		</>;
+		return <Success id={id} title={pollData.pollHeader.pollTitle}/>;
 	}
 
 	return (
