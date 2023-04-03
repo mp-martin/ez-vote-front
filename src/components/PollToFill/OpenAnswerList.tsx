@@ -31,7 +31,7 @@ export const OpenAnswerList = (props: Props) => {
 
 	return (<>
 		{props.answers.map((answer, index) =>
-			<label className='PollToFill__singleAnswer' key={answer.answerId}>
+			<label className='PollToFill__single-answer' key={answer.answerId}>
 				<input
 					value={answer.answerBody}
 					type='checkbox'

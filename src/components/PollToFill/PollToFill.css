@@ -41,8 +41,9 @@
     font-size: 1.5em;
     font-weight: 500;
     border: 5px solid var(--color-ezgreen);
+    gap: unset;
     padding: 2em 3em;
-    border-radius: 3em;
+    border-radius: 2em;
 }
 
 
@@ -55,6 +56,7 @@
 .PollToFill__question-header {
     display: flex;
     flex-direction: column;
+    margin-bottom:1.5em;
 }
 
 .PollToFill__question-number {
@@ -70,4 +72,96 @@
 
 .PollToFill__question-title {
     color: var(--color-title)
+}
+
+.PollToFill__answer-list {
+    margin-left:0.7em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5em;
+    font-size: 1.2em;
+}
+
+.PollToFill__single-answer {
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;
+}
+
+.PollToFill__single-answer input {
+    width: unset;
+}
+
+input[type="radio"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    /* Remove most all native input styles */
+    appearance: none;
+    /* For iOS < 15 */
+    background-color: white;
+    /* Not removed via appearance */
+    margin-top: 0.2em;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 50%;
+    transform: translateY(-0.075em);
+
+    display: grid;
+    place-content: center;
+}
+
+input[type="radio"]::before {
+    content: "";
+    width: 0.6em;
+    height: 0.6em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--color-ezpink);
+    /* Windows High Contrast Mode */
+    background-color: var(--color-ezpink);
+}
+
+input[type="radio"]:checked::before {
+    transform: scale(1);
+}
+
+
+input[type="checkbox"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    /* Remove most all native input styles */
+    appearance: none;
+    /* For iOS < 15 */
+    background-color: white;
+    /* Not removed via appearance */
+    margin-top: 0.2em;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    transform: translateY(-0.075em);
+
+    display: grid;
+    place-content: center;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 0.6em;
+    height: 0.6em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--color-ezpink);
+    /* Windows High Contrast Mode */
+    background-color: var(--color-ezpink);
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
 }

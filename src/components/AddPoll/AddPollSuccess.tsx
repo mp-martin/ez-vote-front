@@ -7,7 +7,7 @@ type Props = {
 	title: string;
 };
 
-export const Success = (props: Props) => {
+export const AddPollSuccess = (props: Props) => {
 	const [value, copy] = useCopyToClipboard();
 
 	return (
@@ -16,7 +16,7 @@ export const Success = (props: Props) => {
             been successfully uploaded!
 		</h1>
 
-		<div className='addPoll__final-link'><p>Share this link with others to start voting:</p>
+		<div className='addPoll__final-link'><p>Share this link with others so they can start voting:</p>
 			<div className='addPoll__final-link_address'>
 				<a href={`http://localhost:3000/poll/${props.id}`}>Link to your poll</a>
 				<div className='addPoll__copy-to-clipboard'><p>Copy to clipboard:</p> <FaCopy size={'2em'}

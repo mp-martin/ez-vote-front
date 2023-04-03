@@ -5,6 +5,9 @@ import {OpenAnswerList} from './OpenAnswerList';
 import {ClosedAnswerList} from './ClosedAnswerList';
 import {useParams} from 'react-router-dom';
 import {MessageContext} from '../../contexts/message.context';
+import {Button} from '../common/Button/Button';
+import {Spinner} from '../common/Spinner/Spinner';
+import {PollToFillSuccess} from './PollToFillSuccess';
 
 type PollParams = {
 	id: string;
@@ -31,11 +34,17 @@ export const PollToFill = () => {
 	}
 
 	useEffect(() => {
-		(async () => {
-			const res = await fetch(`http://localhost:3001/poll/${pollId}`);
-			const pollData = await res.json() as CompletePoll;
-			setPollData(pollData);
-		})();
+		setLoading(true);
+		try {
+			(async () => {
+				const res = await fetch(`http://localhost:3001/poll/${pollId}`);
+				const pollData = await res.json() as CompletePoll;
+				setPollData(pollData);
+				setLoading(false);
+			})();
+		} catch (e) {
+			console.log(e);
+		}
 	}, []);
 
 	const updateAllAnswers = (newAnswerPack: string[], index: number) => {
@@ -82,7 +91,7 @@ export const PollToFill = () => {
 	};
 
 	if (loading) {
-		return <h2>Sending poll... </h2>;
+		return <Spinner/>;
 	}
 
 	if (alreadyVoted) {
@@ -90,11 +99,7 @@ export const PollToFill = () => {
 	}
 
 	if (id) {
-		return <>
-			<p>Your answers to <strong>{pollData.pollHeader.pollTitle}</strong> have been sent!</p>
-			<p>To see the results, go to this link: <a
-				href={`http://localhost:3000/poll/${id}/results`}>https://localhost:3000/poll/{id}/results</a></p>
-		</>;
+		return <PollToFillSuccess id={id} title={pollData.pollHeader.pollTitle}/>;
 	}
 
 	return (
@@ -109,28 +114,36 @@ export const PollToFill = () => {
 					<div key={answerCluster.questionHeader.questionId}
 						className='PollToFill__questionAndAnswerBlocksWrapper'>
 						<div className='PollToFill__questionAndAnswerBlock'>
-							<div className='PollToFill__question-header'><p className='PollToFill__question-number'>Question {index + 1}</p>
-								<h2 className='PollToFill__question-title'
-									key={index}>{answerCluster.questionHeader.questionBody}</h2></div>
-							{answerCluster.questionHeader.questionType === 'closed'
-								? <ClosedAnswerList
-									questionNumber={index}
-									questionId={answerCluster.questionHeader.questionId}
-									answers={answerCluster.answers}
-									handleUpdateAnswers={updateAllAnswers}
-								/>
-								: <OpenAnswerList
-									questionNumber={index}
-									questionId={answerCluster.questionHeader.questionId}
-									answers={answerCluster.answers}
-									handleUpdateAnswers={updateAllAnswers}
-								/>
-
-							}
+							<div className='PollToFill__question-header'><p
+								className='PollToFill__question-number'>Question {index + 1}</p>
+							<h2 className='PollToFill__question-title'
+								key={index}>{answerCluster.questionHeader.questionBody}</h2></div>
+							<div
+								className='PollToFill__answer-list'>{answerCluster.questionHeader.questionType === 'closed'
+									? <ClosedAnswerList
+										questionNumber={index}
+										questionId={answerCluster.questionHeader.questionId}
+										answers={answerCluster.answers}
+										handleUpdateAnswers={updateAllAnswers}
+									/>
+									: <OpenAnswerList
+										questionNumber={index}
+										questionId={answerCluster.questionHeader.questionId}
+										answers={answerCluster.answers}
+										handleUpdateAnswers={updateAllAnswers}
+									/>
+								}</div>
 						</div>
 					</div>,
 				)}
-				<button>Vote</button>
+				<Button
+					text={'Cast my vote!'}
+					roundness={99}
+					disabled={false}
+					size={2}
+					color={'var(--color-title)'}
+					width={100}
+				/>
 			</form>
 		</div>
 	);

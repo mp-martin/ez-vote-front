@@ -9,7 +9,8 @@ import {
 import {AddQuestion} from '../AddQuestion/AddQuestion';
 import {MessageContext} from '../../contexts/message.context';
 import {Button} from '../common/Button/Button';
-import {Success} from './Success';
+import {AddPollSuccess} from './AddPollSuccess';
+import {Spinner} from '../common/Spinner/Spinner';
 
 export const AddPoll = () => {
 	const [pollData, setPollData] = useState<CompletePollRequest>({
@@ -96,11 +97,11 @@ export const AddPoll = () => {
 	};
 
 	if (loading) {
-		return <h2>Sending the poll... </h2>;
+		return <Spinner/>;
 	}
 
 	if (id) {
-		return <Success id={id} title={pollData.pollHeader.pollTitle}/>;
+		return <AddPollSuccess id={id} title={pollData.pollHeader.pollTitle}/>;
 	}
 
 	return (
