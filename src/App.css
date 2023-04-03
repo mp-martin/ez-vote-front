@@ -96,3 +96,56 @@
         transform: translateY(-6px) rotate(-1.2deg);
     }
 }
+
+@media only screen
+/*and (min-device-width : 320px)*/
+and (max-device-width : 1100px) {
+.cool-dude-1, .cool-dude-2 {
+    display: none;
+}
+}
+
+@media only screen
+    /*and (min-device-width : 320px)*/
+and (max-device-width : 800px) {
+    .Main__hero {
+        width: 100%;
+        padding: 0em 2em;
+    }
+
+    .Header__wrapper {
+        width: 100%;
+    }
+
+    .Navbar {
+        gap: 0.6em;
+    }
+
+    .Footer__wrapper {
+        text-align: left;
+    }
+
+    .addPoll__container {
+        width: 100%;
+        padding: 0em 0.5em;
+    }
+
+    .addQuestion__topbar {
+        gap: 0;
+    }
+
+    .PollToFill__wrapper {
+        width: 100%;
+        padding: 0em 0.5em;
+    }
+
+    .PollResults__resultsWrapper {
+        width: 100%;
+        padding: 0em 0.5em;
+    }
+
+    .PollResults__questionAndAnswerBlock {
+        padding: 1.5em 2em;
+    }
+
+}

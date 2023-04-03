@@ -99,8 +99,6 @@ form {
     color: #9d9d9d;
     font-size: 1em;
     font-weight: 500;
-    margin:0;
-    margin-right: 0.5em;
-    line-height: 0;
+    margin: 0 0.5em 0 0;
 }
 
