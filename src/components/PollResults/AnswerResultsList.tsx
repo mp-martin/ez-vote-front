@@ -32,7 +32,7 @@ export const AnswerResultsList = (props: Props) => {
 					fontSize: '0.7em',
 					fontWeight: '700',
 					opacity: 0.7,
-				}}>({percentages[index]}%)</span></div>
+				}}>({isNaN(Number(percentages[index])) ? 0 : percentages[index]}%)</span></div>
 			</div>,
 		)}
 	</>);
