@@ -100,10 +100,56 @@
 @media only screen
     /*and (min-device-width : 320px)*/
 and (max-width: 1100px) {
-    .cool-dude-1, .cool-dude-2 {
-        display: none;
+    .cool-dude-1 {
+        width: 34rem;
+        right: -14rem;
+    }
+
+    .cool-dude-2 {
+        bottom: 23rem;
+        left: -13rem;
+        width: 34rem;
     }
 }
+
+@media only screen
+    /*and (min-device-width : 320px)*/
+and (max-width: 800px) {
+    .cool-dude-1 {
+        width: 23rem;
+        right: -9rem;
+        top: 46rem;
+    }
+
+    .cool-dude-2 {
+        bottom: 26rem;
+        left: -10rem;
+        width: 25rem;
+    }
+}
+
+@media only screen
+    /*and (min-device-width : 320px)*/
+and (max-width: 500px) {
+    .cool-dude-1 {
+        width: 17rem;
+        right: -7.5rem;
+        top: 25rem;
+        transform: rotate(331deg);
+    }
+
+    .cool-dude-2 {
+        bottom: -4rem;
+        left: -9rem;
+        width: 25rem;
+    }
+
+    .Main {
+        margin-top: 5rem;
+    }
+}
+
+
 
 @media only screen
     /*and (min-device-width : 320px)*/
