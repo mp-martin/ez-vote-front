@@ -106,7 +106,7 @@ export const AddQuestion = (props: Props) => {
 				<label>
 					<input
 						type='text'
-						defaultValue='Type your question here'
+						placeholder='Type your question here'
 						onChange={e => {
 							updateQuestionHeader('questionBody', e.target.value);
 						}}

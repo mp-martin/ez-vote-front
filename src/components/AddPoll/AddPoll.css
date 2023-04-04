@@ -15,9 +15,13 @@
     padding: 0.5em;
     font-size: 2em;
     font-weight: 500;
-    color: #ACACAC;
+    color: var(--color-text);
     margin-bottom: 1em;
     width: 100%
+}
+
+.addPoll__container input::placeholder {
+    color: #ACACAC;
 }
 
 .addPoll__container input:focus-visible {

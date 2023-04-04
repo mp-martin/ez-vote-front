@@ -33,7 +33,7 @@ export const AddAnswer = (props: Props) => {
 		const lastAnsIdx = props.answerFields.length - 1;
 		const {answers} = props;
 
-		inputRef.current.value = answers[currAnsIdx] ? answers[currAnsIdx].answerBody : 'Answer goes here';
+		inputRef.current.value = answers[currAnsIdx] ? answers[currAnsIdx].answerBody : '';
 
 		if (currAnsIdx === 0 && lastAnsIdx === 0) {
 			setInactiveRemoveAnswer(true);
@@ -59,7 +59,7 @@ export const AddAnswer = (props: Props) => {
 		<div className='addAnswer__answer-row'>
 			<input
 				className='addAnswer__answer-field'
-				defaultValue={`Answer ${props.answerNumber + 1}...`} ref={inputRef} onChange={e => {
+				placeholder='An answer' ref={inputRef} onChange={e => {
 					handleUpdateAnswer(e.target.value);
 				}} minLength={1}/>
 			<button className='addAnswer__rem-button' onClick={e => {

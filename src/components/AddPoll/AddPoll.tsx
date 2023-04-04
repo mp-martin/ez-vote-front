@@ -1,4 +1,4 @@
-import React, {type FormEvent, useContext, useEffect, useState} from 'react';
+import React, {type FormEvent, useContext, useEffect, useRef, useState} from 'react';
 import './AddPoll.css';
 import {
 	type SuccessMsgNewPoll,
@@ -37,6 +37,7 @@ export const AddPoll = () => {
 	const [loading, setLoading] = useState(false);
 	const [id, setId] = useState('');
 	const {showMessage, setShowMessage} = useContext(MessageContext);
+	const inputRef = useRef<HTMLInputElement>(null!);
 
 	useEffect(() => {
 		setPollData(pollData => ({
@@ -112,7 +113,8 @@ export const AddPoll = () => {
 				<form onSubmit={savePoll}>
 					<input
 						type='text'
-						defaultValue='Poll title'
+						placeholder='Poll title'
+						ref={inputRef}
 						onChange={e => {
 							updatePollHeader('pollTitle', e.target.value);
 						}}
