@@ -37,16 +37,16 @@
         transform-origin: 50% 50%;
     }
     15% {
-           transform: translateY(-30px) rotate(-14deg);
+        transform: translateY(-30px) rotate(-14deg);
     }
     30% {
-         transform: translateY(15px) rotate(-26deg);
+        transform: translateY(15px) rotate(-26deg);
     }
     45% {
-         transform: translateY(-15px) rotate(-16.7deg);
+        transform: translateY(-15px) rotate(-16.7deg);
     }
     60% {
-          transform: translateY(9px) rotate(-22.4deg);
+        transform: translateY(9px) rotate(-22.4deg);
     }
     75% {
         transform: translateY(-6px) rotate(-18.8deg);
@@ -98,36 +98,63 @@
 }
 
 @media only screen
-/*and (min-device-width : 320px)*/
-and (max-width : 1100px) {
-.cool-dude-1, .cool-dude-2 {
-    display: none;
-}
+    /*and (min-device-width : 320px)*/
+and (max-width: 1100px) {
+    .cool-dude-1, .cool-dude-2 {
+        display: none;
+    }
 }
 
 @media only screen
     /*and (min-device-width : 320px)*/
-and (max-width : 800px) {
+and (max-width: 800px) {
     .Main__hero {
         width: 100%;
         padding: 0em 2em;
     }
 
+    .Main__content {
+        font-size: 1.6rem;
+    }
+
+     .Main__content Button {
+        font-size: 1.6rem;
+    }
+
+
+
     .Header__wrapper {
         width: 100%;
+        flex-direction: column;
+        gap: 2em;
     }
 
     .Navbar {
-        gap: 0.6em;
+        gap: 1.5em;
     }
 
     .Footer__wrapper {
         text-align: left;
     }
 
+    .Footer__copyright {
+        text-align: center;
+    }
+
+    .Footer__github {
+        position: unset;
+        text-align: center;
+    }
+
+
     .addPoll__container {
         width: 100%;
         padding: 0em 0.5em;
+        font-size: 0.8em;
+    }
+
+    .addPoll__container h1 {
+        font-size: 3em;
     }
 
     .addQuestion__topbar {
@@ -139,6 +166,18 @@ and (max-width : 800px) {
         padding: 0em 0.5em;
     }
 
+    .PollToFill__pollHeader h1 {
+        font-size: 3em;
+    }
+
+    .PollToFill__questionAndAnswerBlock {
+        font-size: 1em;
+    }
+
+    .PollResults__questionAndAnswerBlock {
+        font-size:1em;
+    }
+
     .PollResults__resultsWrapper {
         width: 100%;
         padding: 0em 0.5em;
@@ -146,6 +185,15 @@ and (max-width : 800px) {
 
     .PollResults__questionAndAnswerBlock {
         padding: 1.5em 2em;
+    }
+
+    .Main__paragraph_wrapper {
+        width: 100%;
+        padding: 0em 0.5em;
+    }
+
+    .Main__paragraph {
+        background-size: cover;
     }
 
 }

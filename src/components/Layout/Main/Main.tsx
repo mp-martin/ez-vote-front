@@ -33,7 +33,7 @@ export const Main = () =>
 						<p className='Main__paragraph_text'>Create a poll.<br/>
                             Share the poll link.<br/>
                             Let the voting begin!<br/>
-							Check out results.<br/>
+                            Check out results.<br/>
 						</p></div>
 				</div>
 
@@ -42,20 +42,27 @@ export const Main = () =>
                         more? </h2>
 					<p className='Main__paragraph_text'>Sign up to EZ Vote and get access to all of your polls and
                             results! </p>
-					<Button
-						text={'Register account'}
-						roundness={99}
-						disabled={false}
-						size={2}
-						color={'var(--color-ezpink)'}
-					/></div>
+
+					<button
+						className='Button'
+						style={{
+							borderRadius: '2rem',
+							fontSize: '2rem',
+							backgroundColor: 'var(--color-ezpink)',
+						}}>
+
+						<p>Register account</p>
+						<p style={{fontSize: '0.5em'}}>(coming soon...)</p>
+
+					</button>
+					</div>
 				</div>
 
 				<div className='Main__paragraph'>
-					<div className='Main__paragraph_wrapper'><h2 className='Main__paragraph_title'>About the
+					<div id='about' className='Main__paragraph_wrapper'><h2 className='Main__paragraph_title'>About the
                         project</h2>
 					<p className='Main__paragraph_text'>Hi, my name is Marcin and I made this app as part of my
-                            JavaScript
+                            webdev
                             training!
                             Check out my <a href='https://github.com/mp-martin/'>github page</a> to see the source code.
 					</p></div>
