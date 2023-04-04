@@ -46,13 +46,15 @@ export const Main = () =>
 					<button
 						className='Button'
 						style={{
-							borderRadius: '2rem',
+							borderRadius: '20rem',
 							fontSize: '2rem',
 							backgroundColor: 'var(--color-ezpink)',
+							position: 'relative',
+							paddingBottom: '0.8em',
 						}}>
 
 						<p>Register account</p>
-						<p style={{fontSize: '0.5em'}}>(coming soon...)</p>
+						<p style={{fontSize: '0.5em', position: 'absolute', top: '3em', left: '5.6em', opacity: '0.6'}}>(coming soon...)</p>
 
 					</button>
 					</div>
