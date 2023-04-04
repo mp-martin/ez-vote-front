@@ -4,6 +4,7 @@ import {type CompletePoll} from 'types';
 import {AnswerResultsList} from './AnswerResultsList';
 import {useParams} from 'react-router-dom';
 import {Spinner} from '../common/Spinner/Spinner';
+import {apiUrl} from '../../config/api';
 
 type PollParams = {
 	id: string;
@@ -28,7 +29,7 @@ export const PollResults = () => {
 		setLoading(true);
 		try {
 			(async () => {
-				const res = await fetch(`http://localhost:3001/poll/${id}`);
+				const res = await fetch(`${apiUrl}/poll/${id}`);
 				const pollData = await res.json() as CompletePoll;
 				setPollData(pollData);
 				setLoading(false);

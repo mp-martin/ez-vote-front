@@ -11,6 +11,7 @@ import {MessageContext} from '../../contexts/message.context';
 import {Button} from '../common/Button/Button';
 import {AddPollSuccess} from './AddPollSuccess';
 import {Spinner} from '../common/Spinner/Spinner';
+import {apiUrl} from '../../config/api';
 
 export const AddPoll = () => {
 	const [pollData, setPollData] = useState<CompletePollRequest>({
@@ -78,7 +79,7 @@ export const AddPoll = () => {
 		setLoading(true);
 
 		try {
-			const res = await fetch('http://localhost:3001/poll', {
+			const res = await fetch(`${apiUrl}/poll`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

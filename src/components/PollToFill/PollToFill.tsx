@@ -8,6 +8,7 @@ import {MessageContext} from '../../contexts/message.context';
 import {Button} from '../common/Button/Button';
 import {Spinner} from '../common/Spinner/Spinner';
 import {PollToFillSuccess} from './PollToFillSuccess';
+import {apiUrl} from '../../config/api';
 
 type PollParams = {
 	id: string;
@@ -37,7 +38,7 @@ export const PollToFill = () => {
 		setLoading(true);
 		try {
 			(async () => {
-				const res = await fetch(`http://localhost:3001/poll/${pollId}`);
+				const res = await fetch(`${apiUrl}/poll/${pollId}`);
 				const pollData = await res.json() as CompletePoll;
 				setPollData(pollData);
 				setLoading(false);
@@ -66,7 +67,7 @@ export const PollToFill = () => {
 		setLoading(true);
 
 		try {
-			const res = await fetch('http://localhost:3001/poll', {
+			const res = await fetch(`${apiUrl}/poll`, {
 				method: 'PATCH',
 				headers: {
 					'Content-Type': 'application/json',
