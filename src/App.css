@@ -22,10 +22,10 @@
 
 @keyframes slide-in-right {
     0% {
-        transform: translateX(1000px) rotate(-20deg);
+        transform: translateX(1000px) rotate(-27deg);
     }
     100% {
-        transform: translateX(0) rotate(-20deg);
+        transform: translateX(0) rotate(-27deg);
     }
 }
 
@@ -136,6 +136,7 @@ and (max-width: 500px) {
         right: -7.5rem;
         top: 25rem;
         transform: rotate(331deg);
+        pointer-events: none;
     }
 
     .cool-dude-2 {
