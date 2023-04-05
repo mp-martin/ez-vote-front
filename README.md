@@ -1,4 +1,5 @@
-![logo](https://zar.networkmanager.pl/static/readme/logo.png)
+![logo](https://zar.networkmanager.pl/static/readme/logo_navy.svg?sanitize=true#gh-light-mode-only)
+![logo](https://zar.networkmanager.pl/static/readme/logo_white.svg?sanitize=true#gh-dark-mode-only)
 
 # About The Project
 
