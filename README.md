@@ -1,5 +1,7 @@
 ![logo](https://zar.networkmanager.pl/static/readme/logo.png)
+
 #About The Project
+
 ![alt text](https://zar.networkmanager.pl/static/readme/main_screen.png)
 EZ Vote is a simple app that allows you to make polls and let people vote in them. 🗳️
 
