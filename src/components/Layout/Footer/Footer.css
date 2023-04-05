@@ -1,0 +1,32 @@
+.Footer {
+    background-color: var(--color-ezgreen);
+    width: 100%;
+    position: relative;
+}
+
+.Footer__wrapper {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.Footer__copyright {
+    font-size: 1.7rem;
+    color:white;
+}
+
+.Footer__github {
+    position: absolute;
+    bottom: 1.4rem;
+    right: 3rem;
+    padding: 0.4em 1.2em;
+    border-radius: 99em;
+    background-color: hsla(0, 0%, 0%, 0.3);
+}
+
+.Footer__github a {
+
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #FFFFFF;
+    text-decoration: none;
+}

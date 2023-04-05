@@ -1,16 +1,22 @@
-import React, {type FormEvent, useEffect, useState} from 'react';
+import React, {type FormEvent, useContext, useEffect, useRef, useState} from 'react';
 import './AddPoll.css';
 import {
 	type SuccessMsgNewPoll,
 	type AnswerPoolRequest,
-	type CompletePollRequest}
+	type CompletePollRequest,
+}
 	from 'types';
 import {AddQuestion} from '../AddQuestion/AddQuestion';
+import {MessageContext} from '../../contexts/message.context';
+import {Button} from '../common/Button/Button';
+import {AddPollSuccess} from './AddPollSuccess';
+import {Spinner} from '../common/Spinner/Spinner';
+import {apiUrl} from '../../config/api';
 
 export const AddPoll = () => {
 	const [pollData, setPollData] = useState<CompletePollRequest>({
 		pollHeader: {
-			pollTitle: 'New Poll',
+			pollTitle: '',
 			pollOwner: null,
 		},
 		pollBody: [],
@@ -30,6 +36,8 @@ export const AddPoll = () => {
 	const [questions, setQuestions] = useState<AnswerPoolRequest[]>([]);
 	const [loading, setLoading] = useState(false);
 	const [id, setId] = useState('');
+	const {showMessage, setShowMessage} = useContext(MessageContext);
+	const inputRef = useRef<HTMLInputElement>(null!);
 
 	useEffect(() => {
 		setPollData(pollData => ({
@@ -59,10 +67,20 @@ export const AddPoll = () => {
 	const savePoll = async (e: FormEvent) => {
 		e.preventDefault();
 
+		if (
+			!pollData.pollHeader.pollTitle
+            || pollData.pollBody.find(o => o.questionHeader.questionBody === '')
+            // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+            || pollData.pollBody.find(o => o.answers.find(a => a.answerBody === ''))
+		) {
+			setShowMessage(true);
+			return;
+		}
+
 		setLoading(true);
 
 		try {
-			const res = await fetch('http://localhost:3001/poll', {
+			const res = await fetch(`${apiUrl}/poll`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -81,27 +99,28 @@ export const AddPoll = () => {
 	};
 
 	if (loading) {
-		return <h2>Sending the poll... </h2>;
+		return <Spinner/>;
 	}
 
 	if (id) {
-		return <><p>Your poll <strong>{pollData.pollHeader.pollTitle}</strong> has been successfully uploaded!
-		</p>; <p>To see the results, go to this link: <a href='#'>https://ezvote/poll/${id}</a></p>;</>;
+		return <AddPollSuccess id={id} title={pollData.pollHeader.pollTitle}/>;
 	}
 
 	return (
-		<div className='addPoll__container'>
-			<h1>{'It\'s time to create a Poll!'}</h1>
-			<form onSubmit={savePoll}>
-				<div><h2>Set your title:</h2>
+		<>
+			<div className='addPoll__container'>
+				<h1>Set up your poll</h1>
+				<form onSubmit={savePoll}>
 					<input
 						type='text'
-						defaultValue='Title of the poll goes here'
+						placeholder='Poll title'
+						ref={inputRef}
 						onChange={e => {
 							updatePollHeader('pollTitle', e.target.value);
 						}}
-					/></div>
-				<div><h2>Set your questions:</h2>
+						minLength={1}
+					/>
+
 					{questionFields.map((field, i) =>
 						<AddQuestion
 							key={i}
@@ -109,9 +128,18 @@ export const AddPoll = () => {
 							updateFunc={updateQuestionEntities}
 							removeQuestionFunc={removeQuestion}
 							newQuestionFunc={newQuestion}
-						/>)}</div>
-				<button>Send this shit to backend</button>
-			</form>
-
-		</div>);
+							questionFields={questionFields}
+						/>)}
+					<Button
+						text={'Start the votes!'}
+						roundness={99}
+						disabled={false}
+						size={2}
+						color={'var(--color-title)'}
+						width={100}
+					/>
+				</form>
+			</div>
+		</>
+	);
 };

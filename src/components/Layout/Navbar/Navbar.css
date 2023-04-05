@@ -1,0 +1,11 @@
+.Navbar {
+    display: flex;
+    gap: 2.3em
+}
+
+a {
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--color-text);
+    font-size: 1.7em;
+}

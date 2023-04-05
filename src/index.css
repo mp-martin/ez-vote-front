@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Mada:wght@400;500;700;900&display=swap');
+
 /*
   Josh's Custom CSS Reset
   https://www.joshwcomeau.com/css/custom-css-reset/
 */
 *, *::before, *::after {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
 }
 * {
   margin: 0;
@@ -14,10 +19,8 @@ html, body {
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  font-family: Calibri, sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  font-family: var(--font-family);
+
 }
 img, picture, video, canvas, svg {
   display: block;
@@ -31,4 +34,14 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 #root, #__next {
   isolation: isolate;
+}
+
+:root {
+  --font-family: 'Mada', sans-serif;
+
+  --color-text: #2a2a2a;
+  --color-title : #060047;
+  --color-inlinelink: #008445;
+  --color-ezgreen: #07C96C ;
+  --color-ezpink: #FF5F9E;
 }

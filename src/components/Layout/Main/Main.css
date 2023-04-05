@@ -1,0 +1,95 @@
+.Main {
+    width: 100%;
+    margin-bottom: 5rem;
+    margin-top: 7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Main__wrapper {
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Main__hero {
+    width: 750px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.BigLogo {
+    width: 100%;
+    margin-bottom: 1.7em;
+}
+
+.Main__content {
+    width: 100%;
+    content: "";
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.Main__paragraph {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: var(--color-text);
+    background-image: url("../../../assets/floating_bg.png");
+    background-repeat: repeat-x;
+    background-size: contain;
+    background-position-x: 0rem;
+    animation: animatedBackground 25s linear infinite;
+    padding: 4em 0em;
+}
+
+.Main__paragraph__no-bg {
+    background: white;
+    padding: 2em 0em;
+}
+
+.Main__paragraph_title {
+    text-align: center;
+    color: var(--color-title);
+    font-size: 1em;
+    font-weight: 900;
+    line-height: 1.2em;
+    margin-bottom: 0.6em;
+}
+
+.Main__paragraph_text {
+    font-color: var(--color-text)
+}
+
+.Main__paragraph_text a {
+    font-size: 1em;
+    font-weight: 400;
+    color: var(--color-inlinelink);
+    text-decoration: underline;
+}
+
+.Main__paragraph_wrapper {
+    width: 500px;
+    text-align: center;
+}
+
+
+
+@keyframes animatedBackground {
+    from {
+        background-position-x: 0rem;
+    }
+    to {
+        background-position-x: 80rem;
+    }
+}
+

@@ -1,13 +1,45 @@
 .addPoll__container {
     display: flex;
     background-color: #ffffff;
-    overflow: hidden;
     flex-direction: column;
-    margin-top: 1rem;
+    margin-top: 5rem;
+    margin-bottom: 5.5rem;
+    width: 750px;
+    justify-content: center;
+}
+
+.addPoll__container input {
+    background-color: #EDEDED;
+    border: 0;
+    border-bottom: 3px solid var(--color-ezgreen);
+    padding: 0.5em;
+    font-size: 2em;
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: 1em;
+    width: 100%
+}
+
+.addPoll__container input::placeholder {
+    color: #ACACAC;
+}
+
+.addPoll__container input:focus-visible {
+    outline: none;
+    background-color: #ffffff;
+    border-bottom: 3px solid var(--color-ezpink);
+    color: var(--color-text);
+}
+.addPoll__container input:hover {
+    border-bottom: 3px solid var(--color-ezpink);
 }
 
 .addPoll__container > h1 {
-    margin-bottom: 0.3em;
+    margin-bottom: 1em;
+    font-size: 4em;
+    color: var(--color-title);
+    text-align: center;
+    line-height: 1.3em;
 }
 
 form {
@@ -15,6 +47,62 @@ form {
     margin: 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1em;
-    width: 70vh;
+    width: 100%;
 }
+
+.addPoll__final-link {
+    margin-bottom: 2em;
+}
+
+.addPoll__final-link p {
+    margin-bottom: 0.3em;
+    font-size: 1.5em;
+    color: #919191;
+    margin-left: 1.3em;
+    font-weight: 500;
+}
+
+.addPoll__final-link_address {
+    border: 3px solid var(--color-ezgreen);
+    border-radius: 99em;
+    padding: 1em 2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.addPoll__final-link_address a {
+    color: var(--color-title);
+}
+
+.addPoll__copy-button {
+    color: var(--color-inlinelink);
+}
+
+.addPoll__copy-button:hover {
+    color: var(--color-ezgreen);
+    position: relative;
+    cursor: pointer;
+}
+
+.addPoll__copy-button:active {
+    color: var(--color-ezgreen);
+    position: relative;
+    top: 1px;
+    cursor: pointer;
+}
+
+.addPoll__copy-to-clipboard {
+    display: flex;
+    align-items: center;
+}
+
+.addPoll__copy-to-clipboard p {
+    color: #9d9d9d;
+    font-size: 1em;
+    font-weight: 500;
+    margin: 0 0.5em 0 0;
+}
+

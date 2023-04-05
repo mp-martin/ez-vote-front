@@ -2,7 +2,13 @@ import React, {useEffect, useState} from 'react';
 import './PollResults.css';
 import {type CompletePoll} from 'types';
 import {AnswerResultsList} from './AnswerResultsList';
+import {useParams} from 'react-router-dom';
+import {Spinner} from '../common/Spinner/Spinner';
+import {apiUrl} from '../../config/api';
 
+type PollParams = {
+	id: string;
+};
 export const PollResults = () => {
 	const [pollData, setPollData] = useState<CompletePoll>({
 		pollHeader: {
@@ -12,43 +18,52 @@ export const PollResults = () => {
 		pollBody: [],
 	});
 
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
+	const {id} = useParams<PollParams>();
+
+	if (!id) {
+		throw new Error('Bad poll id');
+	}
 
 	useEffect(() => {
 		setLoading(true);
-		(async () => {
-			const res = await fetch('http://localhost:3001/poll/b8b73b76-b1c5-4ff5-a8f0-04894235b4c6');
-			const pollData = await res.json() as CompletePoll;
-			setPollData(pollData);
-		})();
-
-		setLoading(false);
+		try {
+			(async () => {
+				const res = await fetch(`${apiUrl}/poll/${id}`);
+				const pollData = await res.json() as CompletePoll;
+				setPollData(pollData);
+				setLoading(false);
+			})();
+		} catch (e) {
+			console.log(e);
+		}
 	}, []);
 
 	if (loading) {
-		return <h2>Loading poll results... </h2>;
+		return <Spinner/>;
 	}
 
 	return (
-		<>
-			<div className='PollResults__resultsWrapper'>
-				<div className='PollResults__pollHeader'>
-					<h1>{pollData.pollHeader.pollTitle}</h1>
-					<p>An EZ vote poll results</p>
-				</div>
-				{pollData.pollBody.map((answerCluster, index) =>
-					<div key={answerCluster.questionHeader.questionId}
-						className='PollResults__questionAndAnswerBlocksWrapper'>
-						<div className='PollResults__questionAndAnswerBlock'>
-							<div className='PollResults__questionTitle' key={index}>
-								<p>{answerCluster.questionHeader.questionBody}</p></div>
-							<AnswerResultsList
-								questionNumber={index}
-								answers={answerCluster.answers}
-							/>
+
+		<div className='PollResults__resultsWrapper'>
+			<div className='PollToFill__pollHeader'>
+				<h1>{pollData.pollHeader.pollTitle}</h1>
+				<p>An EZ vote poll – results</p>
+			</div>
+			{pollData.pollBody.map((answerCluster, index) =>
+				<div key={answerCluster.questionHeader.questionId}
+					className='PollResults__questionAndAnswerBlocksWrapper'>
+					<div className='PollResults__questionAndAnswerBlock'>
+						<div className='PollResults__question-header'>
+							<p className='PollResults__question-number'>Question {index + 1}</p>
+							<h2 className='PollResults__questionTitle'>{answerCluster.questionHeader.questionBody}</h2>
 						</div>
-					</div>,
-				)}</div>
-		</>
+						<div className='PollResults_answer-list'><AnswerResultsList
+							questionNumber={index}
+							answers={answerCluster.answers}
+						/></div>
+					</div>
+				</div>,
+			)}</div>
 	);
 };

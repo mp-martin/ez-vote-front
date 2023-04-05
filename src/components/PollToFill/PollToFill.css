@@ -1,17 +1,167 @@
-.PollResults__pollHeader {
-
+.PollToFill__wrapper {
+    display: flex;
+    background-color: #ffffff;
+    overflow: hidden;
+    flex-direction: column;
+    margin-top: 5rem;
+    margin-bottom: 5.5rem;
+    width: 700px;
+    justify-content: center;
+    color: var(--color-text);
 }
 
-.PollResults__questionAndAnswerBlock {
+.PollToFill__wrapper form {
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    padding: 0.5em;
+    align-items: center;
+    gap: 1em;
 }
 
-.PollResults__singleAnswer {
 
+.PollToFill__pollHeader h1 {
+    font-size: 4em;
+    color: var(--color-title);
+    text-align: center;
+    line-height: 1.3em;
 }
 
-.PollResults__questionAndAnswerBlocksWrapper {
-    margin-top:0.5em
+.PollToFill__pollHeader p {
+    font-size: 2em;
+    font-weight: 500;
+    margin-bottom: 0.2em;
+    color: #a8a8a8;
+    text-align: center;
+}
+
+.PollToFill__questionAndAnswerBlock {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5em;
+    font-weight: 500;
+    border: 5px solid var(--color-ezgreen);
+    gap: unset;
+    padding: 2em 3em;
+    border-radius: 2em;
+}
+
+
+.PollToFill__questionAndAnswerBlocksWrapper {
+    margin-top: 0.5em;
+    margin-bottom: 3em;
+    width: 100%;
+}
+
+.PollToFill__question-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom:1.5em;
+}
+
+.PollToFill__question-number {
+    background-color: var(--color-ezgreen);
+    color: white;
+    font-size: 0.8em;
+    padding: 0.2em 1.5em;
+    margin-left: -0.3em;
+    margin-bottom: 0.3em;
+    border-radius: 99em;
+    width: max-content;
+}
+
+.PollToFill__question-title {
+    color: var(--color-title)
+}
+
+.PollToFill__answer-list {
+    margin-left:0.7em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5em;
+    font-size: 1.2em;
+}
+
+.PollToFill__single-answer {
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;
+}
+
+.PollToFill__single-answer input {
+    width: unset;
+}
+
+input[type="radio"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    /* Remove most all native input styles */
+    appearance: none;
+    /* For iOS < 15 */
+    background-color: white;
+    /* Not removed via appearance */
+    margin-top: 0.2em;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 50%;
+    transform: translateY(-0.075em);
+
+    display: grid;
+    place-content: center;
+}
+
+input[type="radio"]::before {
+    content: "";
+    width: 0.6em;
+    height: 0.6em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--color-ezpink);
+    /* Windows High Contrast Mode */
+    background-color: var(--color-ezpink);
+}
+
+input[type="radio"]:checked::before {
+    transform: scale(1);
+}
+
+
+input[type="checkbox"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    /* Remove most all native input styles */
+    appearance: none;
+    /* For iOS < 15 */
+    background-color: white;
+    /* Not removed via appearance */
+    margin-top: 0.2em;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    transform: translateY(-0.075em);
+
+    display: grid;
+    place-content: center;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 0.6em;
+    height: 0.6em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--color-ezpink);
+    /* Windows High Contrast Mode */
+    background-color: var(--color-ezpink);
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
 }

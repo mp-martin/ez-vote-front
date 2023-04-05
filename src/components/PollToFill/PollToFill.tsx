@@ -1,8 +1,18 @@
-import React, {type FormEvent, useEffect, useState} from 'react';
+import React, {type FormEvent, useContext, useEffect, useState} from 'react';
 import './PollToFill.css';
 import {type CompletePoll, type SuccessMsgVote} from 'types';
 import {OpenAnswerList} from './OpenAnswerList';
 import {ClosedAnswerList} from './ClosedAnswerList';
+import {useParams} from 'react-router-dom';
+import {MessageContext} from '../../contexts/message.context';
+import {Button} from '../common/Button/Button';
+import {Spinner} from '../common/Spinner/Spinner';
+import {PollToFillSuccess} from './PollToFillSuccess';
+import {apiUrl} from '../../config/api';
+
+type PollParams = {
+	id: string;
+};
 
 export const PollToFill = () => {
 	const [pollData, setPollData] = useState<CompletePoll>({
@@ -13,17 +23,29 @@ export const PollToFill = () => {
 		pollBody: [],
 	});
 
-	const [allAnswers, setAllAnswers] = useState<string[][]>([]);
+	const [allAnswers, setAllAnswers] = useState<string[][]>([[]]);
 	const [loading, setLoading] = useState(false);
 	const [alreadyVoted, setAlreadyVoted] = useState(false);
 	const [id, setId] = useState('');
+	const {id: pollId} = useParams<PollParams>();
+	const {showMessage, setShowMessage} = useContext(MessageContext);
+
+	if (!pollId) {
+		throw new Error('Bad poll id');
+	}
 
 	useEffect(() => {
-		(async () => {
-			const res = await fetch('http://localhost:3001/poll/2fb0f6c3-f276-4b41-b10d-96bdf9000ed1');
-			const pollData = await res.json() as CompletePoll;
-			setPollData(pollData);
-		})();
+		setLoading(true);
+		try {
+			(async () => {
+				const res = await fetch(`${apiUrl}/poll/${pollId}`);
+				const pollData = await res.json() as CompletePoll;
+				setPollData(pollData);
+				setLoading(false);
+			})();
+		} catch (e) {
+			console.log(e);
+		}
 	}, []);
 
 	const updateAllAnswers = (newAnswerPack: string[], index: number) => {
@@ -35,10 +57,17 @@ export const PollToFill = () => {
 	const vote = async (e: FormEvent) => {
 		e.preventDefault();
 
+		if (
+			allAnswers.find(item => (!item[0]),
+			)) {
+			setShowMessage(true);
+			return;
+		}
+
 		setLoading(true);
 
 		try {
-			const res = await fetch('http://localhost:3001/poll', {
+			const res = await fetch(`${apiUrl}/poll`, {
 				method: 'PATCH',
 				headers: {
 					'Content-Type': 'application/json',
@@ -63,7 +92,7 @@ export const PollToFill = () => {
 	};
 
 	if (loading) {
-		return <h2>Sending poll... </h2>;
+		return <Spinner/>;
 	}
 
 	if (alreadyVoted) {
@@ -71,42 +100,52 @@ export const PollToFill = () => {
 	}
 
 	if (id) {
-		return <>
-			<p>Your answers to <strong>{pollData.pollHeader.pollTitle}</strong> have been sent!</p>
-			<p>To see the results, go to this link: <a href='#'>https://ezvote/poll/${id}</a></p>
-		</>;
+		return <PollToFillSuccess id={id} title={pollData.pollHeader.pollTitle}/>;
 	}
 
 	return (
-		<>
-			<div className='PollResults__pollHeader'>
+		<div className='PollToFill__wrapper'>
+			<div className='PollToFill__pollHeader'>
 				<h1>{pollData.pollHeader.pollTitle}</h1>
 				<p>An EZ vote poll</p>
 			</div>
 
 			<form onSubmit={vote}>
 				{pollData.pollBody.map((answerCluster, index) =>
-					<div key={answerCluster.questionHeader.questionId} className='PollResults__questionAndAnswerBlocksWrapper'>
-						<div className='PollResults__questionAndAnswerBlock'>
-							<div className='' key={index}><p>{answerCluster.questionHeader.questionBody}</p></div>
-							{answerCluster.questionHeader.questionType === 'closed'
-								? <ClosedAnswerList
-									questionNumber={index}
-									questionId={answerCluster.questionHeader.questionId}
-									answers={answerCluster.answers}
-									handleUpdateAnswers={updateAllAnswers}
-								/>
-								: <OpenAnswerList
-									questionNumber={index}
-									questionId={answerCluster.questionHeader.questionId}
-									answers={answerCluster.answers}
-									handleUpdateAnswers={updateAllAnswers}
-								/>
-
-							}
+					<div key={answerCluster.questionHeader.questionId}
+						className='PollToFill__questionAndAnswerBlocksWrapper'>
+						<div className='PollToFill__questionAndAnswerBlock'>
+							<div className='PollToFill__question-header'><p
+								className='PollToFill__question-number'>Question {index + 1}</p>
+							<h2 className='PollToFill__question-title'
+								key={index}>{answerCluster.questionHeader.questionBody}</h2></div>
+							<div
+								className='PollToFill__answer-list'>{answerCluster.questionHeader.questionType === 'closed'
+									? <ClosedAnswerList
+										questionNumber={index}
+										questionId={answerCluster.questionHeader.questionId}
+										answers={answerCluster.answers}
+										handleUpdateAnswers={updateAllAnswers}
+									/>
+									: <OpenAnswerList
+										questionNumber={index}
+										questionId={answerCluster.questionHeader.questionId}
+										answers={answerCluster.answers}
+										handleUpdateAnswers={updateAllAnswers}
+									/>
+								}</div>
 						</div>
 					</div>,
-				)}<button>Vote</button></form>
-		</>
+				)}
+				<Button
+					text={'Cast my vote!'}
+					roundness={99}
+					disabled={false}
+					size={2}
+					color={'var(--color-title)'}
+					width={100}
+				/>
+			</form>
+		</div>
 	);
 };

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {type AnswerEntity} from 'types';
 import './PollToFill.css';
 
@@ -18,9 +18,13 @@ export const ClosedAnswerList = (props: Props) => {
 		setAnswer(newAnswer);
 	};
 
+	useEffect(() => {
+		props.handleUpdateAnswers(answer, props.questionNumber);
+	}, [answer]);
+
 	return (<>
 		{props.answers.map(answer =>
-			<label className='PollResults__singleAnswer' key={answer.answerId}>
+			<label className='PollToFill__single-answer' key={answer.answerId}>
 				<input
 					value={answer.answerId}
 					type='radio'
