@@ -1,5 +1,8 @@
-![logo](https://zar.networkmanager.pl/static/readme/logo_navy.svg?sanitize=true#gh-light-mode-only)
-![logo](https://zar.networkmanager.pl/static/readme/logo_white.svg?sanitize=true#gh-dark-mode-only)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://zar.networkmanager.pl/static/readme/logo_white.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://zar.networkmanager.pl/static/readme/logo_navy.svg">
+  <img alt="EZ Vote logo" src="https://zar.networkmanager.pl/static/readme/logo_navy.svg">
+</picture>
 
 # About The Project
 
@@ -31,7 +34,9 @@ Check out the [live demo](https://zar.networkmanager.pl)
 
 # How it works⚙️
 
-1. Create a poll ![alt text](https://zar.networkmanager.pl/static/readme/poll_setting.png) _(use multiple questions if you want)_ ![alt text](https://zar.networkmanager.pl/static/readme/multiple_questions.png)
+1. Create a poll<br><img alt="" src="https://zar.networkmanager.pl/static/readme/poll_setting.png" width="500px"> 
+
+ _(use multiple questions if you want)_ ![alt text](https://zar.networkmanager.pl/static/readme/multiple_questions.png)
 
 2. Select question types![alt text](https://zar.networkmanager.pl/static/readme/single_multi_question.png)
 
