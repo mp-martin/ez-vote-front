@@ -1,5 +1,7 @@
 ![logo](https://zar.networkmanager.pl/static/readme/logo.png)
-#About The Project
+
+# About The Project
+
 ![alt text](https://zar.networkmanager.pl/static/readme/main_screen.png)
 EZ Vote is a simple app that allows you to make polls and let people vote in them. 🗳️
 
@@ -21,7 +23,7 @@ Check out the [live demo](https://zar.networkmanager.pl)
 * Managing your polls (list / edit / delete)
 * UX improvements
 
-###Bugs and issues
+### Bugs and issues
 * Poll questions are listed in reverse order compared to the creation order.
 * Incomplete form validation
 * No 404 page view
@@ -40,7 +42,7 @@ Check out the [live demo](https://zar.networkmanager.pl)
 
 
 
-#About this repo🔍
+# About this repo🔍
 This is a frontend client for the EZ Vote app. It was made using: 
 * React [![react][react]][react-url] 
 * Typescript [![typescript][typescript]][typescript-url]
@@ -75,7 +77,7 @@ Check it out at [https://github.com/mp-martin/ez-vote-back](https://github.com/m
 │   ├── ez-vote-frontend
 ```
 
-#About the author
+# About the author
 My name is Martin and I am on a journey to become a software engineer. By the way, I am a graphic designer.
 
 You can find me at my [Linkedin](https://www.linkedin.com/in/marcin-papierz/) 🤝
