@@ -21,7 +21,7 @@ Check out the [live demo](https://zar.networkmanager.pl)
 * Use of cookies to prevent many votes by the same person.
 * Vote percentage graph view for the results
 * Responsive design implemented
-* _The Dudette_ <img alt="the dudette" src="https://zar.networkmanager.pl/static/media/cartoon.8cace218aea52624de38b8835e42bdb8.svg" width="100px">
+* _The Dudette_ <br><img alt="the dudette" src="https://zar.networkmanager.pl/static/media/cartoon.8cace218aea52624de38b8835e42bdb8.svg" width="200px" style="">
 ### Upcoming
 * User registration and login
 * Managing your polls (list / edit / delete)
@@ -34,17 +34,16 @@ Check out the [live demo](https://zar.networkmanager.pl)
 
 # How it works⚙️
 
-1. Create a poll<br><img alt="" src="https://zar.networkmanager.pl/static/readme/poll_setting.png" width="500px"> 
+1. Create a poll<br><img alt="" src="https://zar.networkmanager.pl/static/readme/poll_setting.png"  style="max-width:500px; border: 3px solid #333; border-radius: 20px"><br>
+ _(use multiple questions if you want)_<br><img alt="" src="https://zar.networkmanager.pl/static/readme/multiple_questions.png" style="max-width:500px; border: 3px solid #333; border-radius: 20px">
 
- _(use multiple questions if you want)_ ![alt text](https://zar.networkmanager.pl/static/readme/multiple_questions.png)
+2. Select question types<br><img alt="" src="https://zar.networkmanager.pl/static/readme/single_multi_question.png" style="max-width:500px; border: 3px solid #333; border-radius: 20px">
 
-2. Select question types![alt text](https://zar.networkmanager.pl/static/readme/single_multi_question.png)
+3. Submit and share the link<br><img alt="" src="https://zar.networkmanager.pl/static/readme/link_sharing.png" style="max-width:500px; border: 3px solid #333; border-radius: 20px">
 
-3. Submit and share the link![alt text](https://zar.networkmanager.pl/static/readme/link_sharing.png)
+5. Let people vote<br><img alt="" src="https://zar.networkmanager.pl/static/readme/poll_filling.png" style="max-width:500px; border: 3px solid #333; border-radius: 20px">
 
-5. Let people vote ![alt text](https://zar.networkmanager.pl/static/readme/poll_filling.png)
-
-6. Enjoy the results ![alt text](https://zar.networkmanager.pl/static/readme/results.png)
+6. Enjoy the results<br><img alt="" src="https://zar.networkmanager.pl/static/readme/results.png" style="max-width:500px; border: 3px solid #333; border-radius: 20px">
 
 
 
