@@ -35,15 +35,15 @@ Check out the [live demo](https://zar.networkmanager.pl)
 # How it works⚙️
 
 1. Create a poll<br><kbd><img alt="" src="https://zar.networkmanager.pl/static/readme/poll_setting.png" width="450px"></kbd><br>
- _(use multiple questions if you want)_<br><kbd><img alt="" src="https://zar.networkmanager.pl/static/readme/multiple_questions.png width="450px"></kbd>
+ _(use multiple questions if you want)_<br><kbd><img alt="" src="https://zar.networkmanager.pl/static/readme/multiple_questions.png" width="450px"></kbd>
 
-2. Select question types<br><kbd><img alt="" src="https://zar.networkmanager.pl/static/readme/single_multi_question.png width="450px"></kbd>
+2. Select question types<br><kbd><img alt="" src="https://zar.networkmanager.pl/static/readme/single_multi_question.png" width="450px"></kbd>
 
-3. Submit and share the link<br><kbd><img alt="" src="https://zar.networkmanager.pl/static/readme/link_sharing.png width="450px"></kbd>
+3. Submit and share the link<br><kbd><img alt="" src="https://zar.networkmanager.pl/static/readme/link_sharing.png" width="450px"></kbd>
 
-5. Let people vote<br><kbd><img alt="" src="https://zar.networkmanager.pl/static/readme/poll_filling.png width="450px"></kbd>
+5. Let people vote<br><kbd><img alt="" src="https://zar.networkmanager.pl/static/readme/poll_filling.png" width="450px"></kbd>
 
-6. Enjoy the results<br><kbd><img alt="" src="https://zar.networkmanager.pl/static/readme/results.png width="450px"></kbd>
+6. Enjoy the results<br><kbd><img alt="" src="https://zar.networkmanager.pl/static/readme/results.png" width="450px"></kbd>
 
 
 
