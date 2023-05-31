@@ -23,6 +23,7 @@ export const AddAnswer = ({ nestIndex }: Props): JSX.Element => {
                         className='addAnswer__answer-field'
                         placeholder='An answer'
                         {...register(`pollBody.${nestIndex}.answers.${k}.answer` as const)}
+                        style = {((errors as any).pollBody?.[nestIndex]?.answers?.[k].answer) != null ? { backgroundColor: '#ffd1d1' } : {}}
                         minLength={1}/>
                     <button type="button"
                             className='addAnswer__rem-button'
