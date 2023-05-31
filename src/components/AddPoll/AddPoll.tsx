@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './AddPoll.css'
 import { AddQuestion } from '../AddQuestion/AddQuestion'
 import { MessageContext } from '../../contexts/message.context'
@@ -7,53 +7,20 @@ import { AddPollSuccess } from './AddPollSuccess'
 import { Spinner } from '../common/Spinner/Spinner'
 import { apiUrl } from '../../config/api'
 import { useForm, FormProvider } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
+import { defaultValues, type MyPollSchema, resolver } from './poll-validation'
 
-export const AddPoll = () => {
+export const AddPoll = (): JSX.Element => {
   const [loading, setLoading] = useState(false)
   const [id, setId] = useState('')
-  const { showMessage, setShowMessage } = useContext(MessageContext)
+  const { setShowMessage, setMessageContent } = useContext(MessageContext)
 
-  interface MyQuestionSchema {
-    questionType: string
-    questionTitle: string
-    answers: string[]
-  }
-
-  interface MyPollSchema {
-    pollTitle: string
-    pollBody: MyQuestionSchema[]
-  }
-
-  const defaultValues = {
-    pollTitle: 'Your poll\'s awesome title',
-    pollBody: [
-      {
-        questionType: 'closed',
-        questionTitle: 'Your question goes here',
-        answers: ['Your answer goes here']
-      }
-    ]
-  }
-
-  const myYupSchema = yup.object().shape({
-    pollTitle: yup.string(),
-    pollBody: yup.array(
-      yup.object().shape({
-        questionType: yup.string(),
-        questionTitle: yup.string(),
-        answers: yup.array(yup.string())
-      })
-    )
-  })
-
-  const { ...methods } = useForm({
-    resolver: yupResolver(myYupSchema),
+  const { ...methods } = useForm<MyPollSchema>({
+    resolver,
     defaultValues
   })
+  const missingTitle = methods.formState.errors.pollTitle
 
-  const savePoll = (data: MyPollSchema) => {
+  const savePoll = (data: MyPollSchema): void => {
     console.log(data)
     // setLoading(true)
     // try {
@@ -83,6 +50,11 @@ export const AddPoll = () => {
     return <AddPollSuccess id={id} title={'weee'}/>
   }
 
+  useEffect(() => {
+    setMessageContent('Hey! Make sure you fill everything out')
+    setShowMessage((methods.formState.errors.pollBody != null) || missingTitle != null)
+  }, [methods.formState.errors.pollBody, missingTitle])
+
   return (
         <>
             <div className="addPoll__container">
@@ -93,10 +65,9 @@ export const AddPoll = () => {
                             type="text"
                             {...methods.register('pollTitle')}
                             placeholder="Poll title"
-                            minLength={1}
-                        />
-
-                        <AddQuestion />
+                            style={missingTitle != null ? { backgroundColor: '#ffd1d1' } : {}}
+                            minLength={1}/>
+                        <AddQuestion/>
 
                         <Button
                             text={'Start the votes!'}
@@ -104,8 +75,7 @@ export const AddPoll = () => {
                             disabled={false}
                             size={2}
                             color={'var(--color-title)'}
-                            width={100}
-                        />
+                            width={100}/>
                     </form>
                 </FormProvider>
             </div>

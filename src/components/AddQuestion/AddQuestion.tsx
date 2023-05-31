@@ -2,9 +2,10 @@ import React from 'react'
 import './AddQuestion.css'
 import { TiArrowSortedDown } from 'react-icons/ti'
 import { useFieldArray, useFormContext } from 'react-hook-form'
+import { AddAnswer } from '../AddAnswer/AddAnswer'
 
-export const AddQuestion = () => {
-  const { register, getValues } = useFormContext()
+export const AddQuestion = (): JSX.Element => {
+  const { register, getValues, formState: { errors } } = useFormContext()
   const { fields, insert, remove } = useFieldArray({
     name: 'pollBody'
   })
@@ -19,8 +20,7 @@ export const AddQuestion = () => {
                           <div className='addQuestion__topbar_q-type'><label>
                               <select
                                   defaultValue='closed'
-                                  {...register(`pollBody.${index}.questionType` as const)}
-                              >
+                                  {...register(`pollBody.${index}.questionType` as const)}>
                                   <option value='open'>Open (multiple choice)</option>
                                   <option value='closed'>Closed (single choice)</option>
                               </select><TiArrowSortedDown size={'1.3em'} className='addQuestion__topbar_q-type_arrow'/>
@@ -28,26 +28,17 @@ export const AddQuestion = () => {
                       </div>
                       <div className='addQuestion__questionBox'>
                           <div className='addQuestion__questionInput'>
-
                               <label>
                                   <input
                                       {...register(`pollBody.${index}.questionTitle` as const)}
                                       placeholder='Type your question here'
                                       minLength={1}
-                                  />
+                                      style = {((errors as any).pollBody?.[index]?.questionTitle) != null ? { backgroundColor: '#ffd1d1' } : {}}/>
                               </label>
-
                           </div>
 
                           <p>Answers</p>
-                          {/* {answerFields.map((field, i) => <label key={i}><AddAnswer */}
-                          {/*    answerNumber={i} */}
-                          {/*    answerFields={answerFields} */}
-                          {/*    updateFunc={updateAnswers} */}
-                          {/*    newAnswerFunc={newAnswer} */}
-                          {/*    removeAnswerFunc={removeAnswer} */}
-                          {/*    answers={answers} */}
-                          {/* /></label>)} */}
+                          <AddAnswer nestIndex={index}/>
 
                       </div>
                       <div className='addQuestion__bottom-bar'>
@@ -60,10 +51,13 @@ export const AddQuestion = () => {
                                   onClick={() => {
                                     insert(index + 1, {
                                       questionType: 'closed',
-                                      questionTitle: 'Your question goes here',
-                                      answers: ['Your first answer goes here']
+                                      questionTitle: '',
+                                      answers: [
+                                        { answer: '' }
+                                      ]
                                     }, { focusName: `pollBody.${index + 1}.questionTitle` })
-                                  }}>Add
+                                  }}>
+                            Add
                           </button>
                       </div>
                   </div>

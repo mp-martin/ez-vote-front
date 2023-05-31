@@ -28,7 +28,7 @@ export const resolver = yupResolver(yup.object().shape({
   pollBody: yup.array(
     yup.object().shape({
       questionType: yup.string().required(),
-      questionTitle: yup.string().required(),
+      questionTitle: yup.string().required('required field'),
       answers: yup.array(yup.object().shape({ answer: yup.string().required() }))
     })
   )

@@ -18,9 +18,9 @@
 
 .addQuestion__topbar {
     display: flex;
-    gap: 10em;
-    justify-content: space-around;
-    margin-bottom: 0.5em;
+    justify-content: space-between;
+    margin: 0 0.5em 0.5em 0.5em;
+
     align-items: flex-end;
 }
 
