@@ -10,11 +10,12 @@ import { Route, Routes } from 'react-router-dom'
 import { Message } from './components/common/Message/Message'
 import { MessageContext } from './contexts/message.context'
 
-const App = () => {
+const App = (): JSX.Element => {
   const [showMessage, setShowMessage] = useState(false)
+  const [messageContent, setMessageContent] = useState('')
   return (
         <div className='App'>
-            <MessageContext.Provider value={{ showMessage, setShowMessage }}>
+            <MessageContext.Provider value={{ showMessage, setShowMessage, setMessageContent }}>
                 <Header/>
                 <Routes>
                     <Route path='/' element={<Main/>}/>
@@ -23,7 +24,7 @@ const App = () => {
                     <Route path='/poll/:id/results' element={<PollResults/>}/>
                 </Routes>
                 <Footer/>
-                {showMessage && <Message content={'Please fill out the necessary fields'} onClose={() => {
+                {showMessage && <Message content={messageContent} onClose={() => {
                   setShowMessage(false)
                 }}/>}
             </MessageContext.Provider>
