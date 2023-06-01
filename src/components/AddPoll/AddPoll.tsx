@@ -8,6 +8,7 @@ import { Spinner } from '../common/Spinner/Spinner'
 import { apiUrl } from '../../config/api'
 import { useForm, FormProvider } from 'react-hook-form'
 import { defaultValues, type MyPollSchema, resolver } from './poll-validation'
+import { type SuccessMsgNewPoll } from '../../../../ez-vote-backend/types/poll'
 
 export const AddPoll = (): JSX.Element => {
   const [loading, setLoading] = useState(false)
@@ -20,26 +21,23 @@ export const AddPoll = (): JSX.Element => {
   })
   const missingTitle = methods.formState.errors.pollTitle
 
-  const savePoll = (data: MyPollSchema): void => {
+  const savePoll = async (data: MyPollSchema): Promise<void> => {
     console.log(data)
     // setLoading(true)
-    // try {
-    //   const res = await fetch(`${apiUrl}/poll`, {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({
-    //       // pollHeader: pollData.pollHeader,
-    //       // pollBody: pollData.pollBody
-    //     })
-    //   })
-    //
-    //   const data = (await res.json()) as SuccessMsgNewPoll
-    //   setId(data.newPollId)
-    // } finally {
-    //   setLoading(false)
-    // }
+    try {
+      const res = await fetch(`${apiUrl}/poll`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+
+      // const resJson = (await res.json()) as SuccessMsgNewPoll
+      // setId(resJson.newPollId)
+    } finally {
+      // setLoading(false)
+    }
   }
 
   if (loading) {
