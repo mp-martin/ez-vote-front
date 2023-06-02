@@ -36,7 +36,7 @@ export const AddPoll = (): JSX.Element => {
       // const resJson = (await res.json()) as SuccessMsgNewPoll
       // setId(resJson.newPollId)
     } finally {
-      // setLoading(false)
+      setLoading(false)
     }
   }
 
