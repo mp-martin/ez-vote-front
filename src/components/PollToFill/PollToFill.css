@@ -87,10 +87,12 @@
     display: grid;
     grid-template-columns: 1em auto;
     gap: 0.5em;
+    cursor: pointer;
 }
 
 .PollToFill__single-answer input {
     width: unset;
+    cursor: pointer;
 }
 
 input[type="radio"] {

@@ -30,10 +30,10 @@ export const AddQuestion = (): JSX.Element => {
                           <div className='addQuestion__questionInput'>
                               <label>
                                   <input
-                                      {...register(`pollBody.${index}.questionTitle` as const)}
+                                      {...register(`pollBody.${index}.question` as const)}
                                       placeholder='Type your question here'
                                       minLength={1}
-                                      style = {((errors as any).pollBody?.[index]?.questionTitle) != null ? { backgroundColor: '#ffd1d1' } : {}}/>
+                                      style = {((errors as any).pollBody?.[index]?.question) != null ? { backgroundColor: '#ffd1d1' } : {}}/>
                               </label>
                           </div>
 
@@ -51,11 +51,11 @@ export const AddQuestion = (): JSX.Element => {
                                   onClick={() => {
                                     insert(index + 1, {
                                       questionType: 'closed',
-                                      questionTitle: '',
+                                      question: '',
                                       answers: [
                                         { answer: '' }
                                       ]
-                                    }, { focusName: `pollBody.${index + 1}.questionTitle` })
+                                    }, { focusName: `pollBody.${index + 1}.question` })
                                   }}>
                             Add
                           </button>

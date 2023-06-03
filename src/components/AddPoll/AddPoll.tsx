@@ -12,18 +12,17 @@ import { type SuccessMsgNewPoll } from '../../../../ez-vote-backend/types/poll'
 
 export const AddPoll = (): JSX.Element => {
   const [loading, setLoading] = useState(false)
-  const [id, setId] = useState('')
+  const [id, setId] = useState<string | null>(null)
   const { setShowMessage, setMessageContent } = useContext(MessageContext)
 
-  const { ...methods } = useForm<MyPollSchema>({
+  const { getValues, ...methods } = useForm<MyPollSchema>({
     resolver,
     defaultValues
   })
   const missingTitle = methods.formState.errors.pollTitle
 
   const savePoll = async (data: MyPollSchema): Promise<void> => {
-    console.log(data)
-    // setLoading(true)
+    setLoading(true)
     try {
       const res = await fetch(`${apiUrl}/poll`, {
         method: 'POST',
@@ -33,19 +32,13 @@ export const AddPoll = (): JSX.Element => {
         body: JSON.stringify(data)
       })
 
-      // const resJson = (await res.json()) as SuccessMsgNewPoll
-      // setId(resJson.newPollId)
+      const resJson = (await res.json()) as SuccessMsgNewPoll
+      setId(resJson.newPollId)
+    } catch (e) {
+      throw new Error(e as any)
     } finally {
       setLoading(false)
     }
-  }
-
-  if (loading) {
-    return <Spinner/>
-  }
-
-  if (id !== '') {
-    return <AddPollSuccess id={id} title={'weee'}/>
   }
 
   useEffect(() => {
@@ -53,11 +46,19 @@ export const AddPoll = (): JSX.Element => {
     setShowMessage((methods.formState.errors.pollBody != null) || missingTitle != null)
   }, [methods.formState.errors.pollBody, missingTitle])
 
+  if (loading) {
+    return <Spinner/>
+  }
+
+  if (id !== null) {
+    return <AddPollSuccess id={id} title={getValues('pollTitle')}/>
+  }
+
   return (
         <>
             <div className="addPoll__container">
                 <h1>Set up your poll</h1>
-                <FormProvider {...methods}>
+                <FormProvider getValues={getValues} {...methods}>
                     <form onSubmit={methods.handleSubmit(savePoll)}>
                         <input
                             type="text"

@@ -3,7 +3,7 @@ import * as yup from 'yup'
 
 export interface MyQuestionSchema {
   questionType: string
-  questionTitle: string
+  question: string
   answers: Array<{ answer: string }>
 }
 
@@ -17,7 +17,7 @@ export const defaultValues = {
   pollBody: [
     {
       questionType: 'closed',
-      questionTitle: '',
+      question: '',
       answers: [{ answer: '' }]
     }
   ]
@@ -28,7 +28,7 @@ export const resolver = yupResolver(yup.object().shape({
   pollBody: yup.array(
     yup.object().shape({
       questionType: yup.string().required(),
-      questionTitle: yup.string().required('required field'),
+      question: yup.string().required('required field'),
       answers: yup.array(yup.object().shape({ answer: yup.string().required() }))
     })
   )

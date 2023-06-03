@@ -77,6 +77,11 @@ form {
     color: var(--color-title);
 }
 
+.addPoll__final-link_address a:hover {
+    color: var(--color-title);
+    text-decoration: underline;
+}
+
 .addPoll__copy-button {
     color: var(--color-inlinelink);
 }
