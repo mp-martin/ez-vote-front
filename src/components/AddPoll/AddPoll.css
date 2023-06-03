@@ -1,11 +1,12 @@
 .addPoll__container {
+    height: 100%;
     display: flex;
     background-color: #ffffff;
     flex-direction: column;
     margin-top: 5rem;
     margin-bottom: 5.5rem;
     width: 750px;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .addPoll__container input {

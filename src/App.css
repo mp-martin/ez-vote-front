@@ -2,10 +2,11 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
+    height: 100%
 }
 
 .cool-dude-1 {
@@ -57,7 +58,7 @@
     position: absolute;
     width: 52rem;
     left: -22rem;
-    bottom: 10rem;
+    bottom: 6rem;
     transform: rotate(0deg);
     animation-name: slide-in-left, wobble-ver-left;
     animation-duration: 4s, 0.8s;
@@ -103,12 +104,17 @@ and (max-width: 1100px) {
     .cool-dude-1 {
         width: 34rem;
         right: -14rem;
+        top: 34rem;
     }
 
     .cool-dude-2 {
-        bottom: 23rem;
-        left: -13rem;
+        bottom: 12rem;
+        left: -15rem;
         width: 34rem;
+    }
+
+    .Main__paragraph {
+        padding: 3em 0;
     }
 }
 
@@ -116,40 +122,34 @@ and (max-width: 1100px) {
     /*and (min-device-width : 320px)*/
 and (max-width: 800px) {
     .cool-dude-1 {
-        width: 23rem;
-        right: -9rem;
-        top: 46rem;
+        display: none;
     }
 
     .cool-dude-2 {
-        bottom: 26rem;
-        left: -10rem;
-        width: 25rem;
+        display: none;
     }
+
 }
 
 @media only screen
     /*and (min-device-width : 320px)*/
-and (max-width: 500px) {
+and (max-width: 600px) {
     .cool-dude-1 {
-        width: 17rem;
-        right: -7.5rem;
-        top: 25rem;
-        transform: rotate(331deg);
-        pointer-events: none;
+        display: none;
     }
 
     .cool-dude-2 {
-        bottom: -4rem;
-        left: -9rem;
-        width: 25rem;
+        display: none;
     }
 
     .Main {
         margin-top: 5rem;
     }
-}
 
+    .Main__paragraph {
+        background-size: cover;
+    }
+}
 
 
 @media only screen
@@ -157,17 +157,16 @@ and (max-width: 500px) {
 and (max-width: 800px) {
     .Main__hero {
         width: 100%;
-        padding: 0em 2em;
+        padding: 0 2em;
     }
 
     .Main__content {
         font-size: 1.6rem;
     }
 
-     .Main__content Button {
+    .Main__content Button {
         font-size: 1.6rem;
     }
-
 
 
     .Header__wrapper {
@@ -196,7 +195,7 @@ and (max-width: 800px) {
 
     .addPoll__container {
         width: 100%;
-        padding: 0em 0.5em;
+        padding: 0 0.5em;
         font-size: 0.8em;
     }
 
@@ -210,7 +209,7 @@ and (max-width: 800px) {
 
     .PollToFill__wrapper {
         width: 100%;
-        padding: 0em 0.5em;
+        padding: 0 0.5em;
     }
 
     .PollToFill__pollHeader h1 {
@@ -222,12 +221,12 @@ and (max-width: 800px) {
     }
 
     .PollResults__questionAndAnswerBlock {
-        font-size:1em;
+        font-size: 1em;
     }
 
     .PollResults__resultsWrapper {
         width: 100%;
-        padding: 0em 0.5em;
+        padding: 0 0.5em;
     }
 
     .PollResults__questionAndAnswerBlock {
@@ -235,12 +234,6 @@ and (max-width: 800px) {
     }
 
     .Main__paragraph_wrapper {
-        width: 100%;
-        padding: 0em 0.5em;
+        padding: 0 0.5em;
     }
-
-    .Main__paragraph {
-        background-size: cover;
-    }
-
 }
