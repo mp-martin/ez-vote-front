@@ -53,12 +53,12 @@ export const PollToFill = (): JSX.Element => {
   const vote = async (e: FormEvent): Promise<void> => {
     e.preventDefault()
 
+    console.log(allAnswers)
+
     if (
-      allAnswers.find(item => (item[0] === '')
-      ) != null) {
-      setMessageContent('Hey! Make sure you\'ve selected every answer')
+      allAnswers.find(item => item[0] === undefined) != null) {
+      setMessageContent('Hey! Make sure you\'ve answered all questions')
       setShowMessage(true)
-      return
     }
 
     setLoading(true)

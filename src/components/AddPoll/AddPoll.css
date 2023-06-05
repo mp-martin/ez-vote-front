@@ -1,5 +1,5 @@
 .addPoll__container {
-    height: 100%;
+    flex: 1;
     display: flex;
     background-color: #ffffff;
     flex-direction: column;
