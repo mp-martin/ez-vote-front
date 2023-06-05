@@ -1,7 +1,6 @@
 .PollToFill__wrapper {
     display: flex;
     background-color: #ffffff;
-    overflow: hidden;
     flex-direction: column;
     margin-top: 5rem;
     margin-bottom: 5.5rem;
@@ -87,10 +86,12 @@
     display: grid;
     grid-template-columns: 1em auto;
     gap: 0.5em;
+    cursor: pointer;
 }
 
 .PollToFill__single-answer input {
     width: unset;
+    cursor: pointer;
 }
 
 input[type="radio"] {

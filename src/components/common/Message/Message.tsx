@@ -1,14 +1,15 @@
-import React, {type SyntheticEvent} from 'react';
-import './Message.css';
+import React, { type SyntheticEvent } from 'react'
+import './Message.css'
 
-type Props = {
-	content: string;
-	onClose: (e: SyntheticEvent) => void;
-};
-export const Message = (props: Props) => (<>
-	<div className='Message__container' onClick={props.onClose}>
-		<div className='Message__content'>
-            ⛔ {props.content} <span style={{fontSize: 'x-small', opacity: '0.5'}}>Click to close</span>
-		</div>
-	</div>
-</>);
+interface Props {
+  content: string
+  onClose: (e: SyntheticEvent) => void
+}
+
+export const Message = (props: Props): JSX.Element => (<>
+    <div className='Message__container'>
+        <div className='Message__content' onClick={props.onClose}>
+            ⛔ {props.content} <span style={{ fontSize: 'x-small', opacity: '0.5' }}>Click to close</span>
+        </div>
+    </div>
+</>)
