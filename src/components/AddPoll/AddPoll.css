@@ -1,11 +1,12 @@
 .addPoll__container {
+    flex: 1;
     display: flex;
     background-color: #ffffff;
     flex-direction: column;
     margin-top: 5rem;
     margin-bottom: 5.5rem;
     width: 750px;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .addPoll__container input {
@@ -75,6 +76,11 @@ form {
 
 .addPoll__final-link_address a {
     color: var(--color-title);
+}
+
+.addPoll__final-link_address a:hover {
+    color: var(--color-title);
+    text-decoration: underline;
 }
 
 .addPoll__copy-button {

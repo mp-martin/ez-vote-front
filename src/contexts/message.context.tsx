@@ -1,8 +1,14 @@
-import {createContext} from 'react';
+import { createContext, type Dispatch, type SetStateAction } from 'react'
 
-export const MessageContext = createContext({
-	showMessage: false,
-	// eslint-disable-next-line @typescript-eslint/no-empty-function,object-shorthand
-	setShowMessage: (s: boolean) => {
-	},
-});
+export const MessageContext = createContext<{
+  showMessage: boolean
+  setShowMessage: Dispatch<SetStateAction<boolean>>
+  setMessageContent: Dispatch<SetStateAction<string>>
+}>(
+  {
+    showMessage: false,
+    setShowMessage: () => {
+    },
+    setMessageContent: () => {
+    }
+  })
