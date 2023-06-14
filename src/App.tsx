@@ -9,25 +9,28 @@ import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import { Message } from './components/common/Message/Message'
 import { MessageContext } from './contexts/message.context'
+import { UserContextProvider } from './contexts/user.context'
 
 const App = (): JSX.Element => {
   const [showMessage, setShowMessage] = useState(false)
   const [messageContent, setMessageContent] = useState('')
   return (
         <div className='App'>
-            <MessageContext.Provider value={{ showMessage, setShowMessage, setMessageContent }}>
-                <Header/>
-                <Routes>
-                    <Route path='/' element={<Main/>}/>
-                    <Route path='/addpoll' element={<AddPoll/>}/>
-                    <Route path='/poll/:id' element={<PollToFill/>}/>
-                    <Route path='/poll/:id/results' element={<PollResults/>}/>
-                </Routes>
-                <Footer/>
-                {showMessage && <Message content={messageContent} onClose={() => {
-                  setShowMessage(false)
-                }}/>}
-            </MessageContext.Provider>
+            <UserContextProvider>
+                <MessageContext.Provider value={{ showMessage, setShowMessage, setMessageContent }}>
+                    <Header/>
+                    <Routes>
+                        <Route path='/' element={<Main/>}/>
+                        <Route path='/addpoll' element={<AddPoll/>}/>
+                        <Route path='/poll/:id' element={<PollToFill/>}/>
+                        <Route path='/poll/:id/results' element={<PollResults/>}/>
+                    </Routes>
+                    <Footer/>
+                    {showMessage && <Message content={messageContent} onClose={() => {
+                      setShowMessage(false)
+                    }}/>}
+                </MessageContext.Provider>
+            </UserContextProvider>
         </div>
   )
 }
