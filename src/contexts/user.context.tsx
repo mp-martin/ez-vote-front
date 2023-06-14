@@ -7,21 +7,30 @@ import React, {
 } from 'react'
 
 interface User {
-  isLoggedIn: boolean
-  setIsLoggedIn: Dispatch<SetStateAction<boolean>>
+  userId: string | null
+  userLogin: string | null
 }
 
-export const UserContext = createContext<User>({
-  isLoggedIn: false,
-  setIsLoggedIn: () => {
+interface ManageUser {
+  user: User | null
+  setUser: Dispatch<SetStateAction<User | null>>
+}
+
+export const UserContext = createContext<ManageUser>({
+  user: {
+    userId: null,
+    userLogin: null
+  },
+  setUser: () => {
   }
+
 })
 
 export const UserContextProvider = (props: PropsWithChildren) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [user, setUser] = useState<User | null>({ userId: null, userLogin: null })
   return (
         <UserContext.Provider
-            value={{ isLoggedIn, setIsLoggedIn }}
+            value={{ user, setUser }}
         >
             {props.children}
         </UserContext.Provider>
