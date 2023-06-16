@@ -7,8 +7,8 @@ import React, {
 } from 'react'
 
 interface User {
-  userId: string | null
-  userLogin: string | null
+  userId: string
+  userLogin: string
 }
 
 interface ManageUser {
@@ -18,8 +18,8 @@ interface ManageUser {
 
 export const UserContext = createContext<ManageUser>({
   user: {
-    userId: null,
-    userLogin: null
+    userId: '',
+    userLogin: ''
   },
   setUser: () => {
   }
@@ -27,7 +27,7 @@ export const UserContext = createContext<ManageUser>({
 })
 
 export const UserContextProvider = (props: PropsWithChildren) => {
-  const [user, setUser] = useState<User | null>({ userId: null, userLogin: null })
+  const [user, setUser] = useState<User | null>({ userId: '', userLogin: '' })
   return (
         <UserContext.Provider
             value={{ user, setUser }}
