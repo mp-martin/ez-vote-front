@@ -9,11 +9,13 @@ import { apiUrl } from '../../config/api'
 import { useForm, FormProvider } from 'react-hook-form'
 import { defaultValues, type MyPollSchema, resolver } from './poll-validation'
 import { type SuccessMsgNewPoll } from '../../../../ez-vote-backend/types/poll'
+import { useAuth } from '../../hooks/use.auth'
 
 export const AddPoll = () => {
   const [loading, setLoading] = useState(false)
   const [id, setId] = useState<string | null>(null)
   const { setShowMessage, setMessageContent, setMessageType, setMessageTimer } = useContext(MessageContext)
+  const { user } = useAuth()
 
   const { getValues, ...methods } = useForm<MyPollSchema>({
     resolver,
@@ -23,6 +25,7 @@ export const AddPoll = () => {
 
   const savePoll = async (data: MyPollSchema): Promise<void> => {
     setLoading(true)
+    data.pollOwner = user.userId !== '' ? user.userId : null
     try {
       const res = await fetch(`${apiUrl}/poll`, {
         method: 'POST',
@@ -42,7 +45,7 @@ export const AddPoll = () => {
   }
 
   useEffect(() => {
-    setMessageContent('Hey! Make sure you fill everything out')
+    setMessageContent('Fill everything out, please')
     setMessageType('error')
     setMessageTimer(2)
     setShowMessage((methods.formState.errors.pollBody != null) || missingTitle != null)
