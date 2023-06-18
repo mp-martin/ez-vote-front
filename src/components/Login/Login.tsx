@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import '../AddPoll/AddPoll.css'
 import { useAuth } from '../../hooks/use.auth'
 import { Button } from '../common/Button/Button'
@@ -7,12 +7,15 @@ import { defaultValues, type LoginValidation, resolver } from './login-validatio
 import { apiUrl } from '../../config/api'
 import { Spinner } from '../common/Spinner/Spinner'
 import { type AuthPositiveResponse } from 'types'
+import { MessageContext } from '../../contexts/message.context'
+import { useNavigate } from 'react-router-dom'
 
 export const Login = (): JSX.Element => {
   const [loading, setLoading] = useState(false)
   const [loginSuccess, setLoginSuccess] = useState(false)
-
+  const { setShowMessage, setMessageContent, setMessageTimer, setMessageType } = useContext(MessageContext)
   const { saveToken, user } = useAuth()
+  const navigate = useNavigate()
 
   const { ...methods } = useForm<LoginValidation>({
     resolver,
@@ -44,7 +47,11 @@ export const Login = (): JSX.Element => {
   }
 
   if (loginSuccess) {
-    return <h1> logged in successfully as {user?.userLogin}</h1>
+    setMessageContent(`Logged in as ${user.userLogin}`)
+    setShowMessage(true)
+    setMessageTimer(2)
+    setMessageType('success')
+    navigate('/', { replace: true })
   }
   return (
         <div className='addPoll__container'><h1>Log in</h1>

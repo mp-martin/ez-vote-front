@@ -2,9 +2,11 @@ import { useContext, useState } from 'react'
 import { type AuthPositiveResponse } from 'types'
 import { UserContext } from '../contexts/user.context'
 import moment from 'moment'
+import { useNavigate } from 'react-router-dom'
 
 export const useAuth = () => {
   const { user, setUser } = useContext(UserContext)
+  const navigate = useNavigate()
 
   const saveToken = (positiveResponse: AuthPositiveResponse) => {
     const { userId, userLogin } = positiveResponse.user
@@ -42,8 +44,12 @@ export const useAuth = () => {
 
   const logout = () => {
     localStorage.removeItem('userLogin')
+    localStorage.removeItem('userId')
     localStorage.removeItem('token')
     localStorage.removeItem('expires')
+    setUser({ userId: '', userLogin: '' })
+    navigate('/', { replace: true })
   }
+
   return { user, saveToken, logout, isLoggedIn }
 }

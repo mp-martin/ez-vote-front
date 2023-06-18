@@ -12,8 +12,8 @@ interface User {
 }
 
 interface ManageUser {
-  user: User | null
-  setUser: Dispatch<SetStateAction<User | null>>
+  user: User
+  setUser: Dispatch<SetStateAction<User>>
 }
 
 export const UserContext = createContext<ManageUser>({
@@ -27,7 +27,7 @@ export const UserContext = createContext<ManageUser>({
 })
 
 export const UserContextProvider = (props: PropsWithChildren) => {
-  const [user, setUser] = useState<User | null>({ userId: '', userLogin: '' })
+  const [user, setUser] = useState<User>({ userId: '', userLogin: '' })
   return (
         <UserContext.Provider
             value={{ user, setUser }}

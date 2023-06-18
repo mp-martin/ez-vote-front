@@ -1,6 +1,7 @@
 .Navbar {
     display: flex;
-    gap: 2.3em
+    gap: 2.3em;
+    align-items: center;
 }
 
 a, Link {
@@ -8,4 +9,21 @@ a, Link {
     font-weight: 500;
     color: var(--color-text);
     font-size: 1.7em;
+}
+
+.navbar__userWidget {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    color: whitesmoke;
+    font-size: 1.5em;
+}
+.navbar__userWidget_avatar {
+    vertical-align: middle;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    /*background-color: whitesmoke;*/
+    outline: 4px solid white;
+    outline-offset: 4px;
 }
