@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { AddPoll } from './components/AddPoll/AddPoll'
 import { PollToFill } from './components/PollToFill/PollToFill'
 import { PollResults } from './components/PollResults/PollResults'
