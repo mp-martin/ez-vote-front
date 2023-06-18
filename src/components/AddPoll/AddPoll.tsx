@@ -13,7 +13,7 @@ import { type SuccessMsgNewPoll } from '../../../../ez-vote-backend/types/poll'
 export const AddPoll = (): JSX.Element => {
   const [loading, setLoading] = useState(false)
   const [id, setId] = useState<string | null>(null)
-  const { setShowMessage, setMessageContent } = useContext(MessageContext)
+  const { setShowMessage, setMessageContent, setMessageType, setMessageTimer } = useContext(MessageContext)
 
   const { getValues, ...methods } = useForm<MyPollSchema>({
     resolver,
@@ -43,6 +43,8 @@ export const AddPoll = (): JSX.Element => {
 
   useEffect(() => {
     setMessageContent('Hey! Make sure you fill everything out')
+    setMessageType('error')
+    setMessageTimer(2)
     setShowMessage((methods.formState.errors.pollBody != null) || missingTitle != null)
   }, [methods.formState.errors.pollBody, missingTitle])
 

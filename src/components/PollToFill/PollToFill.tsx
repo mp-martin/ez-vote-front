@@ -24,7 +24,7 @@ export const PollToFill = (): JSX.Element => {
   const [alreadyVoted, setAlreadyVoted] = useState(false)
   const [id, setId] = useState('')
   const { id: pollId } = useParams()
-  const { setShowMessage, setMessageContent } = useContext(MessageContext)
+  const { setShowMessage, setMessageContent, setMessageTimer, setMessageType } = useContext(MessageContext)
 
   if (pollId == null) {
     throw new Error('Bad poll id')
@@ -57,8 +57,11 @@ export const PollToFill = (): JSX.Element => {
 
     if (
       allAnswers.find(item => item[0] === undefined) != null) {
-      setMessageContent('Hey! Make sure you\'ve answered all questions')
+      setMessageTimer(2)
+      setMessageType('error')
+      setMessageContent('Answer all the questions, please')
       setShowMessage(true)
+      return
     }
 
     setLoading(true)
