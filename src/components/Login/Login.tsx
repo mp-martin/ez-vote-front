@@ -10,7 +10,7 @@ import { type AuthPositiveResponse } from 'types'
 import { MessageContext } from '../../contexts/message.context'
 import { useNavigate } from 'react-router-dom'
 
-export const Login = (): JSX.Element => {
+export const Login = () => {
   const [loading, setLoading] = useState(false)
   const [loginSuccess, setLoginSuccess] = useState(false)
   const { setShowMessage, setMessageContent, setMessageTimer, setMessageType } = useContext(MessageContext)

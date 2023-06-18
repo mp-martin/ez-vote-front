@@ -10,7 +10,7 @@ import { useForm, FormProvider } from 'react-hook-form'
 import { defaultValues, type MyPollSchema, resolver } from './poll-validation'
 import { type SuccessMsgNewPoll } from '../../../../ez-vote-backend/types/poll'
 
-export const AddPoll = (): JSX.Element => {
+export const AddPoll = () => {
   const [loading, setLoading] = useState(false)
   const [id, setId] = useState<string | null>(null)
   const { setShowMessage, setMessageContent, setMessageType, setMessageTimer } = useContext(MessageContext)

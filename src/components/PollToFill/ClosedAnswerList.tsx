@@ -9,7 +9,7 @@ interface Props {
   questionNumber: number
 }
 
-export const ClosedAnswerList = (props: Props): JSX.Element => {
+export const ClosedAnswerList = (props: Props) => {
   const [answer, setAnswer] = useState<string[]>([])
 
   const handleSetAnswers = (theAnswer: string): void => {

@@ -10,7 +10,7 @@ import { Spinner } from '../common/Spinner/Spinner'
 import { PollToFillSuccess } from './PollToFillSuccess'
 import { apiUrl } from '../../config/api'
 
-export const PollToFill = (): JSX.Element => {
+export const PollToFill = () => {
   const [pollData, setPollData] = useState<CompletePoll>({
     pollHeader: {
       pollTitle: '',
@@ -107,7 +107,7 @@ export const PollToFill = (): JSX.Element => {
         <div className='PollToFill__wrapper'>
             <div className='PollToFill__pollHeader'>
                 <h1>{pollData.pollHeader.pollTitle}</h1>
-                <p>An EZ vote poll</p>
+                <p>An EZ Vote poll</p>
             </div>
 
             <form onSubmit={vote}>

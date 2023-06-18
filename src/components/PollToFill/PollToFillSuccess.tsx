@@ -8,7 +8,7 @@ interface Props {
   title: string
 }
 
-export const PollToFillSuccess = (props: Props): JSX.Element => {
+export const PollToFillSuccess = (props: Props) => {
   const [value, copy] = useCopyToClipboard()
   const location = window.location.hostname
 

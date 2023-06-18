@@ -9,7 +9,7 @@ interface Props {
   timer?: number
 }
 
-export const Message = (props: Props): JSX.Element => {
+export const Message = (props: Props) => {
   const { setShowMessage } = useContext(MessageContext)
 
   useEffect(() => {

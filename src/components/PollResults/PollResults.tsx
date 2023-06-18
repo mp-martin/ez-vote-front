@@ -45,7 +45,7 @@ export const PollResults = (): JSX.Element => {
         <div className='PollResults__resultsWrapper'>
             <div className='PollToFill__pollHeader'>
                 <h1>{pollData.pollHeader.pollTitle}</h1>
-                <p>An EZ vote poll – results</p>
+                <p>An EZ Vote poll – results</p>
             </div>
             {pollData.pollBody.map((answerCluster, index) =>
                 <div key={answerCluster.questionHeader.questionId}

@@ -8,7 +8,7 @@ import { apiUrl } from '../../config/api'
 import { Spinner } from '../common/Spinner/Spinner'
 import { type AuthPositiveResponse } from 'types'
 
-export const Register = (): JSX.Element => {
+export const Register = () => {
   const [loading, setLoading] = useState(false)
   const [registerSuccess, setRegisterSuccess] = useState(false)
 

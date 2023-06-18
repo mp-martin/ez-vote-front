@@ -13,7 +13,7 @@ import { Login } from './components/Login/Login'
 import { Dashboard } from './components/Dashboard/Dashboard'
 import { Register } from './components/Register/Register'
 
-const App = (): JSX.Element => {
+const App = () => {
   return (
         <div className='App'>
             <UserContextProvider>
