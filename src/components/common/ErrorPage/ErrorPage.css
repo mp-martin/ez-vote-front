@@ -1,0 +1,27 @@
+.ErrorPage__wrapper {
+    flex: 1;
+    display: flex;
+    background-color: #ffffff;
+    flex-direction: column;
+    margin-top: 5rem;
+    margin-bottom: 5.5rem;
+    justify-content: flex-start;
+    color: var(--color-text);
+}
+
+
+.ErrorPage__pageHeader h1 {
+    font-size: 4em;
+    color: var(--color-title);
+    text-align: center;
+    line-height: 1.3em;
+}
+
+.ErrorPage__pageHeader p {
+    margin-top: 1em;
+    font-size: 2em;
+    font-weight: 500;
+    margin-bottom: 0.2em;
+    color: #a8a8a8;
+    text-align: center;
+}

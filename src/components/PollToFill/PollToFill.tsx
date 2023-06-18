@@ -9,12 +9,14 @@ import { Button } from '../common/Button/Button'
 import { Spinner } from '../common/Spinner/Spinner'
 import { PollToFillSuccess } from './PollToFillSuccess'
 import { apiUrl } from '../../config/api'
+import { ErrorPage } from '../common/ErrorPage/ErrorPage'
 
 export const PollToFill = () => {
   const [pollData, setPollData] = useState<CompletePoll>({
     pollHeader: {
       pollTitle: '',
-      pollId: ''
+      pollId: '',
+      pollOwner: null
     },
     pollBody: []
   })
@@ -22,6 +24,7 @@ export const PollToFill = () => {
   const [allAnswers, setAllAnswers] = useState<string[][]>([[]])
   const [loading, setLoading] = useState(false)
   const [alreadyVoted, setAlreadyVoted] = useState(false)
+  const [fetchFailed, setFetchFailed] = useState(false)
   const [id, setId] = useState('')
   const { id: pollId } = useParams()
   const { setShowMessage, setMessageContent, setMessageTimer, setMessageType } = useContext(MessageContext)
@@ -31,17 +34,21 @@ export const PollToFill = () => {
   }
 
   useEffect(() => {
-    setLoading(true)
-    try {
-      void (async () => {
+    void (async () => {
+      setLoading(true)
+      try {
         const res = await fetch(`${apiUrl}/poll/${pollId}`)
+        if (!res.ok) {
+          setLoading(false)
+          setFetchFailed(true)
+        }
         const pollData = await res.json() as CompletePoll
         setPollData(pollData)
         setLoading(false)
-      })()
-    } catch (e) {
-      console.log(e)
-    }
+      } catch (e) {
+        console.log(e)
+      }
+    })()
   }, [])
 
   const updateAllAnswers = (newAnswerPack: string[], index: number): void => {
@@ -93,6 +100,10 @@ export const PollToFill = () => {
 
   if (loading) {
     return <Spinner/>
+  }
+
+  if (fetchFailed) {
+    return <ErrorPage title='Welp, welp' body={'Can\'t find that resource'}/>
   }
 
   if (alreadyVoted) {

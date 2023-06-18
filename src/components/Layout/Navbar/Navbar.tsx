@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 
 export const Navbar = () => {
   const { user, logout } = useAuth()
-  console.log(user)
   return (
         <>
             {(user.userLogin !== '') &&

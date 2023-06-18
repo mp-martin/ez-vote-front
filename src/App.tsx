@@ -12,6 +12,7 @@ import { UserContextProvider } from './contexts/user.context'
 import { Login } from './components/Login/Login'
 import { Dashboard } from './components/Dashboard/Dashboard'
 import { Register } from './components/Register/Register'
+import { UserPolls } from './UserPolls/UserPolls'
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
                             <Route path='/poll/:id/results' element={<PollResults/>}/>
                             <Route path='/login' element={<Login/>}/>
                             <Route path='/register' element={<Register/>}/>
+                            <Route path='/mypolls' element={<UserPolls/>}/>
                             <Route path='/:whatever' element={<Main/>}/>
                         </Routes>
                         <Footer/>
