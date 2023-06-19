@@ -1,59 +1,107 @@
-.UserPolls__answerLabel {
-    color: var(--color-text);
-    position: absolute;
-    display: flex;
-    font-weight: 700;
-    z-index: 100;
-    margin-left: 5px;
-    align-items: center;
-}
-
-.UserPolls__resultsWrapper {
+.userPolls__Wrapper {
     display: flex;
     flex: 1;
     background-color: #ffffff;
     flex-direction: column;
     margin-top: 5rem;
     margin-bottom: 3.5rem;
-    width: 700px;
-    justify-content: center;
+    justify-content: flex-start;
     color: var(--color-text);
 }
 
-.UserPolls__chart__bar {
-    height: 20px;
-    background: linear-gradient(90deg, rgba(255, 95, 158, 0.59) 0%, rgba(255, 95, 158, 1) 100%);
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    opacity: 0;
-    animation-name: barchart;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-    position: relative;
-    padding-top: 0.8em;
-    padding-bottom: 0.8em;
+.userPolls__Wrapper h1 {
+    font-size: 4em;
+    color: var(--color-title);
+    text-align: center;
+    line-height: 1.3em;
+    margin-bottom: 1em;
 }
 
-
-.UserPolls__questionAndAnswerBlock {
+.userPolls__singlePollLabel {
+    border: 3px solid var(--color-ezgreen);
+    background-color: var(--color-ezgreen);
+    border-radius: 99em;
+    padding: 1em 2em;
     display: flex;
-    flex-direction: column;
-    font-size: 1.5em;
-    font-weight: 500;
-    border: 5px solid var(--color-ezgreen);
-    gap: unset;
-    padding: 2em 3em;
-    border-radius: 2em;
-    margin-bottom: 3em;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
 }
 
-.UserPolls_answer-list {
+.userPolls__singlePollLabel > .userPolls__singlePollLabel_date {
+    color: whitesmoke;
+    font-size: 1em;
+    background-color: var(--color-title);
+    border-radius: 99em;
+    padding: 0.2em 0.6em;
+    margin-right: 2em;
+}
+
+.userPolls__singlePollLabel > h2 {
+    color: whitesmoke;
+}
+
+
+.userPolls__singlePollContent {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s;
+    visibility: hidden;
+}
+
+.userPolls__Wrapper > input[type="checkbox"] {
+    display: none;
+}
+
+.userPolls__Wrapper > input[type="checkbox"]:checked ~ .userPolls__singlePollContent {
+    border: 3px solid var(--color-ezgreen);
+    border-radius: 0 0 2em 2em;
+    visibility: visible;
+    padding: 1em 2em;
+    display: grid;
+    gap: 0.5em;
+    grid-template-rows: 1fr;
+}
+
+.userPolls__singlePollContent > div {
+    overflow: hidden;
+}
+
+.userPolls__Wrapper > input[type="checkbox"]:checked ~ .userPolls__singlePollLabel {
+    border-radius: 2.24em 2.24em 0 0
+}
+
+.userPolls__singlePollLabel:after {
+    color: whitesmoke;
+    content: "▼";
+    position: absolute;
+    right: 2em;
+}
+
+
+.userPolls__Wrapper > input[type="checkbox"]:checked ~ .userPolls__singlePollLabel:after {
+    color: whitesmoke;
+    content: "▼";
+    position: absolute;
+    right: 2em;
+}
+
+.userPolls__singlePoll a {
+    color: darkgrey;
+}
+
+.userPolls__singlePoll a:hover {
+    text-decoration: underline;
+}
+
+.userPolls_answer-list {
     display: flex;
     flex-direction: column;
     gap: 0.6em;
 }
 
-.UserPolls__singleResult {
+.userPolls__singleResult {
     display: flex;
     width: 100%;
     align-content: center;
@@ -61,44 +109,64 @@
     justify-content: space-between;
 }
 
-.UserPolls__questionAndAnswerBlocksWrapper {
-    margin-top: 0.5em
-}
 
-.UserPolls__answerValue {
-
-}
-
-
-@keyframes barchart {
-    0% {
-        width: 0;
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-.UserPolls__question-header {
+.userPolls__question-header {
     display: flex;
     flex-direction: column;
     margin-bottom: 1.5em;
 }
 
-.UserPolls__question-number {
-    background-color: var(--color-ezgreen);
-    color: white;
-    font-size: 0.8em;
-    padding: 0.2em 1.5em;
-    margin-left: -0.3em;
-    margin-bottom: 0.3em;
-    border-radius: 99em;
-    width: max-content;
-}
-
-.UserPolls__questionTitle {
+.userPolls__pollTitle {
     color: var(--color-title)
 }
+
+.userPolls__copy-button {
+    color: var(--color-inlinelink);
+}
+
+.userPolls__copy-button:hover {
+    color: var(--color-ezgreen);
+    position: relative;
+    cursor: pointer;
+}
+
+.userPolls__copy-to-clipboard {
+    display: flex;
+    align-items: center;
+}
+
+.userPolls__copy-to-clipboard p {
+    color: var(--color-text);
+    font-size: 1em;
+    font-weight: 500;
+    margin: 0 0.5em 0 0;
+}
+
+.userPolls__singlePoll_singleLink {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2em;
+    align-items: center;
+}
+
+.userPolls__singlePoll_links {
+    display: inherit;
+    gap: 0.5em;
+}
+
+.userPolls__singlePoll_singleLink_text {
+    display: inherit;
+    align-items: center;
+    gap: 1em;
+}
+
+.userPolls__singlePoll_singleLink_text a {
+    max-width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 
 
