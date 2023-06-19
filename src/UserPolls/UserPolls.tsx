@@ -1,60 +1,77 @@
-import React, { useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import './UserPolls.css'
-import { useCopyToClipboard } from '../hooks/use.copy.to.clipboard'
-import { FaCopy } from 'react-icons/fa'
-import { MessageContext } from '../contexts/message.context'
+import { useAuth } from '../hooks/use.auth'
+import { BigMessage } from '../components/common/BigMessage/BigMessage'
+import { apiUrl } from '../config/api'
+import { type PollEntity, type UserPollsSuccessResponse } from 'types'
+import { Spinner } from '../components/common/Spinner/Spinner'
+import { PollListSingleItem } from './PollListSingleItem'
 
 export const UserPolls = () => {
-  const [value, copy] = useCopyToClipboard()
-  const location = window.location.hostname
-  const pollId = 'blahblah'
-  const { setShowMessage, setMessageContent, setMessageTimer, setMessageType } = useContext(MessageContext)
+  const [loading, setLoading] = useState(false)
+  const [fetchFailed, setFetchFailed] = useState(false)
+  const [allowAccess, setAllowAccess] = useState(false)
+  const [fetchedPolls, setFetchedPolls] = useState<PollEntity[] | null>([])
+  const { user } = useAuth()
 
-  const showCopiedMessage = async () => {
-    setTimeout(() => {
-      setMessageTimer(2)
-      setMessageType('success')
-      setMessageContent('Link copied')
-      setShowMessage(true)
-    }, 0)
+  useEffect(() => {
+    if (user.userLogin === '') {
+      setAllowAccess(false)
+    } else {
+      setAllowAccess(true)
+      void (async () => {
+        setLoading(true)
+        try {
+          const res = await fetch(`${apiUrl}/user/mypolls`, {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+              Authorization: localStorage.getItem('token') ?? ''
+            }
+          })
+          if (!res.ok) {
+            setLoading(false)
+            setFetchFailed(true)
+          }
+          const fetchedPolls = await res.json() as UserPollsSuccessResponse
+          setFetchedPolls(fetchedPolls.polls)
+          setLoading(false)
+        } catch (e) {
+          console.log(e)
+        }
+      })()
+    }
+  }, [])
+
+  if (loading) {
+    return <Spinner/>
   }
 
-  return <div className="userPolls__Wrapper">
-        <h1>user Pollxsz</h1>
-        <input type="checkbox" name="collapse" id="handle1" defaultChecked={false}/>
-        <label htmlFor="handle1" className="userPolls__singlePollLabel"><h2>Title of my amazing poll</h2>
-            <span className="userPolls__singlePollLabel_date">10.08.2023 r.</span></label>
-        <div className="userPolls__singlePollContent">
-            <div className="userPolls__singlePoll_links">
-                <div className="userPolls__singlePoll_singleLink">
-                    <div className="userPolls__singlePoll_singleLink_text"><p>Link to poll: </p>
-                        <a href={`http://${location}:3000/poll/${pollId}/results`}>{`http://${location}:3000/poll/${pollId}`}</a>
-                    </div>
-                    <div className='userPolls__copy-to-clipboard'><p>Copy poll link: </p>
-                        <FaCopy size={'2em'}
-                                className='userPolls__copy-button'
-                                onClick={async () => {
-                                  await copy(`http://${location}:3000/poll/${pollId}`)
-                                  setShowMessage(false)
-                                  await showCopiedMessage()
-                                }}/>
-                    </div>
-                </div>
-                <div className="userPolls__singlePoll_singleLink">
-                    <div className="userPolls__singlePoll_singleLink_text"><p>Link to results: </p> <a
-                        href={`http://${location}:3000/poll/${pollId}/results`}>{`http://${location}:3000/poll/${pollId}/results`}</a>
-                    </div>
-                    <div className='userPolls__copy-to-clipboard'><p>Copy results link: </p>
-                        <FaCopy size={'2em'}
-                                className='userPolls__copy-button'
-                                onClick={async () => {
-                                  await copy(`http://${location}:3000/poll/${pollId}/results`)
-                                  setShowMessage(false)
-                                  await showCopiedMessage()
-                                }}/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  if (!allowAccess) {
+    return <BigMessage title={'Oopsies'} body={'You have to be logged in to view your polls'}/>
+  }
+
+  if (fetchFailed) {
+    return <BigMessage title={'Dang it!'} body={'Something went wrong when getting your polls'}/>
+  }
+
+  return (
+
+        <div className="userPolls__Wrapper">
+            <h1>user Pollxsz</h1>
+            {fetchedPolls
+              ? fetchedPolls.map((poll, index) => {
+                if (poll.pollId && poll.createdAt) {
+                  return <PollListSingleItem key={poll.pollId}
+                                                   pollId={poll.pollId}
+                                                   pollTitle={poll.pollTitle}
+                                                   createdAt={poll.createdAt}
+                                                   pollIndex={index}
+                        />
+                } else return null
+              })
+              : <p>No polls to show yet</p>
+            }
+
+        </div>)
 }

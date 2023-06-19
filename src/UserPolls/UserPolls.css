@@ -48,13 +48,14 @@
     grid-template-rows: 0fr;
     transition: grid-template-rows 0.4s;
     visibility: hidden;
+    margin-bottom: 1em;
 }
 
 .userPolls__Wrapper > input[type="checkbox"] {
     display: none;
 }
 
-.userPolls__Wrapper > input[type="checkbox"]:checked ~ .userPolls__singlePollContent {
+.userPolls__Wrapper > input[type="checkbox"]:checked + .userPolls__singlePollLabel + .userPolls__singlePollContent {
     border: 3px solid var(--color-ezgreen);
     border-radius: 0 0 2em 2em;
     visibility: visible;
@@ -68,7 +69,7 @@
     overflow: hidden;
 }
 
-.userPolls__Wrapper > input[type="checkbox"]:checked ~ .userPolls__singlePollLabel {
+.userPolls__Wrapper > input[type="checkbox"]:checked + .userPolls__singlePollLabel {
     border-radius: 2.24em 2.24em 0 0
 }
 
@@ -80,11 +81,15 @@
 }
 
 
-.userPolls__Wrapper > input[type="checkbox"]:checked ~ .userPolls__singlePollLabel:after {
+.userPolls__Wrapper > input[type="checkbox"]:checked + .userPolls__singlePollLabel:after {
     color: whitesmoke;
     content: "▼";
     position: absolute;
     right: 2em;
+}
+
+.userPolls__singlePollWrapper {
+    margin-bottom: 1em;
 }
 
 .userPolls__singlePoll a {
@@ -167,6 +172,5 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-
 
 
