@@ -2,7 +2,7 @@ import React from 'react'
 import './Navbar.css'
 import userAvatar from '../../../assets/user.png'
 import { useAuth } from '../../../hooks/use.auth'
-import { Link } from 'react-router-dom'
+import { HashLink as Link } from 'react-router-hash-link'
 
 export const Navbar = () => {
   const { user, logout } = useAuth()
@@ -14,9 +14,10 @@ export const Navbar = () => {
                     <p>{user.userLogin}</p>
                 </div>}
             <div className='Navbar'>
+                {(user.userLogin !== '') && <Link to='/mypolls'>My polls</Link>}
                 {(user.userLogin === '') && <Link to='/login'>Log in</Link>}
                 {(user.userLogin !== '') && <a href='#' onClick={logout}>Log out</a>}
-                <a href='#about'>About</a>
+                <Link to='/#about'>About</Link>
             </div>
         </>
   )

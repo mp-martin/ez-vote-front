@@ -20,11 +20,11 @@ export const resolver = yupResolver(yup.object().shape({
     .min(6, 'Password needs to be at least 6 characters long')
     .required('Required field')
     .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})/,
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})/,
       'Password needs to include minimum of 6 characters, one upper-case letter, one lower-case letter, a number and a special character'
     ),
   confirmNewPass: yup
     .string()
-    .oneOf([yup.ref('userPassword')], 'Passwords needs to match!')
+    .oneOf([yup.ref('userPassword')], 'Passwords need to match!')
     .required('Required field')
 }))

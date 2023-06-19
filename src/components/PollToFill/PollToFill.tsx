@@ -107,7 +107,7 @@ export const PollToFill = () => {
   }
 
   if (alreadyVoted) {
-    return <h2>You have already voted in this poll!</h2>
+    return <ErrorPage title={'Sorry, Friend'} body={'You have already voted in this poll!'}/>
   }
 
   if (id !== '') {
