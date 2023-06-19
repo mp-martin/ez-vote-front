@@ -5,7 +5,7 @@ import { AnswerResultsList } from './AnswerResultsList'
 import { useParams } from 'react-router-dom'
 import { Spinner } from '../common/Spinner/Spinner'
 import { apiUrl } from '../../config/api'
-import { ErrorPage } from '../common/ErrorPage/ErrorPage'
+import { BigMessage } from '../common/BigMessage/BigMessage'
 
 export const PollResults = () => {
   const [fetchFailed, setFetchFailed] = useState(false)
@@ -48,7 +48,7 @@ export const PollResults = () => {
   }
 
   if (fetchFailed) {
-    return <ErrorPage title='Welp, welp' body={'Can\'t find that resource'}/>
+    return <BigMessage title='Welp, welp' body={'Can\'t find that resource'}/>
   }
 
   return (

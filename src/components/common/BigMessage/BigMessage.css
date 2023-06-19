@@ -1,4 +1,4 @@
-.ErrorPage__wrapper {
+.BigMessage__wrapper {
     flex: 1;
     display: flex;
     background-color: #ffffff;
@@ -9,15 +9,20 @@
     color: var(--color-text);
 }
 
+.BigMessage__pageHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-.ErrorPage__pageHeader h1 {
+.BigMessage__pageHeader h1 {
     font-size: 4em;
     color: var(--color-title);
     text-align: center;
     line-height: 1.3em;
 }
 
-.ErrorPage__pageHeader p {
+.BigMessage__pageHeader p {
     margin-top: 1em;
     font-size: 2em;
     font-weight: 500;

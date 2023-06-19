@@ -32,7 +32,13 @@ export const Login = () => {
         },
         body: JSON.stringify(data)
       })
-
+      if (!res.ok) {
+        setLoading(false)
+        setMessageContent('Bad username or password')
+        setShowMessage(true)
+        setMessageTimer(2)
+        setMessageType('error')
+      }
       const resJson = (await res.json()) as AuthPositiveResponse
       saveToken(resJson)
       setLoginSuccess(true)

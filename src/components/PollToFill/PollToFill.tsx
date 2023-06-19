@@ -9,7 +9,7 @@ import { Button } from '../common/Button/Button'
 import { Spinner } from '../common/Spinner/Spinner'
 import { PollToFillSuccess } from './PollToFillSuccess'
 import { apiUrl } from '../../config/api'
-import { ErrorPage } from '../common/ErrorPage/ErrorPage'
+import { BigMessage } from '../common/BigMessage/BigMessage'
 
 export const PollToFill = () => {
   const [pollData, setPollData] = useState<CompletePoll>({
@@ -103,11 +103,11 @@ export const PollToFill = () => {
   }
 
   if (fetchFailed) {
-    return <ErrorPage title='Welp, welp' body={'Can\'t find that resource'}/>
+    return <BigMessage title='Welp, welp' body={'Can\'t find that resource'}/>
   }
 
   if (alreadyVoted) {
-    return <ErrorPage title={'Sorry, Friend'} body={'You have already voted in this poll!'}/>
+    return <BigMessage title={'Sorry, Friend'} body={'You have already voted in this poll!'}/>
   }
 
   if (id !== '') {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import '../AddPoll/AddPoll.css'
 import { useAuth } from '../../hooks/use.auth'
 import { Button } from '../common/Button/Button'
@@ -7,14 +7,16 @@ import { defaultValues, type RegisterValidation, resolver } from './register-val
 import { apiUrl } from '../../config/api'
 import { Spinner } from '../common/Spinner/Spinner'
 import { type AuthPositiveResponse } from 'types'
+import { BigMessage } from '../common/BigMessage/BigMessage'
+import { MessageContext } from '../../contexts/message.context'
 
 export const Register = () => {
   const [loading, setLoading] = useState(false)
   const [registerSuccess, setRegisterSuccess] = useState(false)
-
+  const { setShowMessage, setMessageContent, setMessageTimer, setMessageType } = useContext(MessageContext)
   const { saveToken, user } = useAuth()
 
-  const { ...methods } = useForm<RegisterValidation>({
+  const { getValues, ...methods } = useForm<RegisterValidation>({
     resolver,
     defaultValues
   })
@@ -29,7 +31,13 @@ export const Register = () => {
         },
         body: JSON.stringify(data)
       })
-
+      if (!res.ok) {
+        setLoading(false)
+        setMessageContent(`Name ${getValues('userLogin')} is already taken`)
+        setShowMessage(true)
+        setMessageTimer(4)
+        setMessageType('error')
+      }
       const resJson = (await res.json()) as AuthPositiveResponse
       saveToken(resJson)
       setRegisterSuccess(true)
@@ -44,7 +52,7 @@ export const Register = () => {
   }
 
   if (registerSuccess) {
-    return <h1> {user?.userLogin} registered successfully!</h1>
+    return <BigMessage title={'Hooray!'} body={`${user?.userLogin} registered successfully!`}/>
   }
   return (
         <div className='addPoll__container'><h1>Sign up</h1>
