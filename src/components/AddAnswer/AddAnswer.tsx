@@ -8,7 +8,7 @@ interface Props {
   nestIndex: number
 }
 
-export const AddAnswer = ({ nestIndex }: Props): JSX.Element => {
+export const AddAnswer = ({ nestIndex }: Props) => {
   const { register, getValues, formState: { errors } } = useFormContext()
   const { fields, insert, remove } = useFieldArray({
     name: `pollBody[${nestIndex}].answers` as 'pollBody.0.answers'
@@ -23,11 +23,13 @@ export const AddAnswer = ({ nestIndex }: Props): JSX.Element => {
                         className='addAnswer__answer-field'
                         placeholder='An answer'
                         {...register(`pollBody.${nestIndex}.answers.${k}.answer` as const)}
-                        style = {((errors as any).pollBody?.[nestIndex]?.answers?.[k].answer) != null ? { backgroundColor: '#ffd1d1' } : {}}
+                        style={((errors as any).pollBody?.[nestIndex]?.answers?.[k].answer) != null ? { backgroundColor: '#ffd1d1' } : {}}
                         minLength={1}/>
                     <button type="button"
                             className='addAnswer__rem-button'
-                            onClick={() => { remove(k) }}
+                            onClick={() => {
+                              remove(k)
+                            }}
                             disabled={isThereOnlyOneAnswer}>
                         <AiFillMinusCircle color={isThereOnlyOneAnswer ? '#EDEDED' : 'var(--color-ezpink)'}
                                            size={'2.8em'}/>

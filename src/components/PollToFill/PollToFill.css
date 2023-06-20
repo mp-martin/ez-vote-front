@@ -1,11 +1,12 @@
 .PollToFill__wrapper {
+    flex: 1;
     display: flex;
     background-color: #ffffff;
     flex-direction: column;
     margin-top: 5rem;
     margin-bottom: 5.5rem;
     width: 700px;
-    justify-content: center;
+    justify-content: flex-start;
     color: var(--color-text);
 }
 
@@ -55,7 +56,7 @@
 .PollToFill__question-header {
     display: flex;
     flex-direction: column;
-    margin-bottom:1.5em;
+    margin-bottom: 1.5em;
 }
 
 .PollToFill__question-number {
@@ -74,7 +75,7 @@
 }
 
 .PollToFill__answer-list {
-    margin-left:0.7em;
+    margin-left: 0.7em;
     display: flex;
     flex-direction: column;
     align-items: flex-start;

@@ -5,12 +5,15 @@ import { AnswerResultsList } from './AnswerResultsList'
 import { useParams } from 'react-router-dom'
 import { Spinner } from '../common/Spinner/Spinner'
 import { apiUrl } from '../../config/api'
+import { BigMessage } from '../common/BigMessage/BigMessage'
 
-export const PollResults = (): JSX.Element => {
+export const PollResults = () => {
+  const [fetchFailed, setFetchFailed] = useState(false)
   const [pollData, setPollData] = useState<CompletePoll>({
     pollHeader: {
       pollTitle: '',
-      pollId: ''
+      pollId: '',
+      pollOwner: null
     },
     pollBody: []
   })
@@ -23,21 +26,29 @@ export const PollResults = (): JSX.Element => {
   }
 
   useEffect(() => {
-    setLoading(true)
-    try {
-      void (async () => {
+    void (async () => {
+      setLoading(true)
+      try {
         const res = await fetch(`${apiUrl}/poll/${id}`)
+        if (!res.ok) {
+          setLoading(false)
+          setFetchFailed(true)
+        }
         const pollData = await res.json() as CompletePoll
         setPollData(pollData)
         setLoading(false)
-      })()
-    } catch (e) {
-      console.log(e)
-    }
+      } catch (e) {
+        console.log(e)
+      }
+    })()
   }, [])
 
   if (loading) {
     return <Spinner/>
+  }
+
+  if (fetchFailed) {
+    return <BigMessage title='Welp, welp' body={'Can\'t find that resource'}/>
   }
 
   return (
@@ -45,7 +56,7 @@ export const PollResults = (): JSX.Element => {
         <div className='PollResults__resultsWrapper'>
             <div className='PollToFill__pollHeader'>
                 <h1>{pollData.pollHeader.pollTitle}</h1>
-                <p>An EZ vote poll – results</p>
+                <p>An EZ Vote poll – results</p>
             </div>
             {pollData.pollBody.map((answerCluster, index) =>
                 <div key={answerCluster.questionHeader.questionId}
