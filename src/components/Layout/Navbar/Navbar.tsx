@@ -18,7 +18,7 @@ export const Navbar = () => {
                 </div>}
             <div className='Navbar'>
                 {(user.userLogin !== '') && <Link to='/mypolls'>My polls</Link>}
-                {(user.userLogin === '') && <Link to='/login'>Log in</Link>}
+                {(user.userLogin === '') && <Link to='/login'>Log in / sign up</Link>}
                 {(user.userLogin !== '') && <a href='#' onClick={() => {
                   logout()
                   setShowMessage(true)

@@ -1,0 +1,15 @@
+.login__text {
+    color: var(--color-text);
+    font-size: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.login__text a {
+    font-size: 1em;
+    font-weight: 400;
+    color: var(--color-inlinelink);
+    text-decoration: underline;
+}

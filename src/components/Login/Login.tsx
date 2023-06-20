@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import '../AddPoll/AddPoll.css'
+import './Login.css'
 import { useAuth } from '../../hooks/use.auth'
 import { Button } from '../common/Button/Button'
 import { useForm } from 'react-hook-form'
@@ -8,7 +9,7 @@ import { apiUrl } from '../../config/api'
 import { Spinner } from '../common/Spinner/Spinner'
 import { type AuthPositiveResponse } from 'types'
 import { MessageContext } from '../../contexts/message.context'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export const Login = () => {
   const [loading, setLoading] = useState(false)
@@ -84,7 +85,9 @@ export const Login = () => {
                     color={'var(--color-title)'}
                     width={100}/>
             </form>
-
+            <div className="login__text" style={{ flexDirection: 'row' }}><p>{'Don\'t have an account?'}</p><Link
+                to="/register">Sign
+                up</Link></div>
         </div>
   )
 }
