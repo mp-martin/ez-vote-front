@@ -112,3 +112,8 @@ form {
     margin: 0 0.5em 0 0;
 }
 
+.addPoll__errorMsg {
+    margin-bottom: 1em;
+    color: mediumvioletred;
+}
+

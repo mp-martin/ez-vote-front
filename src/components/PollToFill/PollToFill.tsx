@@ -9,12 +9,14 @@ import { Button } from '../common/Button/Button'
 import { Spinner } from '../common/Spinner/Spinner'
 import { PollToFillSuccess } from './PollToFillSuccess'
 import { apiUrl } from '../../config/api'
+import { BigMessage } from '../common/BigMessage/BigMessage'
 
-export const PollToFill = (): JSX.Element => {
+export const PollToFill = () => {
   const [pollData, setPollData] = useState<CompletePoll>({
     pollHeader: {
       pollTitle: '',
-      pollId: ''
+      pollId: '',
+      pollOwner: null
     },
     pollBody: []
   })
@@ -22,26 +24,31 @@ export const PollToFill = (): JSX.Element => {
   const [allAnswers, setAllAnswers] = useState<string[][]>([[]])
   const [loading, setLoading] = useState(false)
   const [alreadyVoted, setAlreadyVoted] = useState(false)
+  const [fetchFailed, setFetchFailed] = useState(false)
   const [id, setId] = useState('')
   const { id: pollId } = useParams()
-  const { setShowMessage, setMessageContent } = useContext(MessageContext)
+  const { setShowMessage, setMessageContent, setMessageTimer, setMessageType } = useContext(MessageContext)
 
   if (pollId == null) {
     throw new Error('Bad poll id')
   }
 
   useEffect(() => {
-    setLoading(true)
-    try {
-      void (async () => {
+    void (async () => {
+      setLoading(true)
+      try {
         const res = await fetch(`${apiUrl}/poll/${pollId}`)
+        if (!res.ok) {
+          setLoading(false)
+          setFetchFailed(true)
+        }
         const pollData = await res.json() as CompletePoll
         setPollData(pollData)
         setLoading(false)
-      })()
-    } catch (e) {
-      console.log(e)
-    }
+      } catch (e) {
+        console.log(e)
+      }
+    })()
   }, [])
 
   const updateAllAnswers = (newAnswerPack: string[], index: number): void => {
@@ -57,8 +64,11 @@ export const PollToFill = (): JSX.Element => {
 
     if (
       allAnswers.find(item => item[0] === undefined) != null) {
-      setMessageContent('Hey! Make sure you\'ve answered all questions')
+      setMessageTimer(2)
+      setMessageType('error')
+      setMessageContent('Answer all the questions, please')
       setShowMessage(true)
+      return
     }
 
     setLoading(true)
@@ -92,8 +102,12 @@ export const PollToFill = (): JSX.Element => {
     return <Spinner/>
   }
 
+  if (fetchFailed) {
+    return <BigMessage title='Welp, welp' body={'Can\'t find that resource'}/>
+  }
+
   if (alreadyVoted) {
-    return <h2>You have already voted in this poll!</h2>
+    return <BigMessage title={'Sorry, Friend'} body={'You have already voted in this poll!'}/>
   }
 
   if (id !== '') {
@@ -104,7 +118,7 @@ export const PollToFill = (): JSX.Element => {
         <div className='PollToFill__wrapper'>
             <div className='PollToFill__pollHeader'>
                 <h1>{pollData.pollHeader.pollTitle}</h1>
-                <p>An EZ vote poll</p>
+                <p>An EZ Vote poll</p>
             </div>
 
             <form onSubmit={vote}>

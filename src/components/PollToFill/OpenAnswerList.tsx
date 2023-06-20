@@ -9,7 +9,7 @@ interface Props {
   questionNumber: number
 }
 
-export const OpenAnswerList = (props: Props): JSX.Element => {
+export const OpenAnswerList = (props: Props) => {
   const [answers, setAnswers] = useState<string[]>([])
 
   const [checkedState, setCheckedState] = useState<boolean[]>(new Array(props.answers.length).fill(false))

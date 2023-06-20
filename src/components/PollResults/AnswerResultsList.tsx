@@ -7,7 +7,7 @@ interface Props {
   questionNumber: number
 }
 
-export const AnswerResultsList = (props: Props): JSX.Element => {
+export const AnswerResultsList = (props: Props) => {
   const voteValues: number[] = props.answers.map(el => el.votes)
   const largestNumber = Math.max(...voteValues)
   const percentages = voteValues.map(number => (number / largestNumber * 100).toFixed(2))

@@ -1,0 +1,240 @@
+.userPolls__Wrapper {
+    display: flex;
+    flex: 1;
+    background-color: #ffffff;
+    flex-direction: column;
+    margin-top: 5rem;
+    margin-bottom: 3.5rem;
+    justify-content: flex-start;
+    color: var(--color-text);
+}
+
+.userPolls__Wrapper h1 {
+    font-size: 4em;
+    color: var(--color-title);
+    text-align: center;
+    line-height: 1.3em;
+    margin-bottom: 1em;
+}
+
+.userPolls__singlePollLabel {
+    border: 3px solid var(--color-ezgreen);
+    background-color: var(--color-ezgreen);
+    border-radius: 99em;
+    padding: 1em 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.userPolls__singlePollLabel > h2 {
+    max-width: 80%;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+}
+
+.userPolls__singlePollLabel > .userPolls__singlePollLabel_date {
+    color: whitesmoke;
+    font-size: 1em;
+    background-color: var(--color-title);
+    border-radius: 99em;
+    padding: 0.2em 0.6em;
+    margin-right: 2em;
+}
+
+.userPolls__singlePollLabel > h2 {
+    color: whitesmoke;
+}
+
+
+.userPolls__singlePollContent {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s;
+    visibility: hidden;
+    margin-bottom: 1em;
+}
+
+.userPolls__Wrapper > input[type="checkbox"] {
+    display: none;
+}
+
+.userPolls__Wrapper > input[type="checkbox"]:checked + .userPolls__singlePollLabel + .userPolls__singlePollContent {
+    border: 3px solid var(--color-ezgreen);
+    border-radius: 0 0 2em 2em;
+    visibility: visible;
+    padding: 1em 2em;
+    display: grid;
+    gap: 0.5em;
+    grid-template-rows: 1fr;
+}
+
+.userPolls__singlePollContent > div {
+    overflow: hidden;
+}
+
+.userPolls__Wrapper > input[type="checkbox"]:checked + .userPolls__singlePollLabel {
+    border-radius: 2.24em 2.24em 0 0
+}
+
+.userPolls__Wrapper > input[type="checkbox"]:checked + .userPolls__singlePollLabel > h2 {
+    max-width: 80%;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    display: -webkit-box;
+}
+
+.userPolls__singlePollLabel:after {
+    color: whitesmoke;
+    content: "▼";
+    position: absolute;
+    right: 2em;
+}
+
+
+.userPolls__Wrapper > input[type="checkbox"]:checked + .userPolls__singlePollLabel:after {
+    color: whitesmoke;
+    content: "▼";
+    position: absolute;
+    right: 2em;
+}
+
+.userPolls__singlePollWrapper {
+    margin-bottom: 1em;
+}
+
+.userPolls__singlePoll a {
+    color: darkgrey;
+}
+
+.userPolls__singlePoll a:hover {
+    text-decoration: underline;
+}
+
+.userPolls_answer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+}
+
+.userPolls__singleResult {
+    display: flex;
+    width: 100%;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.userPolls__question-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5em;
+}
+
+.userPolls__pollTitle {
+    color: var(--color-title)
+}
+
+.userPolls__copy-button {
+    color: var(--color-inlinelink);
+}
+
+.userPolls__copy-button:hover {
+    color: var(--color-ezgreen);
+    position: relative;
+    cursor: pointer;
+}
+
+.userPolls__copy-to-clipboard {
+    display: flex;
+    align-items: center;
+}
+
+.userPolls__copy-to-clipboard p {
+    color: var(--color-text);
+    font-size: 1em;
+    font-weight: 500;
+    margin: 0 0.5em 0 0;
+}
+
+.userPolls__singlePoll_singleLink {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2em;
+    align-items: center;
+}
+
+.userPolls__singlePoll_links {
+    display: inherit;
+    gap: 0.5em;
+}
+
+.userPolls__singlePoll_singleLink_text {
+    display: inherit;
+    align-items: center;
+    gap: 1em;
+}
+
+.userPolls__singlePoll_singleLink_text a {
+    max-width: 400px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@media only screen
+    /*and (min-device-width : 320px)*/
+and (max-width: 800px) {
+    .userPolls__singlePoll_singleLink_text a {
+        max-width: 300px;
+    }
+
+    /*.userPolls__singlePollLabel {*/
+    /*    !*width: 100%;*!*/
+    /*}*/
+    .userPolls__Wrapper {
+        padding: 0 1em;
+        width: 100%;
+    }
+
+    .userPolls__singlePollContent {
+        width: auto;
+    }
+}
+
+@media only screen
+    /*and (min-device-width : 320px)*/
+and (max-width: 600px) {
+    .userPolls__singlePoll_singleLink_text a {
+        max-width: 150px;
+    }
+
+}
+
+@media only screen
+    /*and (min-device-width : 320px)*/
+and (max-width: 480px) {
+    .userPolls__singlePoll_singleLink_text a {
+        max-width: 72px;
+
+    }
+
+    .userPolls__Wrapper {
+        font-size: 0.8em;
+
+    }
+
+    .userPolls__Wrapper h1 {
+        font-size: 3em;
+
+    }
+}
+
+

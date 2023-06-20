@@ -9,6 +9,7 @@ export interface MyQuestionSchema {
 
 export interface MyPollSchema {
   pollTitle: string
+  pollOwner: string | null
   pollBody: MyQuestionSchema[]
 }
 
