@@ -58,7 +58,7 @@ export const UserPolls = () => {
   return (
 
         <div className="userPolls__Wrapper">
-            <h1>user Pollxsz</h1>
+            <h1>{`${user.userLogin}'s polls`}</h1>
             {fetchedPolls
               ? fetchedPolls.map((poll, index) => {
                 if (poll.pollId && poll.createdAt) {

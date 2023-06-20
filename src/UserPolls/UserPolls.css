@@ -29,6 +29,14 @@
     position: relative;
 }
 
+.userPolls__singlePollLabel > h2 {
+    max-width: 80%;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+}
+
 .userPolls__singlePollLabel > .userPolls__singlePollLabel_date {
     color: whitesmoke;
     font-size: 1em;
@@ -71,6 +79,14 @@
 
 .userPolls__Wrapper > input[type="checkbox"]:checked + .userPolls__singlePollLabel {
     border-radius: 2.24em 2.24em 0 0
+}
+
+.userPolls__Wrapper > input[type="checkbox"]:checked + .userPolls__singlePollLabel > h2 {
+    max-width: 80%;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    display: -webkit-box;
 }
 
 .userPolls__singlePollLabel:after {
@@ -167,10 +183,58 @@
 }
 
 .userPolls__singlePoll_singleLink_text a {
-    max-width: 300px;
+    max-width: 400px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+@media only screen
+    /*and (min-device-width : 320px)*/
+and (max-width: 800px) {
+    .userPolls__singlePoll_singleLink_text a {
+        max-width: 300px;
+    }
+
+    /*.userPolls__singlePollLabel {*/
+    /*    !*width: 100%;*!*/
+    /*}*/
+    .userPolls__Wrapper {
+        padding: 0 1em;
+        width: 100%;
+    }
+
+    .userPolls__singlePollContent {
+        width: auto;
+    }
+}
+
+@media only screen
+    /*and (min-device-width : 320px)*/
+and (max-width: 600px) {
+    .userPolls__singlePoll_singleLink_text a {
+        max-width: 150px;
+    }
+
+}
+
+@media only screen
+    /*and (min-device-width : 320px)*/
+and (max-width: 480px) {
+    .userPolls__singlePoll_singleLink_text a {
+        max-width: 72px;
+
+    }
+
+    .userPolls__Wrapper {
+        font-size: 0.8em;
+
+    }
+
+    .userPolls__Wrapper h1 {
+        font-size: 3em;
+
+    }
 }
 
 
