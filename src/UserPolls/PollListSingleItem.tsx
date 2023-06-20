@@ -27,7 +27,8 @@ export const PollListSingleItem = ({ pollId, pollTitle, createdAt, pollIndex }: 
         <>
             <input type="checkbox" name="collapse" id={`handle${pollIndex}`} defaultChecked={false}/>
             <label htmlFor={`handle${pollIndex}`} className="userPolls__singlePollLabel"><h2>{pollTitle}</h2>
-                <span className="userPolls__singlePollLabel_date">10.08.2023 r.</span></label>
+                <span
+                    className="userPolls__singlePollLabel_date">{new Intl.DateTimeFormat().format(new Date(createdAt))}</span></label>
             <div className="userPolls__singlePollContent">
                 <div className="userPolls__singlePoll_links">
                     <div className="userPolls__singlePoll_singleLink">
