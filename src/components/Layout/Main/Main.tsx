@@ -48,9 +48,9 @@ export const Main = () =>
                             text={'Register account'}
                             roundness={99}
                             disabled={false}
-                            size={2}
+                            size={1}
                             color={'var(--color-ezpink)'}
-                            customStyle={{ padding: '0.5em 1.2em' }}
+                            customStyle={{ padding: '0.2em 1em' }}
                             to={'/register'}
                         />
                     </div>

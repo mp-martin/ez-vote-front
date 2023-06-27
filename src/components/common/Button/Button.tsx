@@ -23,7 +23,7 @@ export const Button = (props: Props) => (
             style={{
               borderRadius: `${props.roundness}rem`,
               backgroundColor: props.color,
-              fontSize: `${props.size}rem`,
+              fontSize: `${props.size}em`,
               textAlign: 'center',
               width: props.width && `${props.width}%`,
               ...props.customStyle
@@ -37,7 +37,7 @@ export const Button = (props: Props) => (
             style={{
               borderRadius: `${props.roundness}rem`,
               backgroundColor: props.color,
-              fontSize: `${props.size}rem`,
+              fontSize: `${props.size}em`,
               width: props.width && `${props.width}%`
             }}>
 
