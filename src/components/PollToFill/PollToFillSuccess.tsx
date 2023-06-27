@@ -2,7 +2,6 @@ import React from 'react'
 import { FaCopy } from 'react-icons/fa'
 import { useCopyToClipboard } from '../../hooks/use.copy.to.clipboard'
 import '../AddPoll/AddPoll.css'
-import { apiUrl } from '../../config/api'
 
 interface Props {
   id: string
@@ -21,11 +20,11 @@ export const PollToFillSuccess = (props: Props) => {
 
             <div className='addPoll__final-link'><p>To see the results, go to this link:</p>
                 <div className='addPoll__final-link_address'>
-                    <a href={`${apiUrl}/poll/${props.id}/results`}>{`${apiUrl}/poll/${props.id}/results`}</a>
+                    <a href={`https://${location}/poll/${props.id}/results`}>{`https://${location}/poll/${props.id}/results`}</a>
                     <div className='addPoll__copy-to-clipboard'><p>Copy to clipboard:</p>
                         <FaCopy size={'2em'}
                                 className='addPoll__copy-button'
-                                onClick={async () => await copy(`${apiUrl}/poll/${props.id}/results`)}/>
+                                onClick={async () => await copy(`https://${location}/poll/${props.id}/results`)}/>
                     </div>
                 </div>
             </div>
