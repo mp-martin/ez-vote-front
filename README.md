@@ -6,7 +6,7 @@
 
 # About The Project
 
-<kbd><img alt="" src="https://zar.networkmanager.pl/static/readme/main_screen.png"></kbd>
+<img alt="" src="https://zar.networkmanager.pl/static/readme/app_screenshot.png">
 
 EZ Vote is a simple app that allows you to make polls and let people vote in them. 🗳️
 
@@ -14,38 +14,40 @@ Check out the live demo at [ezvote.it](https://ezvote.it)
 
 # Features 🔧
 
-### Current
+### New
+* User login and registration system using JWT auth
+* Users now able to see their polls
+* React Hook Forms for creating polls
+* Bugfix: questions and answers order is now always preserved
+
+### Basic
 * Multiple questions in a single poll
 * Open-ended questions (multiple choice)
 * Close-ended questions (single choice)
 * Easy access to polls and results via unique links
 * Use of cookies to prevent many votes by the same person.
 * Vote percentage graph view for the results
-* Responsive design implemented
-* User registration and login
+* Responsive design
 * _The Dudette_ <br><img alt="the dudette" src="https://zar.networkmanager.pl/static/media/cartoon.8cace218aea52624de38b8835e42bdb8.svg" width="200px" style="">
 
 ### Upcoming
-* Managing your polls (list / edit / delete)
-* UX improvements
+* Users can delete their polls
+* Admin account
+* Password resetting
 
 ### Bugs and issues
-* False positive errors may sometimes occur 
+* False errors may sometimes occur during viewing "My polls" section
 
 # How it works⚙️
 
-1. Create a poll<br><kbd><img alt="" src="https://zar.networkmanager.pl/static/readme/poll_setting.png" width="450px"></kbd><br>
- _(use multiple questions if you want)_<br><kbd><img alt="" src="https://zar.networkmanager.pl/static/readme/multiple_questions.png" width="450px"></kbd>
-
-2. Select question types<br><kbd><img alt="" src="https://zar.networkmanager.pl/static/readme/single_multi_question.png" width="450px"></kbd>
-
-3. Submit and share the link<br><kbd><img alt="" src="https://zar.networkmanager.pl/static/readme/link_sharing.png" width="450px"></kbd>
-
-5. Let people vote<br><kbd><img alt="" src="https://zar.networkmanager.pl/static/readme/poll_filling.png" width="450px"></kbd>
-
-6. Enjoy the results<br><kbd><img alt="" src="https://zar.networkmanager.pl/static/readme/results.png" width="450px"></kbd>
-
-
+1. Create an account (optional)
+2. Click on "Create a poll"
+3. Add questions and answers
+4. Select a type for each question: open (multiple choice) or closed (single choice)
+5. Submit and share the link
+6. Let people vote
+7. Enjoy the results
+8. If you were logged in while performing above steps, the poll will show up in "My polls" tab
 
 # About this repo🔍
 This is a frontend client for the EZ Vote app. It was made using: 
@@ -65,11 +67,12 @@ To install EZ Vote locally:
    ```sh
    npm install
    ```
-3. run npm start
+3. Set the backend API address in the `config/api.ts` file to match your environment. The default is `http://localhost:3001/api`
+3. Run npm start
    ```sh
    npm start
    ```
-###
+
 <span style="color:#FF5F9E">You *will* need the EZ Vote Backend app for this to work</span>. 
 
 Check it out at [https://github.com/mp-martin/ez-vote-back](https://github.com/mp-martin/ez-vote-back)
@@ -83,7 +86,7 @@ Check it out at [https://github.com/mp-martin/ez-vote-back](https://github.com/m
 ```
 
 # About the author
-My name is Martin and I am on a journey to become a software engineer. By the way, I am a graphic designer.
+My name is Martin, and I am on a journey to become a software engineer. By the way, I am a graphic designer.
 
 You can find me on my [LinkedIn](https://www.linkedin.com/in/marcin-papierz/) 🤝
 
