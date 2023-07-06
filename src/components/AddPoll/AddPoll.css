@@ -117,3 +117,27 @@ form {
     color: mediumvioletred;
 }
 
+@media only screen
+    /*and (min-device-width : 320px)*/
+and (max-width: 600px) {
+    .addQuestion__topbar {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        margin: 0 0.5em 0.5em 0.5em;
+
+    }
+
+    .addPoll__final-link_address {
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    .addPoll__final-link_address a {
+        max-width: 250px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}

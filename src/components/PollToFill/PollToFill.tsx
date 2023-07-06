@@ -152,7 +152,7 @@ export const PollToFill = () => {
                     text={'Cast my vote!'}
                     roundness={99}
                     disabled={false}
-                    size={2}
+                    size={1.5}
                     color={'var(--color-title)'}
                     width={100}
                 />

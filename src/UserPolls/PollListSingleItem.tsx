@@ -33,13 +33,13 @@ export const PollListSingleItem = ({ pollId, pollTitle, createdAt, pollIndex }: 
                 <div className="userPolls__singlePoll_links">
                     <div className="userPolls__singlePoll_singleLink">
                         <div className="userPolls__singlePoll_singleLink_text"><p>Link to poll: </p>
-                            <a href={`http://${location}:3000/poll/${pollId}/results`}>{`http://${location}:3000/poll/${pollId}`}</a>
+                            <a href={`https://${location}/poll/${pollId}`}>{`https://${location}/poll/${pollId}`}</a>
                         </div>
                         <div className='userPolls__copy-to-clipboard'><p>Copy: </p>
                             <FaCopy size={'2em'}
                                     className='userPolls__copy-button'
                                     onClick={async () => {
-                                      await copy(`http://${location}:3000/poll/${pollId}`)
+                                      await copy(`https://${location}/poll/${pollId}`)
                                       setShowMessage(false)
                                       await showCopiedMessage()
                                     }}/>
@@ -47,13 +47,13 @@ export const PollListSingleItem = ({ pollId, pollTitle, createdAt, pollIndex }: 
                     </div>
                     <div className="userPolls__singlePoll_singleLink">
                         <div className="userPolls__singlePoll_singleLink_text"><p>Link to results: </p> <a
-                            href={`http://${location}:3000/poll/${pollId}/results`}>{`http://${location}:3000/poll/${pollId}/results`}</a>
+                            href={`https://${location}/poll/${pollId}/results`}>{`https://${location}/poll/${pollId}/results`}</a>
                         </div>
                         <div className='userPolls__copy-to-clipboard'><p>Copy: </p>
                             <FaCopy size={'2em'}
                                     className='userPolls__copy-button'
                                     onClick={async () => {
-                                      await copy(`http://${location}:3000/poll/${pollId}/results`)
+                                      await copy(`https://${location}/poll/${pollId}/results`)
                                       setShowMessage(false)
                                       await showCopiedMessage()
                                     }}/>

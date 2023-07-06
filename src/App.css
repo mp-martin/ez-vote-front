@@ -177,10 +177,6 @@ and (max-width: 800px) {
         font-size: 3em;
     }
 
-    .addQuestion__topbar {
-        gap: 0;
-    }
-
     .PollToFill__wrapper {
         width: 100%;
         padding: 0 0.5em;
@@ -232,4 +228,5 @@ and (max-width: 600px) {
         background-size: cover;
         padding: 3em 0.5em;
     }
+
 }
