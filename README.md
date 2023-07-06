@@ -22,16 +22,15 @@ Check out the live demo at [ezvote.it](https://ezvote.it)
 * Use of cookies to prevent many votes by the same person.
 * Vote percentage graph view for the results
 * Responsive design implemented
-* _The Dudette_ <br><img alt="the dudette" src="https://zar.networkmanager.pl/static/media/cartoon.8cace218aea52624de38b8835e42bdb8.svg" width="200px" style="">
-### Upcoming
 * User registration and login
+* _The Dudette_ <br><img alt="the dudette" src="https://zar.networkmanager.pl/static/media/cartoon.8cace218aea52624de38b8835e42bdb8.svg" width="200px" style="">
+
+### Upcoming
 * Managing your polls (list / edit / delete)
 * UX improvements
 
 ### Bugs and issues
-* Poll questions are listed in reverse order compared to the creation order.
-* Incomplete form validation
-* No 404 page view
+* False positive errors may sometimes occur 
 
 # How it works⚙️
 
@@ -52,7 +51,7 @@ Check out the live demo at [ezvote.it](https://ezvote.it)
 This is a frontend client for the EZ Vote app. It was made using: 
 * React [![react][react]][react-url] 
 * Typescript [![typescript][typescript]][typescript-url]
-* A package or two _([react-icons](https://react-icons.github.io/react-icons/), for instance)_
+* Additional packages, such as [React Hook Form](https://www.react-hook-form.com/), [react-icons](https://react-icons.github.io/react-icons/)
 
 
 ### Install locally
@@ -86,7 +85,7 @@ Check it out at [https://github.com/mp-martin/ez-vote-back](https://github.com/m
 # About the author
 My name is Martin and I am on a journey to become a software engineer. By the way, I am a graphic designer.
 
-You can find me at my [Linkedin](https://www.linkedin.com/in/marcin-papierz/) 🤝
+You can find me on my [LinkedIn](https://www.linkedin.com/in/marcin-papierz/) 🤝
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
