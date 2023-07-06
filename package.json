@@ -1,6 +1,6 @@
 {
   "name": "ez-vote",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",
@@ -25,8 +25,8 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build:win": "set REACT_APP_API_URL=/api&& react-app-rewired  build",
-    "build:unix": "REACT_APP_API_URL=/api react-app-rewired  build",
+    "build:win": "set REACT_APP_API_URL=https://zar.networkmanager.pl/api&& react-app-rewired  build",
+    "build:unix": "REACT_APP_API_URL=https://zar.networkmanager.pl/api react-app-rewired  build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
